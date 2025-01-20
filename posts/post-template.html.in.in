@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<!--
+  -- Copyright (C) 2025 ChenPi11
+  -- This file is part of the chenpi11-blog.
+  --
+  -- chenpi11-blog is free software: you can redistribute it and/or modify
+  -- it under the terms of the GNU General Public License as published
+  -- by the Free Software Foundation, either version 3 of the License,
+  -- or (at your option) any later version.
+  --
+  -- chenpi11-blog is distributed in the hope that it will be useful,
+  -- but WITHOUT ANY WARRANTY; without even the implied warranty of
+  -- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  -- GNU General Public License for more details.
+  --
+  -- You should have received a copy of the GNU General Public License
+  -- along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>@TITLE@</title>
+</head>
+
+<body>
+    <script src="../theme-loader.js"></script>
+    <script src="../theme-button/theme-button.js"></script>
+    <header>
+        <button id="nav-toggle" class="nav-toggle" type="button">&#9776;</button>
+        <h1>@TITLE@</h1>
+    </header>
+
+    <nav id="sidebar" class="sidebar">
+        <button id="nav-close" class="nav-close" type="button">&times;</button>
+        @SIDEBAR@
+    </nav>
+
+    <div class="container markdown-body">
+        @CONTENT@
+    </div>
+
+    <script src="../sidebar.js"></script>
+
+    <footer>
+        <p>@COPYRIGHT@</p>
+    </footer>
+</body>
+
+</html>

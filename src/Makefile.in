@@ -1,0 +1,52 @@
+# -*- Makefile -*-
+
+# Copyright (C) 2025 ChenPi11.
+# This file is part of chenpi11-blog.
+#
+# chenpi11-blog is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# chenpi11-blog is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+
+CC ?= @CC@
+CFLAGS ?= @CFLAGS@
+CPPFLAGS ?= @CPPFLAGS@
+LDFLAGS ?= @LDFLAGS@
+INCLUDES ?= -I../include
+PREFIX ?= @prefix@
+INSTALL = @INSTALL@
+
+RM ?= rm -f
+
+SRC= $(wildcard *.c)
+
+.PHONY : all install clean allclean
+
+all : build-post
+
+build-post : $(SRC:.c=.o)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $^ -o $@
+
+install : all
+	$(INSTALL) -m 755 build-post $(PREFIX)/bin
+
+%.o : %.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(INCLUDES) -c $< -o $@
+
+clean :
+	$(RM) *.o
+	$(RM) blog-build
+
+allclean : clean
+	$(RM) Makefile

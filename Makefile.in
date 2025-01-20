@@ -1,0 +1,115 @@
+# -*- Makefile -*-
+
+# Copyright (C) 2025 ChenPi11.
+# This file is part of chenpi11-blog.
+#
+# chenpi11-blog is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# chenpi11-blog is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
+
+PREFIX=@prefix@
+
+SHELL ?= @SHELL@
+MKDIR ?= mkdir -p
+RM ?= rm -f
+NPM ?= @NPM@
+NPX ?= @NPX@
+PYTHON3 = @PYTHON3@
+CARGO ?= @CARGO@
+CMAKE ?= @CMAKE@
+
+VENV ?= .venv
+
+.PHONY : all setup build-blog run clean allclean
+
+all : setup fonts/MesloLGS-NF-Regular.woff log.html index.html \
+      $(VENV)/bin/build-post $(VENV)/bin/new-post $(VENV)/bin/mkpostlists \
+	  $(VENV)/bin/build-blog
+
+setup : package.json
+	PYTHON="$(PYTHON3)" NPM="$(NPM)" PIPFLAGS="$(PIPFLAGS)" NPMFLAGS="$(NPMFLAGS)" $(SHELL) ./scripts/setup.sh
+
+index.html.in :
+	echo "Please configure first!"
+	exit 1
+
+$(VENV)/bin/build-post : setup
+	cd src && $(MAKE) all
+	cd src && $(MAKE) install
+
+$(VENV)/bin/new-post : setup
+	$(CARGO) build --release
+	$(CARGO) install --path . --root $(PREFIX)
+
+$(VENV)/bin/mkpostlists : setup
+	$(MKDIR) build
+	cd build && $(CMAKE) -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$(PREFIX) ..
+	cd build && $(CMAKE) --build . --config=Release
+	cd build && $(CMAKE) --install .
+
+$(VENV)/bin/build-blog : setup $(VENV)/bin/build-post
+	$(VENV)/bin/python3 -m build $(PYTHON_BUILDFLAGS)
+	$(VENV)/bin/python3 -m pip install dist/*.whl --verbose $(PIPFLAGS)
+
+build-blog : $(VENV)/bin/build-blog
+	$<
+
+index.html : $(VENV)/bin/mkpostlists index.html.in build-blog
+	$< > postlists.tmp
+	$(CMAKE) -DFROM=index.html.in -DTO=$@ -DK0=CONTENT -DV0=FILE=postlists.tmp \
+	-DK1=SUBTITLE -DV1="Main" -P configure.cmake
+
+run : all
+	$(SHELL) ./scripts/run.sh
+
+fonts : setup
+	$(MKDIR) $@
+
+fonts/MesloLGS-NF-Regular.woff : fonts/MesloLGS-NF-Regular.ttf fonts
+	$(NPX) ttf2woff $< $@
+
+log.html : log-term.html index.html.in
+	$(CMAKE) -DFROM=index.html.in -DTO=$@ -DK0=CONTENT -DV0=FILE=$< \
+	-DK1=SUBTITLE -DV1="Build Log" -P configure.cmake
+
+clean :
+	cd src && $(MAKE) $@
+	$(RM) fonts/MesloLGS-NF-Regular.woff
+	$(RM) -r autom4te.cache
+	$(RM) config.log
+	$(RM) config.status
+	$(RM) configure
+	$(RM) configure~
+	$(RM) aclocal.m4
+	$(RM) src/build-post
+	$(RM) posts/post-template.html.in
+	$(RM) -r target
+	$(RM) -r dist
+	$(RM) -r posts/*.html
+	$(RM) -r posts/*.info
+	$(RM) index.html
+	$(RM) index.html.in
+	$(RM) log.html
+	$(RM) -r build
+
+allclean : clean
+	cd src && $(MAKE) $@
+	$(RM) package-lock.json
+	$(RM) Makefile
+	$(RM) -r markdown-css
+	$(RM) -r .venv
+	$(RM) -r dist
+	$(RM) -r package-lock.json
+	$(RM) -r Cargo.lock
+	$(RM) -r node_modules
+	$(RM) -r xterm
+	$(RM) buildlog.txt

@@ -1,0 +1,59 @@
+# Copyright (C) 2025 ChenPi11.
+# This file is part of chenpi11-blog.
+#
+# chenpi11-blog is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# chenpi11-blog is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
+
+[build-system]
+
+requires = ["hatchling"]
+
+build-backend = "hatchling.build"
+
+[project]
+
+name = "chenpi11_blog"
+
+version = "0.1.0"
+
+authors = [{ name = "ChenPi11", email = "wushengwuxi-msctinoulk@outlook.com" }]
+
+description = "ChenPi11's Blog"
+
+readme = "README.md"
+
+license = { file = "LICENSE" }
+
+requires-python = ">=3.10"
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["chenpi11_blog"]
+
+[project.urls]
+
+"Homepage" = "https://github.com/ChenPi11/ChenPi11.github.io"
+
+# Include files
+[tool.hatch.build.targets.sdist]
+
+exclude = [".github"]
+
+[project.scripts]
+
+build-blog = "chenpi11_blog.build_blog:build_blog_main"
