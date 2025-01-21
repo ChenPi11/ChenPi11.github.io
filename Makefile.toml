@@ -26,4 +26,4 @@ args = ["-f", "Makefile", "run"]
 [tasks.clean]
 description = "Clean the project."
 command = "make"
-args = ["-f", "Makefile.devel", "clean"]
+args = ["-f", "Makefile", "clean"]

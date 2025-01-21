@@ -20,6 +20,7 @@
 
 """Build all posts."""
 
+import shutil
 import sys
 from pathlib import Path
 from subprocess import Popen
@@ -37,11 +38,20 @@ def build_blog_main() -> None:
         msg = "posts/post-template.html.in is not found."
         raise SystemExit(msg)
 
+    build_post = shutil.which("build-post")
+    if not build_post:
+        # Not found if we are running outside of the venv.
+        build_post = (Path.cwd() / ".venv/bin/build-post").as_posix()
+
+    if not Path(build_post).exists():
+        msg = "build-post is not found."
+        raise SystemExit(msg)
+
     for postfile in Path("orig-posts").iterdir():
         if postfile.suffix != ".md":
             continue
         sys.stdout.write(f"========== Building {postfile}... ==========\n")
-        cmd = f"build-post {POSTS_TEMPLATE} {postfile.as_posix()}"
+        cmd = f"{build_post} {POSTS_TEMPLATE} {postfile.as_posix()}"
         sys.stdout.write(f"Executing {cmd} ...\n")
         with Popen(  # noqa: S602
             cmd,

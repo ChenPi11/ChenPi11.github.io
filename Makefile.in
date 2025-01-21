@@ -31,7 +31,7 @@ VENV ?= .venv
 
 .PHONY : all setup build-blog run clean allclean
 
-all : setup fonts/MesloLGS-NF-Regular.woff log.html index.html \
+all : setup log.html index.html \
       $(VENV)/bin/build-post $(VENV)/bin/new-post $(VENV)/bin/mkpostlists \
 	  $(VENV)/bin/build-blog
 
@@ -74,16 +74,12 @@ run : all
 fonts : setup
 	$(MKDIR) $@
 
-fonts/MesloLGS-NF-Regular.woff : fonts/MesloLGS-NF-Regular.ttf fonts
-	$(NPX) ttf2woff $< $@
-
 log.html : log-term.html index.html.in
 	$(CMAKE) -DFROM=index.html.in -DTO=$@ -DK0=CONTENT -DV0=FILE=$< \
 	-DK1=SUBTITLE -DV1="Build Log" -P configure.cmake
 
 clean :
 	cd src && $(MAKE) $@
-	$(RM) fonts/MesloLGS-NF-Regular.woff
 	$(RM) -r autom4te.cache
 	$(RM) config.log
 	$(RM) config.status

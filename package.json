@@ -9,10 +9,7 @@
   },
   "dependencies": {
     "@xterm/xterm": "^5.5.0",
-    "github-markdown-css": "^5.8.1",
     "hexo-renderer-markdown-it": "^7.1.1",
-    "marked": "^15.0.6",
-    "ttf2woff": "^3.0.0",
-    "xterm-theme": "^1.1.0"
+    "marked": "^15.0.6"
   }
 }
