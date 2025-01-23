@@ -18,3 +18,4 @@ build
 hatchling
 pylint
 ruff
+json5

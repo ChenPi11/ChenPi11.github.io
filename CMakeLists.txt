@@ -25,6 +25,7 @@ project (
 set ( CMAKE_CXX_STANDARD 20 )
 
 set ( SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/mkpostlists.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/configure.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/log.c" )
 
 include_directories ( "${CMAKE_CURRENT_SOURCE_DIR}/include" )

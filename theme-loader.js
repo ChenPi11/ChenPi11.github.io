@@ -18,56 +18,62 @@
 
 "use strict";
 
+// Check if the browser supports the prefers-color-scheme media query.
 function getPreferredColorScheme() {
-    // Check if the browser supports the prefers-color-scheme media query.
     if (window.matchMedia) {
-        // Check if the preferred color scheme is dark.
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            return 'dark';
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            return "dark";
         }
-        // Check if the preferred color scheme is light.
-        if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-            return 'light';
+        if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+            return "light";
         }
     }
     // Default to light if no preference is found.
-    return 'light';
+    return "light";
 }
 
 const urlParams = new URLSearchParams(window.location.search);
 
-// dark or light
-var theme = urlParams.get('theme');
-if (theme != 'dark' && theme != 'light') {
-    theme = getPreferredColorScheme()
+var theme = urlParams.get("theme");
+if (theme != "dark" && theme != "light") {
+    theme = getPreferredColorScheme();
 }
 
-// Add meta tag.
-const meta = document.createElement('meta');
-meta.name = 'color-scheme';
-meta.content = theme;
-document.head.appendChild(meta);
+function getTheme() {
+    return theme;
+}
 
-// Add github-markdown-css, it must be added before Prism.js.
-const gmcCSSURL = `https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.8.1/github-markdown-${theme}.min.css`
+const gmcCSSURL = "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.8.1/github-markdown-${theme}.min.css";
+const prismCSSPath = "/prism/${theme}/prism.css";
+const prismJSPath = "/prism/${theme}/prism.js";
+
+// Add meta tag.
+const metaColorScheme = document.createElement("meta");
+metaColorScheme.name = "color-scheme";
+metaColorScheme.content = theme;
+document.head.appendChild(metaColorScheme);
 
 // Add the CSS file to the head.
-const gmcCSSLink = document.createElement('link');
-gmcCSSLink.rel = 'stylesheet';
-gmcCSSLink.href = gmcCSSURL;
+const gmcCSSLink = document.createElement("link");
+gmcCSSLink.rel = "stylesheet";
+gmcCSSLink.href = gmcCSSURL.replace("${theme}", theme);
 document.head.appendChild(gmcCSSLink);
 
-// Add Prism.js.
-const prismCSSPath = `/prism/${theme}/prism.css`;
-const prismJSPath = `/prism/${theme}/prism.js`;
-
 // Add the CSS file to the head.
-const prismCSSLink = document.createElement('link');
-prismCSSLink.rel = 'stylesheet';
-prismCSSLink.href = prismCSSPath;
+const prismCSSLink = document.createElement("link");
+prismCSSLink.rel = "stylesheet";
+prismCSSLink.href = prismCSSPath.replace("${theme}", theme);
 document.head.appendChild(prismCSSLink);
 
 // Add the JavaScript file to the head.
-const prismJSScript = document.createElement('script');
-prismJSScript.src = prismJSPath;
+const prismJSScript = document.createElement("script");
+prismJSScript.src = prismJSPath.replace("${theme}", theme);
 document.head.appendChild(prismJSScript);
+
+function setTheme(new_theme) {
+    theme = new_theme;
+    metaColorScheme.content = theme;
+    gmcCSSLink.href = gmcCSSURL.replace("${theme}", theme);
+    prismCSSLink.href = prismCSSPath.replace("${theme}", theme);
+    prismJSScript.src = prismJSPath.replace("${theme}", theme);
+};

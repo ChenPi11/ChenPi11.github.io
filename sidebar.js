@@ -18,17 +18,31 @@
 
 "use strict";
 
-const navToggle = document.getElementById('nav-toggle');
-const navClose = document.getElementById('nav-close');
-const sidebar = document.getElementById('sidebar');
-const container = document.querySelector('.container');
+const navToggle = document.getElementById("nav-toggle");
+const navClose = document.getElementById("nav-close");
+const sidebar = document.getElementById("sidebar");
+const container = document.querySelector(".container");
 
-navToggle.addEventListener('click', function () {
-    sidebar.style.left = '0px';
-    container.classList.add('active');
+navToggle.addEventListener("click", function () {
+    sidebar.style.left = "0px";
+    container.classList.add("active");
 });
 
-navClose.addEventListener('click', function () {
-    sidebar.style.left = '-250px';
-    container.classList.remove('active');
+navClose.addEventListener("click", function () {
+    sidebar.style.left = "-250px";
+    container.classList.remove("active");
 });
+
+const themeButtonDiv = document.getElementById("theme-button");
+const themeButton = document.createElement("theme-button");
+themeButton.setAttribute("value", getTheme());
+themeButton.setAttribute("size", "2");
+themeButton.addEventListener("click", function () {
+    if (getTheme() == "light") {
+        setTheme("dark");
+    }
+    else {
+        setTheme("light");
+    }
+});
+themeButtonDiv.appendChild(themeButton);

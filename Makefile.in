@@ -16,11 +16,12 @@
 # You should have received a copy of the GNU General Public License
 # along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
 
-PREFIX=@prefix@
+PREFIX = @prefix@
 
 SHELL ?= @SHELL@
 MKDIR ?= mkdir -p
 RM ?= rm -f
+TOUCH ?= touch
 NPM ?= @NPM@
 NPX ?= @NPX@
 PYTHON3 = @PYTHON3@
@@ -35,8 +36,11 @@ all : setup log.html index.html \
       $(VENV)/bin/build-post $(VENV)/bin/new-post $(VENV)/bin/mkpostlists \
 	  $(VENV)/bin/build-blog
 
-setup : package.json
+setup : .setup
+
+.setup : package.json
 	PYTHON="$(PYTHON3)" NPM="$(NPM)" PIPFLAGS="$(PIPFLAGS)" NPMFLAGS="$(NPMFLAGS)" $(SHELL) ./scripts/setup.sh
+	$(TOUCH) $@
 
 index.html.in :
 	echo "Please configure first!"
@@ -96,6 +100,7 @@ clean :
 	$(RM) index.html.in
 	$(RM) log.html
 	$(RM) -r build
+	$(RM) -r *.tmp
 
 allclean : clean
 	cd src && $(MAKE) $@
@@ -109,3 +114,4 @@ allclean : clean
 	$(RM) -r node_modules
 	$(RM) -r xterm
 	$(RM) buildlog.txt
+	$(RM) .setup
