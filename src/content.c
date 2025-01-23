@@ -16,9 +16,8 @@
  * along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <content.h>
-
-#include <log.h>
+#include "content.h"
+#include "log.h"
 
 #include <malloc.h>
 #include <stdio.h>
@@ -28,7 +27,12 @@ struct content_t read_file(const char *path)
 {
     struct content_t content;
     struct stat file_stat;
-    FILE *file = fopen(path, "r");
+    FILE *file = NULL;
+
+    init_struct(content);
+    init_struct(file_stat);
+
+    file = fopen(path, "r");
     if (file == NULL)
     {
         die("Cannot open file: %s\n", path);

@@ -23,16 +23,6 @@
 #include <string>
 #include <vector>
 
-inline void replace(std::string &str, const std::string &from, const std::string &to)
-{
-    std::size_t pos = 0;
-    while ((pos = str.find(from, pos)) != std::string::npos)
-    {
-        str.replace(pos, from.length(), to);
-        pos += to.length();
-    }
-}
-
 struct configure_t
 {
     std::string key;
@@ -41,16 +31,6 @@ struct configure_t
 
 using configures_t = std::vector<configure_t>;
 
-inline std::string configure(const configures_t &configs, const std::string &src)
-{
-    std::string res = src;
-    for (const struct configure_t &config : configs)
-    {
-        std::string key = "@" + config.key + "@";
-        replace(res, key, config.value);
-    }
-
-    return res;
-}
+extern std::string configure(const configures_t &configs, const std::string &src);
 
 #endif

@@ -15,10 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
 
-neofetch
-./autogen.sh
-./configure
+die()
+{
+    echo "$0: Error."
+    exit 1
+}
+
+neofetch || die
+./autogen.sh || die
+./configure || die
 echo "========== config.log =========="
-cat config.log
+cat config.log || die
 echo "========== config.log =========="
-make all
+make all || die

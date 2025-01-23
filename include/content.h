@@ -21,6 +21,7 @@
 #define _CONTENT_H_
 
 #include <stddef.h>
+#include <string.h>
 
 struct content_t
 {
@@ -28,8 +29,14 @@ struct content_t
     size_t len;
 };
 
+extern struct content_t alloc_content(void);
+
+extern int is_null_content(void);
+
 extern struct content_t read_file(const char *path);
 
 extern void free_content(struct content_t *content);
+
+#define init_struct(x) memset(&(x), 0, sizeof(x))
 
 #endif

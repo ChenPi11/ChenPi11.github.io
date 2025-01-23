@@ -43,7 +43,7 @@ setup : .setup
 	$(TOUCH) $@
 
 index.html.in :
-	echo "Please configure first!"
+	@echo "Please configure first!"
 	exit 1
 
 $(VENV)/bin/build-post : setup
@@ -64,8 +64,12 @@ $(VENV)/bin/build-blog : setup $(VENV)/bin/build-post
 	$(VENV)/bin/python3 -m build $(PYTHON_BUILDFLAGS)
 	$(VENV)/bin/python3 -m pip install dist/*.whl --verbose $(PIPFLAGS)
 
-build-blog : $(VENV)/bin/build-blog
-	$<
+.build-blog :
+	$(TOUCH) $@
+	$(MAKE) -f Makefile $(VENV)/bin/build-blog
+
+build-blog : .build-blog
+	$(VENV)/bin/build-blog
 
 index.html : $(VENV)/bin/mkpostlists index.html.in build-blog
 	$< > postlists.tmp
@@ -115,3 +119,4 @@ allclean : clean
 	$(RM) -r xterm
 	$(RM) buildlog.txt
 	$(RM) .setup
+	$(RM) .build-blog

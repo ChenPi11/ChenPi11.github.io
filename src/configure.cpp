@@ -16,26 +16,27 @@
  * along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#pragma once
-#ifndef _CONFIGURE_H_
-#define _CONFIGURE_H_
+#include "configure.hpp"
 
-#include <stddef.h>
-
-struct configure_t
+inline void replace(std::string &str, const std::string &from, const std::string &to)
 {
-    const char *key;
-    const char *value;
-};
+    std::size_t pos = 0;
 
-struct configures_t
+    while ((pos = str.find(from, pos)) != std::string::npos)
+    {
+        str.replace(pos, from.length(), to);
+        pos += to.length();
+    }
+}
+
+std::string configure(const configures_t &configs, const std::string &src)
 {
-    struct configure_t *first;
-    size_t num;
-};
+    std::string res = src;
 
-extern void configure(struct configures_t configs, const char *filepath);
+    for (const struct configure_t &config : configs)
+    {
+        replace(res, "@" + config.key + "@", config.value);
+    }
 
-extern void free_configures(struct configures_t *configs);
-
-#endif
+    return res;
+}

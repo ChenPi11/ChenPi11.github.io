@@ -17,25 +17,35 @@
  */
 
 #pragma once
-#ifndef _CONFIGURE_H_
-#define _CONFIGURE_H_
+#ifndef _FILE_UTIL_H_
+#define _FILE_UTIL_H_
 
 #include <stddef.h>
 
-struct configure_t
-{
-    const char *key;
-    const char *value;
-};
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-struct configures_t
-{
-    struct configure_t *first;
-    size_t num;
-};
+/* Return 1 if the path exists. 0 otherwise.  */
+extern int exists(const char *path);
 
-extern void configure(struct configures_t configs, const char *filepath);
+/* Return 1 if the path is a regular file. 0 otherwise.  */
+extern int is_file(const char *path);
 
-extern void free_configures(struct configures_t *configs);
+/* Return 1 if the path is a directory. 0 otherwise.  */
+extern int is_dir(const char *path);
+
+/* Get the file size. Return (size_t)(-1) if failed. */
+extern size_t get_file_size(const char *path);
+
+/* Remove a file or an empty directory. Return 0 if success. 0 otherwise. */
+extern int remove_file(const char *path);
+
+/* Checking if he current path is ChenPi11's blog root directory. Return 1 if it is. 0 otherwise. */
+extern int is_chenpi11_blog_rootdir(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

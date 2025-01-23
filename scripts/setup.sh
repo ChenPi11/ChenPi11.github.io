@@ -25,18 +25,23 @@ fi
 
 die()
 {
+    echo "$0: Error."
     rm -rf .venv
+    exit 1
 }
 
 # Install requirements.
 python -m venv .venv || die
+# shellcheck source=/dev/null
 . ./.venv/bin/activate || die
+# shellcheck disable=SC2086
 python3 -m pip install -r requirements.txt --verbose $PIPFLAGS || die
 
 # Install NPM requirements.
+# shellcheck disable=SC2086
 $NPM install --verbose $NPMFLAGS || die
 
 # Export xterm.js
-cp -r node_modules/@xterm/xterm .
+cp -r node_modules/@xterm/xterm . || die
 cd xterm || die
 rm -rf src typings package.json README.md lib/*.map

@@ -15,6 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
 
-. ./.venv/bin/activate
+die()
+{
+    echo "$0: Error."
+    exit 1
+}
 
-python3 -m http.server 8080
+# shellcheck source=/dev/null
+. ./.venv/bin/activate || die
+
+python3 -m http.server 8080 || die

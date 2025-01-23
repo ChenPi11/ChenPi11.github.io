@@ -15,6 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
 
-aclocal -I m4 --output=aclocal.m4 && touch aclocal.m4
-autoconf
+die()
+{
+    echo "$0: Error."
+    exit 1
+}
+
+aclocal -I m4 --output=aclocal.m4 || die
+autoconf || die
 echo "$0: done.  Now you can run './configure'."

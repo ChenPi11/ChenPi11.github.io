@@ -16,9 +16,10 @@
  * along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <log.h>
-#include <markdown-it.h>
-#include <post.h>
+#include "log.h"
+#include "markdown-it.h"
+#include "post.h"
+#include "file-util.h"
 
 #include <sys/stat.h>
 
@@ -45,7 +46,7 @@ int main(int argc, char *argv[])
         die("Usage: %s <template file> <source file>\n", argv[0]);
     }
 
-    if (!directory_exists(POST_OUTPUT_DIR))
+    if (!is_chenpi11_blog_rootdir())
     {
         die("You must run %s in project's root directory!\n", argv[0]);
     }
