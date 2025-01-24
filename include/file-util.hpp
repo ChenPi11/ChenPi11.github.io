@@ -1,3 +1,9 @@
+/**
+ * @file file-util.hpp
+ * @brief File operation utils.
+ * @author ChenPi11
+ * @copyright Copyright (C) 2025 ChenPi11
+ */
 /*
  * Copyright (C) 2025 ChenPi11
  * This file is part of the chenpi11-blog.
@@ -17,9 +23,28 @@
  */
 
 #pragma once
-#ifndef _COPYFILE_H_
-#define _COPYFILE_H_
+#ifndef _FILE_UTIL_HPP_
+#define _FILE_UTIL_HPP_
 
-extern void copy_file(const char *from, const char *to);
+#include <filesystem>
+#include <string>
 
-#endif
+namespace file
+{
+/**
+ * @brief Read all data from a file to a string.
+ * @param filepath The path of the file.
+ * @return The string of the file data.
+ */
+extern std::string readfile(const std::filesystem::path &filepath);
+
+/**
+ * @brief Write a string to a file.
+ * @param filepath The path of the file.
+ * @param data The string to be written.
+ */
+extern void writefile(const std::filesystem::path &filepath, const std::string &data);
+
+} // namespace file
+
+#endif // _CONTENT_HPP_

@@ -29,7 +29,7 @@ inline void replace(std::string &str, const std::string &from, const std::string
     }
 }
 
-std::string configure(const configures_t &configs, const std::string &src)
+std::string configure::configure(const configures_t &configs, const std::string &src)
 {
     std::string res = src;
 

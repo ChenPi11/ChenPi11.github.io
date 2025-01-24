@@ -17,15 +17,31 @@
  */
 
 #pragma once
-#ifndef _MARKDOWN_IT_H_
-#define _MARKDOWN_IT_H_
+#ifndef _DEFINES_H_
+#define _DEFINES_H_
 
-#include "content.h"
+#ifdef __cplusplus
+#define EXTERN_C_BEG extern "C" {
+#define EXTERN_C_END }
+#else
+#define EXTERN_C_BEG
+#define EXTERN_C_END
+#endif
 
-/* Initialize markdown-it. */
-extern void markdown_it_init(void);
+#ifndef TRUE
+#define TRUE 1
+#endif
 
-/* Convert markdown to html. */
-extern struct content_t markdown_it_tohtml(const char *filepath);
+#ifndef FALSE
+#define FALSE 0
+#endif
+
+#ifndef RET_SUCCESS
+#define RET_SUCCESS 0
+#endif
+
+#ifndef RET_ERROR
+#define RET_ERROR -1
+#endif
 
 #endif

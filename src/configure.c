@@ -16,23 +16,21 @@
  * along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <configure.h>
+#include "configure.h"
 
-#include <log.h>
+#include "content.h"
+#include "defines.h"
+#include "file-util.h"
+#include "log.h"
 
 #include <malloc.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/stat.h>
 
 static size_t substr_count(char *str, const char *sub_str)
 {
-    if (str == NULL || sub_str == NULL)
-    {
-        die("substr_count(): Parameters should not be NULL\n");
-    }
-    size_t n = 0;
+    size_t count = 0;
     char *begin_ptr = str;
     char *end_ptr = NULL;
 
@@ -40,131 +38,156 @@ static size_t substr_count(char *str, const char *sub_str)
     {
         end_ptr += strlen(sub_str);
         begin_ptr = end_ptr;
-        ++n;
+        ++count;
     }
-    return n;
+
+    return count;
 }
 
-static void str_replace(const char *file_path, const char *new_str, const char *old_str)
+#define _STRLEN_DELTA(str1, str2)                                                                                      \
+    (strlen(str1) > strlen(str2) ? strlen(str1) - strlen(str2) : strlen(str2) - strlen(str1))
+
+static int str_replace(const char *file_path, const char *to_str, const char *from_str)
 {
-    struct stat file_stat;
-    FILE *fp;
+    FILE *file = NULL;
+    size_t file_size = 0;
+    char *orig_str = NULL;
+    size_t res_str_len = 0;
+    char *res_str = NULL;
+    char *cpy_str = NULL;
+    char *begin_ptr = NULL;
+    char *end_ptr = NULL;
 
-    if (file_path == NULL || new_str == NULL || old_str == NULL)
-    {
-        die("str_replace(): Parameters should not be NULL\n");
-    }
-
-    if (old_str[0] == '\0')
+    if (strlen(from_str) == 0)
     {
         warn("Empty find string when replacing string in file: %s\n", file_path);
         warn("Nothing will be replaced.\n");
-        return;
+
+        goto SUCCESS;
     }
 
-    if ((fp = fopen(file_path, "r")) == NULL)
+    if ((file = fopen(file_path, "r")) == NULL)
     {
         die("Cannot open file: %s\n", file_path);
     }
 
-    if (stat(file_path, &file_stat) == -1)
+    file_size = get_file_size(file_path);
+    if (file_size == (size_t)(-1))
     {
-        fclose(fp);
-        die("Cannot stat file %s\n", file_path);
+        goto ERROR;
     }
 
-    size_t file_len = (size_t)file_stat.st_size;
-
-    if (file_len == 0)
+    if (file_size == 0)
     {
-        fclose(fp);
-        return;
+        goto SUCCESS;
     }
 
-    char *orig_str = (char *)malloc(file_len + 1);
+    orig_str = (char *)calloc(file_size + 1, sizeof(char));
     if (orig_str == NULL)
     {
-        fclose(fp);
         die("Cannot allocate memory.\n");
     }
-    memset(orig_str, 0, file_len + 1);
 
-    const int count = 1;
-    int ret = fread(orig_str, file_len, count, fp);
-
-    if (ret != count)
+    if (fread(orig_str, sizeof(char), file_size, file) != file_size)
     {
-        fclose(fp);
-        free(orig_str);
         die("I/O Error: %s.\n", file_path);
     }
 
-    int n = substr_count(orig_str, old_str);
+    close_file(file);
 
-    int rst_str_len = file_len + n * abs(((int)strlen(new_str) - (int)strlen(old_str))) + 1;
-    char *rst_str = (char *)malloc(rst_str_len);
-    if (rst_str == NULL)
+    res_str_len = file_size + substr_count(orig_str, from_str) * _STRLEN_DELTA(to_str, from_str) + 1;
+    res_str = (char *)calloc(res_str_len, sizeof(char));
+    if (res_str == NULL)
     {
         die("Cannot allocate memory.\n");
     }
-    memset(rst_str, 0, rst_str_len);
 
-    char *cpy_str = rst_str;
-    char *begin_ptr = orig_str;
-    char *end_ptr = NULL;
+    cpy_str = res_str;
+    begin_ptr = orig_str;
+    end_ptr = NULL;
 
-    while ((end_ptr = strstr(begin_ptr, old_str)) != NULL)
+    while ((end_ptr = strstr(begin_ptr, from_str)) != NULL)
     {
         memcpy(cpy_str, begin_ptr, end_ptr - begin_ptr);
         cpy_str += (end_ptr - begin_ptr);
-        memcpy(cpy_str, new_str, strlen(new_str));
-        cpy_str += strlen(new_str);
-        end_ptr += strlen(old_str);
+        memcpy(cpy_str, to_str, strlen(to_str));
+        cpy_str += strlen(to_str);
+        end_ptr += strlen(from_str);
         begin_ptr = end_ptr;
     }
-    strcpy(cpy_str, begin_ptr);
+    memcpy(cpy_str, begin_ptr, strlen(begin_ptr));
 
-    fclose(fp);
-
-    if ((fp = fopen(file_path, "w")) == NULL)
+    if ((file = fopen(file_path, "w")) == NULL)
     {
         die("Cannot open file: %s\n", file_path);
     }
 
-    ret = fwrite(rst_str, strlen(rst_str), count, fp);
-    if (ret != count)
+    if (fwrite(res_str, sizeof(char), strlen(res_str), file) != strlen(res_str))
     {
-        fclose(fp);
-        free(orig_str);
-        free(rst_str);
         die("I/O Error: %s.\n", file_path);
     }
 
+SUCCESS:
+    close_file(file);
     free(orig_str);
-    free(rst_str);
-    fclose(fp);
+    free(res_str);
+
+    return RET_SUCCESS;
+
+ERROR:
+    close_file(file);
+    free(orig_str);
+    free(res_str);
+
+    return RET_ERROR;
 }
 
-void configure(struct configures_t configs, const char *filepath)
+int configure(struct configures_t configs, const char *filepath)
 {
-    info("%s: Configuring %s ...\n", filepath);
+    char strkey[BUFSIZ];
+    struct configure_t replace;
+
+    init_struct(strkey);
+    init_struct(replace);
+
+    if (filepath == NULL)
+    {
+        die("NULL filepath.\n");
+    }
+
+    info("Configuring %s ...\n", filepath);
+
     for (size_t i = 0; i < configs.num; ++i)
     {
-        struct configure_t replace = configs.first[i];
-        char strkey[BUFSIZ];
-        memset(strkey, 0, BUFSIZ);
-        snprintf(strkey, BUFSIZ, "@%s@", replace.key);
-        str_replace(filepath, replace.value, strkey);
-    }
-}
+        replace = configs.first[i];
+        if (is_null_content(replace.key))
+        {
+            warn("NULL key found in configures.\n");
+            continue;
+        }
 
-void free_configures(struct configures_t *configs)
-{
-    if (configs == NULL)
-    {
-        return;
+        const char *value = replace.value.content;
+
+        if (is_null_content(replace.value))
+        {
+            warn("NULL value found in configures. Replace with empty string.\n");
+            value = "";
+        }
+
+        replace = configs.first[i];
+        init_struct(strkey);
+        if (snprintf(strkey, BUFSIZ, "@%s@", replace.key.content) < 0)
+        {
+            die("Cannot format string: %s\n", replace.key.content);
+        }
+        if (str_replace(filepath, value, strkey) != RET_SUCCESS)
+        {
+            goto ERROR;
+        }
     }
-    free(configs->first);
-    configs->num = 0;
-    configs->first = NULL;
+
+    return RET_SUCCESS;
+
+ERROR:
+    return RET_ERROR;
 }

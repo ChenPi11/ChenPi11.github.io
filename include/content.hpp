@@ -1,3 +1,9 @@
+/**
+ * @file content.hpp
+ * @brief String utils.
+ * @author ChenPi11
+ * @copyright Copyright (C) 2025 ChenPi11
+ */
 /*
  * Copyright (C) 2025 ChenPi11
  * This file is part of the chenpi11-blog.
@@ -17,15 +23,31 @@
  */
 
 #pragma once
-#ifndef _MARKDOWN_IT_H_
-#define _MARKDOWN_IT_H_
+#ifndef _CONTENT_HPP_
+#define _CONTENT_HPP_
 
-#include "content.h"
+#include <string>
+#include <vector>
 
-/* Initialize markdown-it. */
-extern void markdown_it_init(void);
+namespace content
+{
 
-/* Convert markdown to html. */
-extern struct content_t markdown_it_tohtml(const char *filepath);
+/**
+ * @brief Split a string by a delimiter.
+ * @param str The string to be split.
+ * @param delim The delimiter.
+ * @return The vector of the split result.
+ */
+extern std::vector<std::string> split(const std::string &str, const char delim);
 
-#endif
+/**
+ * @brief Checking if the string has a suffix.
+ * @param str The string to be checked.
+ * @param suffix The suffix.
+ * @return Return true if the string has the suffix. false otherwise.
+ */
+extern bool endswith(const std::string &str, const std::string &suffix);
+
+}
+
+#endif // _CONTENT_HPP_

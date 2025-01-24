@@ -1,6 +1,6 @@
 /**
- * @file configure.hpp
- * @brief Configure a string with key-value pairs.
+ * @file log.hpp
+ * @brief The log module.
  * @author ChenPi11
  * @copyright Copyright (C) 2025 ChenPi11
  */
@@ -23,44 +23,44 @@
  */
 
 #pragma once
-#ifndef _CONFIGURE_HPP_
-#define _CONFIGURE_HPP_
+#ifndef _LOG_HPP_
+#define _LOG_HPP_
 
-#include <string>
-#include <vector>
-
-namespace configure
+namespace logging
 {
+/**
+ * @brief Initialize the log module.
+ * @param argc The process argument count.
+ * @param argv The process argument vector.
+ */
+void init(int argc, char *argv[]) noexcept;
 
 /**
- * @brief The configure struct.
+ * @brief Show info.
+ * @param fmt The format string.
+ * @param ... The format arguments.
  */
-struct configure_t
-{
-    /**
-     * @brief The key of the configure.
-     */
-    std::string key;
-
-    /**
-     * @brief The value of the configure.
-     */
-    std::string value;
-};
+void info(const char *fmt, ...) noexcept;
 
 /**
- * @brief The configures.
+ * @brief Show warning.
+ * @param fmt The format string.
+ * @param ... The format arguments.
  */
-using configures_t = std::vector<configure_t>;
+void warn(const char *fmt, ...) noexcept;
 
 /**
- * @brief Get the configure value by key.
- * @param configs The configures.
- * @param src The source string.
- * @return The configured string.
+ * @brief Show error.
+ * @param fmt The format string.
+ * @param ... The format arguments.
  */
-extern std::string configure(const configures_t &configs, const std::string &src);
+void error(const char *fmt, ...) noexcept;
 
-} // namespace configure
+/**
+ * @brief Get the process name.
+ * @return The process name.
+ */
+const char *get_proc_name() noexcept;
+} // namespace log
 
-#endif // _CONFIGURE_HPP_
+#endif // _LOG_HPP_

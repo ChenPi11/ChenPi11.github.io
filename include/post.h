@@ -32,29 +32,62 @@
 #define TAGS_SEP ","
 #define POST_OUTPUT_DIR "posts/"
 
+/* Tags. */
 struct tags_t
 {
+    /* The first element of the array. */
     struct content_t *first;
+
+    /* The number of elements in the array. */
     size_t num;
 };
 
+/* Null tags. */
+#define null_tags (struct tags_t){.first = NULL, .num = 0}
+
+/* Post. */
 struct post_t
 {
+    /* The post's file stem name. */
     struct content_t filename;
+
+    /* The post's title. */
     struct content_t title;
+
+    /* The post's publish date. */
     struct content_t date;
-    struct content_t content; // The post's markdown content.
+
+    /* The post's markdown content. */
+    struct content_t content;
+
+    /* The post's tags. */
     struct tags_t tags;
 };
 
+/* Null post. */
+#define null_post                                                                                                      \
+    (struct post_t)                                                                                                    \
+    {                                                                                                                  \
+        .filename = null_content, .title = null_content, .date = null_content, .content = null_content,                \
+        .tags = null_tags                                                                                              \
+    }
+
+/* Checking if the post is null post. Return TRUE if it is. FALSE otherwise. */
+#define is_null_post(x) ((x).filename.content == NULL)
+
+/* Initialize the post module. */
 extern void post_init(const char *template_file);
 
+/* Load the post from file. */
 extern struct post_t load_post(const char *filepath);
 
-extern void save_post(struct post_t post);
+/* Save the post to file. */
+extern int save_post(struct post_t post);
 
+/* Free the tags. */
 extern void free_tags(struct tags_t *tags);
 
+/* Free the post. */
 extern void free_post(struct post_t *post);
 
 #endif

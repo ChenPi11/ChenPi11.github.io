@@ -16,31 +16,21 @@
  * along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include "file-util.h"
 #include "log.h"
 #include "markdown-it.h"
 #include "post.h"
-#include "file-util.h"
 
-#include <sys/stat.h>
-
-static int directory_exists(const char *path)
-{
-    struct stat info;
-
-    if (stat(path, &info) != 0)
-    {
-        return 0;
-    }
-    else if (info.st_mode & S_IFDIR)
-    {
-        return 1;
-    }
-    return 0;
-}
+#include <stdlib.h>
 
 int main(int argc, char *argv[])
 {
+    const char *template_file = NULL;
+    const char *source_file = NULL;
+    struct post_t post = null_post;
+
     log_init(argc, argv);
+
     if (argc != 3)
     {
         die("Usage: %s <template file> <source file>\n", argv[0]);
@@ -51,12 +41,28 @@ int main(int argc, char *argv[])
         die("You must run %s in project's root directory!\n", argv[0]);
     }
 
-    const char *template_file = argv[1];
-    const char *source_file = argv[2];
+    template_file = argv[1];
+    source_file = argv[2];
 
     markdown_it_init();
     post_init(template_file);
 
-    struct post_t p = load_post(source_file);
-    save_post(p);
+    post = load_post(source_file);
+    if (is_null_post(post))
+    {
+        die("Cannot load post: %s\n", source_file);
+    }
+
+    if (save_post(post) != RET_SUCCESS)
+    {
+        die("Cannot save post: %s\n", source_file);
+    }
+
+    free_post(&post);
+
+    return EXIT_SUCCESS;
+
+ERROR:
+    free_post(&post);
+    return EXIT_FAILURE;
 }

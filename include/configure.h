@@ -20,22 +20,50 @@
 #ifndef _CONFIGURE_H_
 #define _CONFIGURE_H_
 
+#include "content.h"
+#include "defines.h"
+
 #include <stddef.h>
 
+EXTERN_C_BEG
+
+/* Configure key-value pair. */
 struct configure_t
 {
-    const char *key;
-    const char *value;
+    /* Key. */
+    struct content_t key;
+
+    /* Value. */
+    struct content_t value;
 };
 
+#define PAIR(k, v)                                                                                                     \
+    (struct configure_t)                                                                                               \
+    {                                                                                                                  \
+        .key = static_content(k), .value = static_content(v)                                                                         \
+    }
+
+/* Configure key-value pairs. Use create_configures() to create. */
 struct configures_t
 {
+    /* The first element of the array. */
     struct configure_t *first;
+
+    /* The number of elements in the array. */
     size_t num;
 };
 
-extern void configure(struct configures_t configs, const char *filepath);
+/* Create configures_t. */
+#define create_configures(array)                                                                                       \
+    (struct configures_t)                                                                                              \
+    {                                                                                                                  \
+        .first = array, .num = sizeof(array) / sizeof(struct configure_t)                                              \
+    }
 
-extern void free_configures(struct configures_t *configs);
+/* Configure a file with configures. All @{key}@ will be replaced with {value}.
+   Return RET_SUCCESS if succeed. RET_ERROR otherwise. */
+extern int configure(struct configures_t configs, const char *filepath);
+
+EXTERN_C_END
 
 #endif

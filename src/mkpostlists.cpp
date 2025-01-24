@@ -16,7 +16,8 @@
  * along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "../include/post-info.hpp"
+#include "log.hpp"
+#include "post.hpp"
 
 #include <cstdlib>
 #include <iostream>
@@ -24,13 +25,29 @@
 
 int main(int argc, char *argv[])
 {
-    ::log_init(argc, argv);
-    std::cerr << "Generate post lists...\n";
-    std::string all_posts;
-    for (const auto &post : load_posts())
+    logging::init(argc, argv);
+
+    try
     {
-        all_posts += post.generate() + "\n";
+        logging::info("Generate post lists ...\n");
+
+        std::string all_posts;
+
+        for (const auto &post : post::load_posts())
+        {
+            all_posts += post.generate() + "\n";
+        }
+
+        std::cout << all_posts << std::endl;
+
+        return EXIT_SUCCESS;
     }
-    std::cout << all_posts << std::endl;
-    return EXIT_SUCCESS;
+    catch (const std::system_error &e)
+    {
+        logging::error("Errno %d: %s\n", e.code().value(), e.what());
+    }
+    catch (const std::runtime_error &e)
+    {
+        logging::error("%s\n", e.what());
+    }
 }

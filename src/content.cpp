@@ -1,6 +1,6 @@
 /**
- * @file configure.hpp
- * @brief Configure a string with key-value pairs.
+ * @file content.cpp
+ * @brief String utils implementation.
  * @author ChenPi11
  * @copyright Copyright (C) 2025 ChenPi11
  */
@@ -22,45 +22,27 @@
  * along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#pragma once
-#ifndef _CONFIGURE_HPP_
-#define _CONFIGURE_HPP_
+#include "content.hpp"
 
 #include <string>
 #include <vector>
 
-namespace configure
+std::vector<std::string> content::split(const std::string &str, const char delim)
 {
+    std::vector<std::string> res;
+    std::size_t start = 0;
+    std::size_t end = 0;
+    while ((end = str.find(delim, start)) != std::string::npos)
+    {
+        res.push_back(str.substr(start, end - start));
+        start = end + 1;
+    }
+    res.push_back(str.substr(start));
 
-/**
- * @brief The configure struct.
- */
-struct configure_t
+    return res;
+}
+
+bool content::endswith(const std::string &str, const std::string &suffix)
 {
-    /**
-     * @brief The key of the configure.
-     */
-    std::string key;
-
-    /**
-     * @brief The value of the configure.
-     */
-    std::string value;
-};
-
-/**
- * @brief The configures.
- */
-using configures_t = std::vector<configure_t>;
-
-/**
- * @brief Get the configure value by key.
- * @param configs The configures.
- * @param src The source string.
- * @return The configured string.
- */
-extern std::string configure(const configures_t &configs, const std::string &src);
-
-} // namespace configure
-
-#endif // _CONFIGURE_HPP_
+    return str.size() >= suffix.size() && str.compare(str.size() - suffix.size(), suffix.size(), suffix) == 0;
+}

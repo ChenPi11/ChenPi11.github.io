@@ -23,7 +23,7 @@ die()
 
 neofetch || die
 ./autogen.sh || die
-./configure || die
+./configure CFLAGS="-Wall -Wextra" CPPFLAGS="-Wall -Wextra" || die
 echo "========== config.log =========="
 cat config.log || die
 echo "========== config.log =========="

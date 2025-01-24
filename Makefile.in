@@ -120,3 +120,4 @@ allclean : clean
 	$(RM) buildlog.txt
 	$(RM) .setup
 	$(RM) .build-blog
+	$(RM) -r .cache

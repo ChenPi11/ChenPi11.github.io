@@ -20,23 +20,33 @@
 #ifndef _LOG_H_
 #define _LOG_H_
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+#include "defines.h"
 
+EXTERN_C_BEG
+
+/* Initialize the log module. */
 extern void log_init(int argc, char *argv[]);
 
+/* Show info. */
 extern void info(const char *fmt, ...);
 
+/* Show warning. */
 extern void warn(const char *fmt, ...);
 
-extern void die(const char *fmt, ...);
+/* Show error. */
+extern void error(const char *fmt, ...);
 
+/* Show fatal and goto ERROR. */
+#define die(fmt, ...)                                                                                                  \
+    do                                                                                                                 \
+    {                                                                                                                  \
+        error(fmt, ##__VA_ARGS__);                                                                                     \
+        goto ERROR;                                                                                                    \
+    } while (FALSE)
+
+/* Get the process name. */
 extern const char *get_proc_name();
 
-#ifdef __cplusplus
-}
-#endif
+EXTERN_C_END
 
 #endif

@@ -1,3 +1,9 @@
+/**
+ * @file log.cpp
+ * @brief The log module implementation.
+ * @author ChenPi11
+ * @copyright Copyright (C) 2025 ChenPi11
+ */
 /*
  * Copyright (C) 2025 ChenPi11
  * This file is part of the chenpi11-blog.
@@ -16,16 +22,19 @@
  * along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "log.h"
+#include "log.hpp"
 
-#include <errno.h>
-#include <stdarg.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <cerrno>
+#include <cstdarg>
+#include <cstdio>
+#include <cstdlib>
 
+namespace
+{
 static const char *proc_name = "";
+}
 
-void log_init(int argc, char *argv[])
+void logging::init(int argc, char *argv[]) noexcept
 {
     if (argc > 0)
     {
@@ -33,42 +42,43 @@ void log_init(int argc, char *argv[])
     }
 }
 
-void info(const char *fmt, ...)
+void logging::info(const char *fmt, ...) noexcept
 {
-    va_list ap;
+    std::va_list ap;
 
     va_start(ap, fmt);
-    fprintf(stderr, "INFO: ");
-    vfprintf(stderr, fmt, ap);
+    std::fprintf(stderr, "INFO: ");
+    std::vfprintf(stderr, fmt, ap);
     va_end(ap);
 }
 
-void warn(const char *fmt, ...)
+void logging::warn(const char *fmt, ...) noexcept
 {
-    va_list ap;
+    std::va_list ap;
 
     va_start(ap, fmt);
-    fprintf(stderr, "WARNING: ");
-    vfprintf(stderr, fmt, ap);
+    std::fprintf(stderr, "WARNING: ");
+    std::vfprintf(stderr, fmt, ap);
     va_end(ap);
 }
 
-void error(const char *fmt, ...)
+void logging::error(const char *fmt, ...) noexcept
 {
-    va_list ap;
+    std::va_list ap;
+
     va_start(ap, fmt);
-    fprintf(stderr, "ERROR: ");
-    vfprintf(stderr, fmt, ap);
+    std::fprintf(stderr, "ERROR: ");
+    std::vfprintf(stderr, fmt, ap);
     va_end(ap);
     if (errno)
     {
-        perror(proc_name);
+        std::perror(proc_name);
     }
 
-    exit(EXIT_FAILURE);
+    std::exit(EXIT_FAILURE);
 }
 
-const char *get_proc_name()
+const char *logging::get_proc_name() noexcept
 {
     return proc_name;
 }

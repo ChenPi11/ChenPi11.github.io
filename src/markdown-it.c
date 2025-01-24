@@ -16,11 +16,14 @@
  * along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <markdown-it.h>
+#include "markdown-it.h"
 
-#include <content.h>
-#include <log.h>
+#include "content.h"
+#include "defines.h"
+#include "file-util.h"
+#include "log.h"
 
+#include <linux/limits.h>
 #include <malloc.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -44,30 +47,27 @@ int command_exec(const char *cmd)
         return WEXITSTATUS(status);
     }
 
-    return -1;
+    return RET_ERROR;
 }
 
 #define CHECKCMD(exec) exec " --version > /dev/null 2>&1"
 
+#define CHECK_CASE(cmd)                                                                                                \
+    else if (command_exec(CHECKCMD(cmd)) == 0)                                                                         \
+    {                                                                                                                  \
+        markdown_it_command = cmd;                                                                                     \
+    }
+
 void markdown_it_init(void)
 {
     info("Checking for markdown-it ... ");
-    if (command_exec(CHECKCMD("npx markdown-it")) == 0)
+    if (0)
     {
-        markdown_it_command = "npx markdown-it";
     }
-    else if (command_exec(CHECKCMD("markdown-it")) == 0)
-    {
-        markdown_it_command = "markdown-it";
-    }
-    else if (command_exec(CHECKCMD(".venv/bin/markdown-it")) == 0)
-    {
-        markdown_it_command = ".venv/bin/markdown-it";
-    }
-    else if (command_exec(CHECKCMD("venv/bin/markdown-it")) == 0)
-    {
-        markdown_it_command = "venv/bin/markdown-it";
-    }
+    CHECK_CASE("npx markdown-it")
+    CHECK_CASE("markdown-it")
+    CHECK_CASE(".venv/bin/markdown-it")
+    CHECK_CASE("venv/bin/markdown-it")
     else
     {
         char *markdown_it_env = getenv("MARKDOWN_IT");
@@ -81,32 +81,40 @@ void markdown_it_init(void)
         }
         markdown_it_command = markdown_it_env;
     }
-    info("%s\n", markdown_it_command);
+
+    fprintf(stderr, "%s\n", markdown_it_command);
+
     return;
 
 NOTFOUND:
-    info("not found\n");
-    die("Can't find markdown-it. Did you forget to run setup?\n"
-        "You can also set the MARKDOWN_IT environment variable.\n");
+    fprintf(stderr, "not found\n");
+    error("Can't find markdown-it. Did you forget to run setup?\n");
+    error("You can also set the MARKDOWN_IT environment variable.\n");
 }
 
 struct content_t markdown_it_tohtml(const char *filepath)
 {
-    struct content_t content;
-    int ret;
-    char tmpfile[256];
-    char command[BUFSIZ];
+    struct content_t content = null_content;
+    int ret = 0;
+    char tmpfile[PATH_MAX];
+    char command[PATH_MAX];
+
+    init_struct(tmpfile);
+    init_struct(command);
 
     if (markdown_it_command == NULL)
     {
         die("markdown-it is not initialized.\n");
     }
 
-    memset(tmpfile, 0, 256);
-    memset(command, 0, BUFSIZ);
-
-    snprintf(tmpfile, 256, "%s.tmp", get_proc_name());
-    snprintf(command, BUFSIZ, "%s %s > %s", markdown_it_command, filepath, tmpfile);
+    if (snprintf(tmpfile, PATH_MAX, "%s.tmp", get_proc_name()) < 0)
+    {
+        die("snprintf failed\n");
+    }
+    if (snprintf(command, PATH_MAX, "%s %s > %s", markdown_it_command, filepath, tmpfile) < 0)
+    {
+        die("snprintf failed\n");
+    }
 
     info("Executing: %s\n", command);
     ret = command_exec(command);
@@ -116,10 +124,18 @@ struct content_t markdown_it_tohtml(const char *filepath)
     }
 
     content = read_file(tmpfile);
-    if (unlink(tmpfile) != 0)
+    if (is_null_content(content))
     {
-        warn("unlink %s failed\n", tmpfile);
+        goto ERROR;
+    }
+
+    if (remove_file(tmpfile) != RET_SUCCESS)
+    {
+        warn("Remove %s failed\n", tmpfile);
     }
 
     return content;
+
+ERROR:
+    return null_content;
 }

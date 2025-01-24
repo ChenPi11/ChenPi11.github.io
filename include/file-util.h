@@ -20,32 +20,55 @@
 #ifndef _FILE_UTIL_H_
 #define _FILE_UTIL_H_
 
+#include "content.h"
+#include "defines.h"
+
 #include <stddef.h>
+#include <stdio.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+EXTERN_C_BEG
 
-/* Return 1 if the path exists. 0 otherwise.  */
+/* Return TRUE if the path exists. FALSE otherwise.  */
 extern int exists(const char *path);
 
-/* Return 1 if the path is a regular file. 0 otherwise.  */
+/* Return TRUE if the path is a regular file. FALSE otherwise.  */
 extern int is_file(const char *path);
 
-/* Return 1 if the path is a directory. 0 otherwise.  */
+/* Return TRUE if the path is a directory. FALSE otherwise.  */
 extern int is_dir(const char *path);
 
 /* Get the file size. Return (size_t)(-1) if failed. */
 extern size_t get_file_size(const char *path);
 
-/* Remove a file or an empty directory. Return 0 if success. 0 otherwise. */
+/* Remove a file or an empty directory. Return RET_SUCCESS if success. RET_ERROR otherwise. */
 extern int remove_file(const char *path);
 
-/* Checking if he current path is ChenPi11's blog root directory. Return 1 if it is. 0 otherwise. */
+/* Checking if he current path is ChenPi11's blog root directory. Return TRUE if it is. FALSE otherwise. */
 extern int is_chenpi11_blog_rootdir(void);
 
-#ifdef __cplusplus
-}
-#endif
+/* Read all data from a file to a content. Return null content if failed. */
+extern struct content_t read_file(const char *path);
+
+/* Read a line from a file stream. Return null content if failed. */
+extern struct content_t read_line(FILE *file, const char *path);
+
+/* Get the file's basename. file_basename("/a/b.c") -> "b.c" */
+extern const char *file_basename(const char *path);
+
+/* Copy a file. Return RET_SUCCESS if success. RET_ERROR otherwise. */
+extern int copy_file(const char *src, const char *dst);
+
+/* Close a file stream, and set it to NULL. */
+#define close_file(file)                                                                                               \
+    do                                                                                                                 \
+    {                                                                                                                  \
+        if (file != NULL)                                                                                              \
+        {                                                                                                              \
+            fclose(file);                                                                                              \
+        }                                                                                                              \
+        file = NULL;                                                                                                   \
+    } while (0)
+
+EXTERN_C_END
 
 #endif
