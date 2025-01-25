@@ -1,0 +1,45 @@
+name: 🛠️ Build wwwroot.
+
+id: wwwroot
+
+steps:
+  - name: 🔨 Create wwwroot directory.
+    mkdir: wwwroot
+
+  - name: 🛠️ Copy files.
+    copy: fonts
+    to: wwwroot/fonts
+  - copy: posts
+    to: wwwroot/posts
+  - copy: prism
+    to: wwwroot/prism
+  - copy: theme-button
+    to: wwwroot/theme-button
+  - copy: xterm
+    to: wwwroot/xterm
+  - copy: buildlog.txt
+    to: wwwroot/buildlog.txt
+  - copy: favicon.ico
+    to: wwwroot/favicon.ico
+  - copy: index.html
+    to: wwwroot/index.html
+  - copy: log-term.js
+    to: wwwroot/log-term.js
+  - copy: log.html
+    to: wwwroot/log.html
+  - copy: sidebar.js
+    to: wwwroot/sidebar.js
+  - copy: style.css
+    to: wwwroot/style.css
+  - copy: theme-loader.js
+    to: wwwroot/theme-loader.js
+
+  - name: 🚮 Remove unused files.
+    remove: wwwroot/posts/*.info
+  - remove: wwwroot/posts/*.in
+  - remove: wwwroot/theme-button/index.html
+  - remove: wwwroot/theme-button/README.md
+  - remove: wwwroot/xterm/LICENSE
+
+  - name: 📝 Minify wwwroot.
+    run: .venv/bin/trim-wwwroot

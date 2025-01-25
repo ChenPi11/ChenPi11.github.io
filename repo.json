@@ -1,0 +1,12 @@
+{
+  "name": "chenp11_blog",
+  "version": "0.1.0",
+  "description": "ChenPi11's Blog",
+  "maintainer": "ChenPi11 <wushengwuxi-msctinoulk@outlook.com>",
+  "license": "GPL-3.0-or-later",
+  "hooks": {
+    "wwwroot": {
+      "run": ".rubisco/wwwroot.yaml"
+    }
+  }
+}

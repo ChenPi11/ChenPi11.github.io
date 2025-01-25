@@ -19,3 +19,4 @@ hatchling
 pylint
 ruff
 json5
+rubisco

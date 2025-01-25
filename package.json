@@ -1,5 +1,11 @@
 {
   "name": "chenpi11-blog",
+  "license": "GPL-3.0-or-later",
+  "author": "ChenPi11",
+  "contributors": [
+    "ChenPi11"
+  ],
+  "homepage": "https://github.com/ChenPi11/ChenPi11.github.io",
   "version": "0.1.0",
   "description": "ChenPi11's blog.",
   "scripts": {
@@ -8,8 +14,13 @@
     "clean": "cargo make clean"
   },
   "dependencies": {
+    "@xterm/addon-fit": "^0.10.0",
     "@xterm/xterm": "^5.5.0",
+    "clean-css": "^5.3.3",
+    "clean-css-cli": "^5.6.3",
     "hexo-renderer-markdown-it": "^7.1.1",
-    "marked": "^15.0.6"
+    "html-minifier": "^4.0.0",
+    "marked": "^15.0.6",
+    "terser": "^5.37.0"
   }
 }

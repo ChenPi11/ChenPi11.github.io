@@ -145,7 +145,7 @@ int rstrip(struct content_t *content)
         return RET_SUCCESS;
     }
 
-    for (size_t i = content->len - 1; i >= 0; i--)
+    for (size_t i = content->len - 1; i != (size_t)(-1); i--)
     {
         if (NOT(' ') && NOT('\t') && NOT('\n') && NOT('\r') && NOT('\v') && NOT('\f'))
         {

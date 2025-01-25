@@ -24,4 +24,6 @@ die()
 # shellcheck source=/dev/null
 . ./.venv/bin/activate || die
 
+cd wwwroot || die
+
 python3 -m http.server 8080 || die

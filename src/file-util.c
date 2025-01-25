@@ -64,7 +64,7 @@ size_t get_file_size(const char *path)
 
     init_struct(path_stat);
 
-    return stat(path, &path_stat) == 0 ? path_stat.st_size : (size_t)(-1);
+    return stat(path, &path_stat) == 0 ? (size_t)path_stat.st_size : (size_t)(-1);
 }
 
 #define CHECK(x)                                                                                                       \

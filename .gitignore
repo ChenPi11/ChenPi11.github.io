@@ -449,3 +449,8 @@ posts/*.info
 .build-blog
 compile_commands.events.json
 compile_commands.json
+/buildlog.txt
+/index.html
+/log.html
+/posts/*.html
+/xterm

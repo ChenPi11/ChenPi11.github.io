@@ -34,7 +34,7 @@ VENV ?= .venv
 
 all : setup log.html index.html \
       $(VENV)/bin/build-post $(VENV)/bin/new-post $(VENV)/bin/mkpostlists \
-	  $(VENV)/bin/build-blog
+	  $(VENV)/bin/build-blog wwwroot
 
 setup : .setup
 
@@ -75,6 +75,7 @@ index.html : $(VENV)/bin/mkpostlists index.html.in build-blog
 	$< > postlists.tmp
 	$(CMAKE) -DFROM=index.html.in -DTO=$@ -DK0=CONTENT -DV0=FILE=postlists.tmp \
 	-DK1=SUBTITLE -DV1="Main" -P configure.cmake
+	$(RM) postlists.tmp
 
 run : all
 	$(SHELL) ./scripts/run.sh
@@ -85,6 +86,10 @@ fonts : setup
 log.html : log-term.html index.html.in
 	$(CMAKE) -DFROM=index.html.in -DTO=$@ -DK0=CONTENT -DV0=FILE=$< \
 	-DK1=SUBTITLE -DV1="Build Log" -P configure.cmake
+
+wwwroot : fonts log.html index.html
+	$(RM) -r $@/*
+	$(VENV)/bin/rubisco $@
 
 clean :
 	cd src && $(MAKE) $@

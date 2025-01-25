@@ -43,5 +43,6 @@ $NPM install --verbose $NPMFLAGS || die
 
 # Export xterm.js
 cp -r node_modules/@xterm/xterm . || die
+cp -r node_modules/@xterm/addon-fit/lib/*.js xterm/lib || die
 cd xterm || die
 rm -rf src typings package.json README.md lib/*.map
