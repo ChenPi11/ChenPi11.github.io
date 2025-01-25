@@ -33,16 +33,29 @@ navClose.addEventListener("click", function () {
     container.classList.remove("active");
 });
 
-const themeButtonDiv = document.getElementById("theme-button");
-const themeButton = document.createElement("theme-button");
-themeButton.setAttribute("value", getTheme());
-themeButton.setAttribute("size", "2");
-themeButton.addEventListener("click", function () {
+function onThemeButtonClick() {
     if (getTheme() == "light") {
         setTheme("dark");
     }
     else {
         setTheme("light");
     }
-});
+}
+
+const themeButtonDiv = document.getElementById("theme-button");
+let themeButton = document.createElement("theme-button");
+themeButton.setAttribute("value", getTheme());
+themeButton.setAttribute("size", "2");
+themeButton.addEventListener("click", onThemeButtonClick);
 themeButtonDiv.appendChild(themeButton);
+
+function syncThemeButton() {
+    themeButtonDiv.removeChild(themeButton);
+    themeButton.remove();
+
+    themeButton = document.createElement("theme-button");
+    themeButton.setAttribute("value", getTheme());
+    themeButton.setAttribute("size", "2");
+    themeButton.addEventListener("click", onThemeButtonClick);
+    themeButtonDiv.appendChild(themeButton);
+}

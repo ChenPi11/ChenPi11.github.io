@@ -23,7 +23,7 @@ const theme_neon = {
     "background": "#171717",
     "cursor": "#F8F8F8",
     "black": "#171717",
-    "brightBlack": "#38252C",
+    "brightBlack": "#878787",
     "red": "#D81765",
     "brightRed": "#FF0000",
     "green": "#97D01A",
@@ -40,8 +40,33 @@ const theme_neon = {
     "brightWhite": "#F8F8F8"
 }
 
+const theme_warm_neon = {
+    foreground: '#AFDAB6',
+    background: '#404040',
+    cursor: '#30FF24',
+    black: '#000000',
+    brightBlack: '#FEFCFC',
+    red: '#E24346',
+    brightRed: '#E97071',
+    green: '#39B13A',
+    brightGreen: '#9CC090',
+    yellow: '#DAE145',
+    brightYellow: '#DDDA7A',
+    blue: '#4261C5',
+    brightBlue: '#7B91D6',
+    magenta: '#F920fB',
+    brightMagenta: '#F674BA',
+    cyan: '#2ABBD4',
+    brightCyan: '#5ED1E5',
+    white: '#D0B8A3',
+    brightWhite: '#D8C8BB'
+}
+
 document.addEventListener("DOMContentLoaded", function () {
-    const terminalContainer = document.getElementById('terminal');
+    setTheme("dark");
+    syncThemeButton();
+
+    const terminalContainer = document.getElementById("terminal");
     const terminal = new Terminal({
         theme: theme_neon,
         fontFamily: "Meslo, monospace",
@@ -77,5 +102,17 @@ document.addEventListener("DOMContentLoaded", function () {
             terminal.writeln(`\x1b[31mError fetching file: ${error}\x1b[0m`);
         });
 
-    window.addEventListener("resize", () => { console.log("Resize"); fitAddon.fit() });
+    window.addEventListener("resize", () => fitAddon.fit());
+    document.body.style.overflow = "hidden";
+
+    function onThemeChange(theme) {
+        if (theme == "dark") {
+            terminal.options.theme = theme_neon;
+        }
+        else {
+            terminal.options.theme = theme_warm_neon;
+        }
+    }
+
+    addThemeChangeCallback(onThemeChange);
 });

@@ -13,6 +13,8 @@ steps:
     to: wwwroot/posts
   - copy: prism
     to: wwwroot/prism
+  - copy: terminal
+    to: wwwroot/terminal
   - copy: theme-button
     to: wwwroot/theme-button
   - copy: xterm

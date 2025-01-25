@@ -1,0 +1,42 @@
+@import url("/xterm/css/xterm.css");
+
+.terminal-applet {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.terminal-applet-header {
+    font-family: "Meslo", "HanSans", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #3b3a3a;
+    cursor: pointer;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+}
+
+.terminal-applet-title {
+    font-size: 18px;
+    font-weight: bold;
+    width: 100%;
+    color: #f9f9f9;
+}
+
+.terminal-applet-terminal {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.terminal-applet-toggle-button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #f9f9f9;
+}

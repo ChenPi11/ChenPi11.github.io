@@ -61,6 +61,12 @@ def build_blog_main() -> None:
                 msg = f"Failed to build {postfile}."
                 raise SystemExit(msg)
 
+    # Copy applets.
+    sys.stdout.write("========== Copying applets ... ==========\n")
+    if Path("posts/applets").exists():
+        shutil.rmtree("posts/applets")
+    shutil.copytree("orig-posts/applets", "posts/applets")
+
 
 if __name__ == "__main__":
     build_blog_main()

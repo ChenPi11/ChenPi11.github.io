@@ -35,7 +35,7 @@ python -m venv .venv || die
 # shellcheck source=/dev/null
 . ./.venv/bin/activate || die
 # shellcheck disable=SC2086
-python3 -m pip install -r requirements.txt --verbose $PIPFLAGS || die
+python3 -m pip install -r requirements.txt $PIPFLAGS || die
 
 # Install NPM requirements.
 # shellcheck disable=SC2086
@@ -45,4 +45,4 @@ $NPM install --verbose $NPMFLAGS || die
 cp -r node_modules/@xterm/xterm . || die
 cp -r node_modules/@xterm/addon-fit/lib/*.js xterm/lib || die
 cd xterm || die
-rm -rf src typings package.json README.md lib/*.map
+rm -rf src typings package.json README.md

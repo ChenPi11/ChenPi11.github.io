@@ -34,7 +34,7 @@ function getPreferredColorScheme() {
 
 const urlParams = new URLSearchParams(window.location.search);
 
-var theme = urlParams.get("theme");
+let theme = urlParams.get("theme");
 if (theme != "dark" && theme != "light") {
     theme = getPreferredColorScheme();
 }
@@ -70,10 +70,20 @@ const prismJSScript = document.createElement("script");
 prismJSScript.src = prismJSPath.replace("${theme}", theme);
 document.head.appendChild(prismJSScript);
 
+// Callback function for setTheme
+let themeChangeCallbacks = [];
+
 function setTheme(new_theme) {
+    console.log(`Setting theme to '${new_theme}' ...`);
     theme = new_theme;
     metaColorScheme.content = theme;
     gmcCSSLink.href = gmcCSSURL.replace("${theme}", theme);
     prismCSSLink.href = prismCSSPath.replace("${theme}", theme);
     prismJSScript.src = prismJSPath.replace("${theme}", theme);
+    // Call the callback functions
+    themeChangeCallbacks.forEach(callback => callback(theme));
 };
+
+function addThemeChangeCallback(callback) {
+    themeChangeCallbacks.push(callback);
+}
