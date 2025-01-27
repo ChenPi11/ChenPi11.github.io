@@ -40,4 +40,5 @@ packages = ["chenpi11_blog"]
 
 [project.scripts]
 build-blog = "chenpi11_blog.build_blog:build_blog_main"
+lang-stat = "chenpi11_blog.lang_stat:lang_stat_main"
 trim-wwwroot = "chenpi11_blog.trim_wwwroot:trim_wwwroot_main"
