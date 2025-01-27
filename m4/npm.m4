@@ -16,12 +16,12 @@ dnl
 dnl You should have received a copy of the GNU General Public License
 dnl along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
 
-AC_DEFUN([cb_NPM],
+AC_DEFUN([CB_PROG_NPM],
 [
 AC_ARG_VAR([NPM], [Path to npm executable])
+
 AS_IF([test x$NPM = x],
-      [AC_PATH_PROGS([NPM], [npm])],
-      [NPM=$(realpath -s $NPM)])
+      [AC_PATH_PROGS([NPM], [npm])])
 
 AC_MSG_CHECKING([NPM is working properly])
 
@@ -31,9 +31,9 @@ AS_IF([$NPM --version > /dev/null 2>&1],
       [AC_MSG_FAILURE([NPM cannot working properly])])
 
 AC_ARG_VAR([NPX], [Path to npx executable])
+
 AS_IF([test x$NPX = x],
-      [AC_PATH_PROGS([NPX], [npx])],
-      [NPX=$(realpath -s $NPX)])
+      [AC_PATH_PROGS([NPX], [npx])])
 
 AC_MSG_CHECKING([NPX is working properly])
 
@@ -41,5 +41,8 @@ AS_IF([$NPX --version > /dev/null 2>&1],
       [AC_MSG_RESULT([yes])],
       [AC_MSG_RESULT([no])]
       [AC_MSG_FAILURE([NPX cannot working properly])])
+
+AC_SUBST([NPM])
+AC_SUBST([NPX])
 ]
 )

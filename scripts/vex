@@ -15,14 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
 
-die()
-{
-    echo "$0: Error."
-    exit 1
-}
+# Execute a command in venv.
+VENVROOT=$(pwd)/.venv
+if [ -d "$VENVROOT" ]; then
+    # shellcheck source=/dev/null
+    . "$VENVROOT/bin/activate"
+fi
 
-aclocal -I m4 --output=aclocal.m4 || die
-autoheader || die
-autoconf || die
-autoreconf --install || die
-echo "$0: done.  Now you can run './configure'."
+$@

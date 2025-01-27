@@ -21,7 +21,6 @@ top_srcdir = @top_srcdir@
 
 CC ?= @CC@
 CFLAGS ?= @CFLAGS@
-CPPFLAGS ?= @CPPFLAGS@
 LDFLAGS ?= @LDFLAGS@
 INCLUDES ?= -I../include
 PREFIX ?= @prefix@
@@ -36,13 +35,13 @@ SRC= $(wildcard *.c)
 all : build-post
 
 build-post : $(SRC:.c=.o)
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
 
 install : all
 	$(INSTALL) -m 755 build-post $(PREFIX)/bin
 
 %.o : %.c
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean :
 	$(RM) *.o

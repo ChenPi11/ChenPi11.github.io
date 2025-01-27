@@ -16,12 +16,13 @@ dnl
 dnl You should have received a copy of the GNU General Public License
 dnl along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
 
-AC_DEFUN([cb_PYTHON3],
+AC_DEFUN([CB_PROG_PYTHON3],
 [
-AC_ARG_VAR([PYTHON3], [Path to python3 executable])
+AC_ARG_VAR([PYTHON3], [Path to Python3 executable])
+AC_ARG_VAR([PYTHON3FLAGS], [Python3 interpreter flags])
+
 AS_IF([test x$PYTHON3 = x],
-      [AC_PATH_PROGS([PYTHON3], [python3 python])],
-      [PYTHON3=$(realpath -s $PYTHON3)])
+      [AC_PATH_PROGS([PYTHON3], [python3 python])])
 
 AC_MSG_CHECKING([Python is Python3])
 AS_IF([test x$PYTHON3 = x],
@@ -33,7 +34,7 @@ AS_IF([$PYTHON3 --version 2>&1 | grep -q "^Python 3"],
       [AC_MSG_RESULT([no])]
       [AC_MSG_FAILURE([Python executable is not Python3])])
 
-AC_MSG_CHECKING([Python3 has Pip])
+AC_MSG_CHECKING([Python3 has pip])
 AS_IF([$PYTHON3 -m pip --version > /dev/null 2>&1],
       [AC_MSG_RESULT([yes])],
       [AC_MSG_RESULT([no])]
@@ -45,4 +46,7 @@ AS_IF([$PYTHON3 -m venv -h > /dev/null 2>&1],
       [AC_MSG_RESULT([no])]
       [AC_MSG_FAILURE([Python3 don't have venv])])
 
-])
+AC_SUBST([PYTHON3])
+AC_SUBST([PYTHON3FLAGS])
+]
+)

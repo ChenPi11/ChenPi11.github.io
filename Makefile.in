@@ -95,6 +95,8 @@ clean :
 	cd src && $(MAKE) $@
 	$(RM) -r autom4te.cache
 	$(RM) config.log
+	$(RM) autoscan.log
+	$(RM) config.h
 	$(RM) config.status
 	$(RM) configure
 	$(RM) configure~
@@ -127,3 +129,7 @@ allclean : clean
 	$(RM) .setup
 	$(RM) .build-blog
 	$(RM) -r .cache
+	$(RM) config.h.in
+	$(RM) config.h.in~
+	$(RM) configure.scan
+	$(RM) build-aux
