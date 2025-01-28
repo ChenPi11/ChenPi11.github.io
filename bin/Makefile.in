@@ -29,6 +29,11 @@ CARGO_CONFIG_RELEASE = --release
 CARGO_CONFIG_DEBUG = --debug
 CARGO_CONFIG = $(CARGO_CONFIG_$(BUILD_TYPE))
 
+JOBS := $(patsubst -j%,%,$(filter -j%,$(MAKEFLAGS)))
+ifeq ($(JOBS),)
+JOBS := 1
+endif
+
 SHELL ?= @SHELL@
 MKDIR ?= mkdir -p
 RM ?= rm -f
@@ -77,7 +82,7 @@ mkpostlists : venv
 	@$(CREATE_TAG) $@
 
 new-post : venv
-	cd $(top_srcdir) && $(CARGO) build $(CARGO_CONFIG)
+	cd $(top_srcdir) && $(CARGO) build $(CARGO_CONFIG) -j $(JOBS)
 	cd $(top_srcdir) && $(CARGO) install --path $(top_srcdir) --root $(PREFIX)
 	@$(CREATE_TAG) $@
 

@@ -50,7 +50,7 @@ lib : env-setup
 wwwroot :
 	$(MKDIR) $@
 
-posts : wwwroot
+posts : wwwroot build-blog
 	cd $@ && $(MAKE) all
 
 fonts : wwwroot
@@ -63,7 +63,7 @@ index.html.in :
 	@echo "Please run ./configure first!"
 	@exit 1
 
-build-blog :
+build-blog : env-setup
 	$(VEX) build-blog
 
 index.html : env-setup index.html.in build-blog wwwroot
@@ -140,3 +140,4 @@ allclean : clean
 	$(RM) config.h.in~
 	$(RM) configure.scan
 	$(RM) -r build-aux
+	$(RM) -r wwwroot

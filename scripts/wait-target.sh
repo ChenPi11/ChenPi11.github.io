@@ -15,14 +15,19 @@
 # You should have received a copy of the GNU General Public License
 # along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
 
-# Execute a command in venv.
+# Wait for a file or directory to exist.
 
-ROOTDIR=$(dirname "$0")
-VENVROOT=$ROOTDIR/.venv
-if [ -d "$VENVROOT" ]; then
-    # shellcheck source=/dev/null
-    . "$VENVROOT/bin/activate"
-fi
+TARGET=$1
+TIMEOUT=60
 
-# shellcheck disable=SC2068
-$@
+echo "Waiting for $TARGET ..."
+
+TIME=0
+while [ ! -e "$TARGET" ]; do
+    sleep 2
+    TIME=$((TIME + 2))
+    if [ $TIME -gt $TIMEOUT ]; then
+        echo "Timeout waiting for $TARGET."
+        exit 1
+    fi
+done
