@@ -20,6 +20,7 @@ AC_DEFUN([CB_PROG_PYTHON3],
 [
 AC_ARG_VAR([PYTHON3], [Path to Python3 executable])
 AC_ARG_VAR([PYTHON3FLAGS], [Python3 interpreter flags])
+AC_ARG_VAR([PIPFLAGS], [Pip flags])
 
 AS_IF([test x$PYTHON3 = x],
       [AC_PATH_PROGS([PYTHON3], [python3 python])])
@@ -48,5 +49,6 @@ AS_IF([$PYTHON3 -m venv -h > /dev/null 2>&1],
 
 AC_SUBST([PYTHON3])
 AC_SUBST([PYTHON3FLAGS])
+AC_SUBST([PIPFLAGS])
 ]
 )

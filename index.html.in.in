@@ -22,15 +22,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="xterm/css/xterm.css">
+    <link rel="stylesheet" href="lib/style.css">
+    <link rel="stylesheet" href="lib/xterm.css">
     <link rel="icon" href="favicon.ico">
     <title>@SUBTITLE@ - @TITLE@</title>
 </head>
 
 <body>
-    <script src="theme-loader.js"></script>
-    <script src="theme-button/theme-button.js"></script>
+    <script src="lib/theme-loader.js"></script>
+    <script src="lib/theme-button.js"></script>
     <header>
         <button id="nav-toggle" class="nav-toggle" type="button">&#9776;</button>
         <h1>@TITLE@</h1>
@@ -45,7 +45,7 @@
         @CONTENT@
     </div>
 
-    <script src="sidebar.js"></script>
+    <script src="lib/sidebar.js"></script>
 
     <footer>
         <p>@COPYRIGHT@</p>

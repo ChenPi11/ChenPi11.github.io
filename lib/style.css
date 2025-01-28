@@ -18,14 +18,14 @@
 
 @font-face {
     font-family: "Meslo";
-    src: url("fonts/MesloLGS-NF-Regular.woff") format("woff");
+    src: url("/fonts/MesloLGS-NF-Regular.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "HanSans";
-    src: url("fonts/SourceHanSansHWHC-VF.otf.woff2") format("woff");
+    src: url("/fonts/SourceHanSansHWHC-VF.otf.woff2") format("woff");
 }
 
 body {

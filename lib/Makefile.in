@@ -1,0 +1,77 @@
+# -*- Makefile -*-
+
+# Copyright (C) 2025 ChenPi11.
+# This file is part of chenpi11-blog.
+#
+# chenpi11-blog is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# chenpi11-blog is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
+
+srcdir = $(shell realpath -s "@srcdir@")
+top_srcdir = $(shell realpath -s "@top_srcdir@")
+
+CP ?= cp
+MKDIR ?= mkdir -p
+RM ?= rm -f
+
+NODE_MODULES = $(top_srcdir)/node_modules
+WWWROOT = $(top_srcdir)/wwwroot
+
+.PHONY: all node_modules xterm jquery prism theme-button theme-loader sidebar style log-term terminal clean binclean allclean
+
+all : lib xterm jquery prism theme-button theme-loader sidebar style log-term terminal
+
+lib :
+	$(MKDIR) $(WWWROOT)/lib
+
+xterm : lib node_modules
+	$(CP) $(NODE_MODULES)/@xterm/xterm/lib/xterm.js $(WWWROOT)/lib/
+	$(CP) $(NODE_MODULES)/@xterm/xterm/css/xterm.css $(WWWROOT)/lib/
+	$(CP) $(NODE_MODULES)/@xterm/addon-fit/lib/addon-fit.js $(WWWROOT)/lib/
+
+jquery : lib node_modules
+	$(CP) $(NODE_MODULES)/jquery/dist/jquery.min.js $(WWWROOT)/lib/jquery.js
+
+prism : prism-dark.css lib node_modules
+	$(CP) $< $(WWWROOT)/lib/
+	$(CP) prism-dark.js $(WWWROOT)/lib/
+	$(CP) prism-light.css $(WWWROOT)/lib/
+	$(CP) prism-light.js $(WWWROOT)/lib/
+
+theme-button : theme-button.js lib node_modules
+	$(CP) $< $(WWWROOT)/lib/
+
+theme-loader : theme-loader.js lib node_modules
+	$(CP) $< $(WWWROOT)/lib/
+
+sidebar : sidebar.js lib node_modules
+	$(CP) $< $(WWWROOT)/lib/
+
+style : style.css lib node_modules
+	$(CP) $< $(WWWROOT)/lib/
+
+log-term : log-term.js lib node_modules
+	$(CP) $< $(WWWROOT)/lib/
+
+terminal : terminal.js lib node_modules
+	$(CP) $< $(WWWROOT)/lib/
+	$(CP) $(srcdir)/terminal.css $(WWWROOT)/lib/
+
+node_modules :
+	cd $(top_srcdir)/bin && $(MAKE) $@
+
+clean :
+
+binclean :
+
+allclean : clean binclean
+	$(RM) Makefile

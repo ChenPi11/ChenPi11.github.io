@@ -1,4 +1,4 @@
-@import url("/xterm/css/xterm.css");
+@import url("xterm.css");
 
 .terminal-applet {
     background-color: #f9f9f9;

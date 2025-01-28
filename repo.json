@@ -7,6 +7,9 @@
   "hooks": {
     "wwwroot": {
       "run": ".rubisco/wwwroot.yaml"
+    },
+    "install-build-blog" : {
+      "run": "bin/install-build-blog.yaml"
     }
   }
 }

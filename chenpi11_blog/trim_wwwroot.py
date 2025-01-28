@@ -25,6 +25,16 @@ import sys
 from pathlib import Path
 from subprocess import PIPE, Popen
 
+IGNORE_LIST = [
+    "xterm.js",
+    "xterm.css",
+    "prism-dark.js",
+    "prism-light.js",
+    "prism-dark.css",
+    "prism-light.css",
+    "jquery.js",
+]
+
 HTML_MINIFIER_CMD = [
     "npx",
     "html-minifier",
@@ -132,7 +142,7 @@ def trim_wwwroot_main() -> None:
             # Skip non-HTML files
             if file_path.suffix not in [".html", ".htm", ".js", ".css"]:
                 continue
-            if file_path.name in ["xterm.js", "prism.js"]:
+            if file_path.name in IGNORE_LIST:
                 continue
             if file_path.suffix in [".html", ".htm"]:
                 trim_html(file_path)

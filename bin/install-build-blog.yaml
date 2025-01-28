@@ -1,0 +1,14 @@
+name: Install build-blog
+
+id: install-build-blog
+
+steps:
+  - name: Install build-blog
+    run:
+      [
+        python,
+        -m,
+        pip,
+        install,
+        dist/*.whl
+      ]

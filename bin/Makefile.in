@@ -1,0 +1,112 @@
+# -*- Makefile -*-
+
+# Copyright (C) 2025 ChenPi11.
+# This file is part of chenpi11-blog.
+#
+# chenpi11-blog is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# chenpi11-blog is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
+
+srcdir = $(shell realpath -s "@srcdir@")
+top_srcdir = $(shell realpath -s "@top_srcdir@")
+
+BUILD_TYPE ?= @BUILD_TYPE@
+PREFIX ?= @prefix@
+
+CMAKE_CONFIG_RELEASE = --config=Release
+CMAKE_CONFIG_DEBUG = --config=Debug
+CMAKE_CONFIG = $(CMAKE_CONFIG_$(BUILD_TYPE))
+CARGO_CONFIG_RELEASE = --release
+CARGO_CONFIG_DEBUG = --debug
+CARGO_CONFIG = $(CARGO_CONFIG_$(BUILD_TYPE))
+
+SHELL ?= @SHELL@
+MKDIR ?= mkdir -p
+RM ?= rm -f
+TOUCH ?= touch
+NPM ?= @NPM@
+NPMFLAGS = @NPMFLAGS@
+NPX ?= @NPX@
+NPXFLAGS ?= @NPXFLAGS@
+LOCAL_PYTHON3 ?= @PYTHON3@
+PYTHON3FLAGS ?= @PYTHON3FLAGS@
+CARGO ?= @CARGO@
+CMAKE ?= @CMAKE@
+CMAKEFLAGS ?= @CMAKEFLAGS@
+
+CREATE_TAG = echo "This file is a tag for Makefile." >
+VEX = $(top_srcdir)/scripts/vex
+PYTHON3 = $(VEX) python3
+PIP = $(VEX) $(PYTHON3) $(PYTHON3FLAGS) -m pip --require-virtualenv
+PIPFLAGS = @PIPFLAGS@
+PYTHON_BUILDFLAGS = @PYTHON_BUILDFLAGS@
+
+.PHONY : all clean env-setup allclean uninstall
+
+env-setup : all
+
+all : venv node_modules build-post mkpostlists new-post build-blog
+
+venv :
+	$(LOCAL_PYTHON3) $(PYTHON3FLAGS) -m venv $(PREFIX)
+	$(PIP) install -r $(top_srcdir)/requirements.txt $(PIPFLAGS)
+	@$(CREATE_TAG) $@
+
+node_modules :
+	$(NPM) install $(NPMFLAGS)
+	@$(CREATE_TAG) $@
+
+build-post : venv
+	cd $(top_srcdir)/src && $(MAKE)
+	cd $(top_srcdir)/src && $(MAKE) install
+	@$(CREATE_TAG) $@
+
+mkpostlists : venv
+# We must configure CMake first with Unix Makefiles Generator. `mkpostlists/configure` do this.
+	cd $(top_srcdir)/build && $(MAKE)
+	cd $(top_srcdir)/build && $(CMAKE) $(CMAKEFLAGS) --install $(top_srcdir)/build $(CMAKE_CONFIG)
+	@$(CREATE_TAG) $@
+
+new-post : venv
+	cd $(top_srcdir) && $(CARGO) build $(CARGO_CONFIG)
+	cd $(top_srcdir) && $(CARGO) install --path $(top_srcdir) --root $(PREFIX)
+	@$(CREATE_TAG) $@
+
+build-blog : venv
+	cd $(top_srcdir) && $(PYTHON3) -m build $(PYTHON_BUILDFLAGS) --wheel --outdir $(top_srcdir)/dist --installer pip
+	cd $(top_srcdir) && $(PYTHON3) -m rubisco install-build-blog
+	@$(CREATE_TAG) $@
+
+clean :
+
+binclean :
+	$(RM) build-blog
+	$(RM) build-post
+	$(RM) mkpostlists
+	$(RM) new-post
+	cd $(top_srcdir) && $(CARGO) clean
+
+allclean : clean binclean
+	$(RM) venv
+	$(RM) node_modules
+	$(RM) -r $(top_srcdir)/dist
+	$(RM) Makefile
+
+uninstall :
+	cd $(top_srcdir)/src && $(MAKE) $@
+	$(RM) build-post
+	cd $(top_srcdir)/build && $(MAKE) $@
+	$(RM) mkpostlists
+	cd $(top_srcdir) && $(CARGO) $@ --root $(PREFIX)
+	$(RM) new-post
+	cd $(top_srcdir) && $(PIP) $@ -y chenpi11_blog $(PIPFLAGS)
+	$(RM) build-blog

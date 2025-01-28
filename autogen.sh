@@ -24,5 +24,5 @@ die()
 aclocal -I m4 --output=aclocal.m4 || die
 autoheader || die
 autoconf || die
-autoreconf --install || die
+autoreconf --install --no-recursive || die
 echo "$0: done.  Now you can run './configure'."

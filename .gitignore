@@ -273,6 +273,7 @@ autom4te.cache
 /configure
 /configure~
 /configure.scan
+/mkpostlists/configure
 /depcomp
 /install-sh
 /missing
@@ -394,7 +395,6 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
 
 # Gatsby files
 .cache/
@@ -444,6 +444,13 @@ dist
 src/build-post
 
 # Build output
+/bin/build-blog
+/bin/build-post
+/bin/mkpostlists
+/bin/new-post
+/bin/venv
+/bin/node_modules
+
 index.html.in
 posts/post-template.html.in
 posts/*.info
@@ -456,5 +463,4 @@ compile_commands.json
 /index.html
 /log.html
 /posts/*.html
-/xterm
 /posts/applets

@@ -32,14 +32,29 @@ CURRENT_YEAR=$(date +%Y)
 COPYRIGHT="Copyright &copy; $CURRENT_YEAR ChenPi11, All Rights Reserved."
 AC_SUBST([COPYRIGHT])
 
+AC_ARG_ENABLE([debug],
+  [AS_HELP_STRING([--enable-debug],
+                  [enable debug build])],
+  [AC_DEFINE([BUILD_TYPE], debug,
+             [enable debug build])
+   BUILD_TYPE=DEBUG],
+  [BUILD_TYPE=RELEASE])
+AC_SUBST([BUILD_TYPE])
+
 dnl Checks for basic programs.
 AC_PROG_CC
+AC_PROG_CXX
 AC_PROG_INSTALL
 AC_PROG_MAKE_SET
 CB_PROG_CARGO
 CB_PROG_CMAKE
 CB_PROG_NPM
 CB_PROG_PYTHON3
+
+AC_ARG_VAR([PYTHON_BUILDFLAGS], [python -m build's flags])
+AC_SUBST([PYTHON_BUILDFLAGS])
+
+dnl Checks for commands.
 
 dnl Checks for header files.
 AC_CHECK_HEADERS([malloc.h unistd.h])
@@ -55,23 +70,16 @@ AC_FUNC_REALLOC
 AC_CHECK_FUNCS([strchr strrchr strstr])
 
 dnl Configure C++ part with CMake.
-AC_ARG_ENABLE([build-type],
-  [AS_HELP_STRING([--build-type],
-                  [enable build type: debug, release])],
-  [AC_DEFINE([BUILD_TYPE], Release,
-             [enable build type: debug, release])
-   BUILD_TYPE=Release],
-  [BUILD_TYPE=Debug])
-AC_SUBST([BUILD_TYPE])
 
-AC_MSG_NOTICE([configuring C++ part ...])
-AS_IF([$CMAKE -S . -B build $CMAKEFLAGS],
-      [],
-      [AC_MSG_FAILURE([CMake configure failed])])
+AC_CONFIG_SUBDIRS([mkpostlists])
 
 dnl Output.
+AC_CONFIG_FILES([bin/Makefile])
+AC_CONFIG_FILES([lib/Makefile])
 AC_CONFIG_FILES([posts/post-template.html.in])
+AC_CONFIG_FILES([posts/Makefile])
 AC_CONFIG_FILES([index.html.in])
 AC_CONFIG_FILES([Makefile])
 AC_CONFIG_FILES([src/Makefile])
+AC_CONFIG_FILES([mkpostlists/configure])
 AC_OUTPUT

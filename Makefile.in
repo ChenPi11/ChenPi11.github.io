@@ -16,88 +16,85 @@
 # You should have received a copy of the GNU General Public License
 # along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
 
-PREFIX = @prefix@
+srcdir = $(shell realpath -s "@srcdir@")
+top_srcdir = $(shell realpath -s "@top_srcdir@")
+
+PREFIX ?= @prefix@
 
 SHELL ?= @SHELL@
+CP ?= cp
 MKDIR ?= mkdir -p
 RM ?= rm -f
 TOUCH ?= touch
-NPM ?= @NPM@
 NPX ?= @NPX@
-PYTHON3 = @PYTHON3@
-CARGO ?= @CARGO@
+LOCAL_PYTHON3 = @PYTHON3@
 CMAKE ?= @CMAKE@
+CMAKEFLAGS ?= @CMAKEFLAGS@
 
-VENV ?= .venv
+CMAKE_CONFIGURE_SCRIPT = $(top_srcdir)/cmake/configure.cmake
+VEX = $(top_srcdir)/scripts/vex
+PYTHON3 = $(VEX) python3
+PIP = $(VEX) $(PYTHON3) $(PYTHON3FLAGS) -m pip --require-virtualenv
+PIPFLAGS = @PIPFLAGS@
 
-.PHONY : all setup build-blog run clean allclean
+.PHONY : all env-setup wwwroot fonts favicon.ico log.html index.html lib posts build-blog trim run clean binclean allclean
 
-all : setup log.html index.html \
-      $(VENV)/bin/build-post $(VENV)/bin/new-post $(VENV)/bin/mkpostlists \
-	  $(VENV)/bin/build-blog wwwroot
+all : env-setup wwwroot fonts favicon.ico lib build-blog log.html index.html posts trim
 
-setup : .setup
+env-setup :
+	cd bin && $(MAKE) $@
 
-.setup : package.json
-	PYTHON="$(PYTHON3)" NPM="$(NPM)" PIPFLAGS="$(PIPFLAGS)" NPMFLAGS="$(NPMFLAGS)" $(SHELL) ./scripts/setup.sh
-	$(TOUCH) $@
+lib : env-setup
+	cd lib && $(MAKE) all
+
+wwwroot :
+	$(MKDIR) $@
+
+posts : wwwroot
+	cd $@ && $(MAKE) all
+
+fonts : wwwroot
+	$(CP) -r $@ $<
+
+favicon.ico : wwwroot
+	$(CP) $@ $<
 
 index.html.in :
-	@echo "Please configure first!"
-	exit 1
+	@echo "Please run ./configure first!"
+	@exit 1
 
-$(VENV)/bin/build-post : setup
-	cd src && $(MAKE) all
-	cd src && $(MAKE) install
+build-blog :
+	$(VEX) build-blog
 
-$(VENV)/bin/new-post : setup
-	$(CARGO) build --release
-	$(CARGO) install --path . --root $(PREFIX)
-
-$(VENV)/bin/mkpostlists : setup
-	$(MKDIR) build
-	cd build && $(CMAKE) -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$(PREFIX) ..
-	cd build && $(CMAKE) --build . --config=Release
-	cd build && $(CMAKE) --install .
-
-$(VENV)/bin/build-blog : setup $(VENV)/bin/build-post
-	$(VENV)/bin/python3 -m build $(PYTHON_BUILDFLAGS)
-	$(VENV)/bin/python3 -m pip install dist/*.whl --force-reinstall $(PIPFLAGS)
-
-.build-blog :
-	$(TOUCH) $@
-	$(MAKE) -f Makefile $(VENV)/bin/build-blog
-
-build-blog : .build-blog
-	$(VENV)/bin/build-blog
-
-index.html : $(VENV)/bin/mkpostlists index.html.in build-blog
-	$< > postlists.tmp
-	$(CMAKE) -DFROM=index.html.in -DTO=$@ -DK0=CONTENT -DV0=FILE=postlists.tmp \
-	-DK1=SUBTITLE -DV1="Main" -P configure.cmake
+index.html : env-setup index.html.in build-blog wwwroot
+	$(VEX) mkpostlists > postlists.tmp
+	$(CMAKE) -DFROM=index.html.in -DTO=wwwroot/$@ \
+	-DK0=CONTENT -DV0=FILE=postlists.tmp -DK1=SUBTITLE -DV1="Main" \
+	-P $(CMAKE_CONFIGURE_SCRIPT) $(CMAKEFLAGS)
 	$(RM) postlists.tmp
+
+log.html : log-term.html index.html.in wwwroot
+	$(CMAKE) -DFROM=index.html.in -DTO=wwwroot/$@ \
+	-DK0=CONTENT -DV0=FILE=$< -DK1=SUBTITLE -DV1="Build Log" \
+	-P $(CMAKE_CONFIGURE_SCRIPT) $(CMAKEFLAGS)
+
+trim : wwwroot posts index.html
+	$(VEX) trim-wwwroot
 
 run :
 	$(SHELL) ./scripts/run.sh
 
-fonts : setup
-	$(MKDIR) $@
-
-log.html : log-term.html index.html.in
-	$(CMAKE) -DFROM=index.html.in -DTO=$@ -DK0=CONTENT -DV0=FILE=$< \
-	-DK1=SUBTITLE -DV1="Build Log" -P configure.cmake
-
-wwwroot : fonts log.html index.html
-	$(RM) -r $@/*
-	$(VENV)/bin/rubisco $@
-
 clean :
+	cd bin && $(MAKE) $@
+	cd lib && $(MAKE) $@
+	cd posts && $(MAKE) $@
 	cd src && $(MAKE) $@
 	$(RM) -r autom4te.cache
 	$(RM) config.log
 	$(RM) autoscan.log
 	$(RM) config.h
 	$(RM) config.status
+	$(RM) mkpostlists/configure
 	$(RM) configure
 	$(RM) configure~
 	$(RM) aclocal.m4
@@ -114,7 +111,19 @@ clean :
 	$(RM) -r build
 	$(RM) -r *.tmp
 
+binclean :
+	cd bin && $(MAKE) $@
+	cd bin && $(MAKE) uninstall
+	cd lib && $(MAKE) $@
+	cd posts && $(MAKE) $@
+	cd src && $(MAKE) $@
+	$(RM) -r target
+	$(RM) -r dist
+
 allclean : clean
+	cd bin && $(MAKE) $@
+	cd lib && $(MAKE) $@
+	cd posts && $(MAKE) $@
 	cd src && $(MAKE) $@
 	$(RM) package-lock.json
 	$(RM) Makefile
@@ -126,10 +135,8 @@ allclean : clean
 	$(RM) -r node_modules
 	$(RM) -r xterm
 	$(RM) buildlog.txt
-	$(RM) .setup
-	$(RM) .build-blog
 	$(RM) -r .cache
 	$(RM) config.h.in
 	$(RM) config.h.in~
 	$(RM) configure.scan
-	$(RM) build-aux
+	$(RM) -r build-aux

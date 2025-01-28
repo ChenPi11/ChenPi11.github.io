@@ -1,4 +1,5 @@
-#!/bin/sh
+# -*- Makefile -*-
+
 # Copyright (C) 2025 ChenPi11.
 # This file is part of chenpi11-blog.
 #
@@ -15,34 +16,36 @@
 # You should have received a copy of the GNU General Public License
 # along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
 
-if [ -z "$PYTHON" ]; then
-  PYTHON=python3
-fi
+srcdir = $(shell realpath -s "@srcdir@")
+top_srcdir = $(shell realpath -s "@top_srcdir@")
 
-if [ -z "$NPM" ]; then
-  NPM=npm
-fi
+CP ?= cp
+MKDIR ?= mkdir -p
+RM ?= rm -f
 
-die()
-{
-    echo "$0: Error."
-    rm -rf .venv
-    exit 1
-}
+APPLETS = $(srcdir)/applets
+POSTS = $(wildcard $(srcdir)/*.html)
+WWWROOT_POSTS = $(top_srcdir)/wwwroot/posts
 
-# Install requirements.
-python -m venv .venv || die
-# shellcheck source=/dev/null
-. ./.venv/bin/activate || die
-# shellcheck disable=SC2086
-python3 -m pip install -r requirements.txt $PIPFLAGS || die
+.PHONY : all applets posts clean binclean allclean
 
-# Install NPM requirements.
-# shellcheck disable=SC2086
-$NPM install --verbose $NPMFLAGS || die
+all : applets posts
 
-# Export xterm.js
-cp -r node_modules/@xterm/xterm . || die
-cp -r node_modules/@xterm/addon-fit/lib/*.js xterm/lib || die
-cd xterm || die
-rm -rf src typings package.json README.md
+$(WWWROOT_POSTS) :
+	$(MKDIR) $@
+
+applets : $(APPLETS) $(WWWROOT_POSTS)
+	$(CP) -r $< $(WWWROOT_POSTS)
+
+posts : $(POSTS) $(WWWROOT_POSTS)
+	$(CP) -r $(POSTS) $(WWWROOT_POSTS)
+
+clean :
+	$(RM) -r $(WWWROOT_POSTS)
+	$(RM) $(srcdir)/*.html
+	$(RM) $(srcdir)/*.info
+
+binclean :
+
+allclean : clean binclean
+	$(RM) Makefile

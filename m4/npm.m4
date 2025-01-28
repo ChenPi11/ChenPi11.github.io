@@ -19,6 +19,7 @@ dnl along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
 AC_DEFUN([CB_PROG_NPM],
 [
 AC_ARG_VAR([NPM], [Path to npm executable])
+AC_ARG_VAR([NPMFLAGS], [NPM flags])
 
 AS_IF([test x$NPM = x],
       [AC_PATH_PROGS([NPM], [npm])])
@@ -31,6 +32,7 @@ AS_IF([$NPM --version > /dev/null 2>&1],
       [AC_MSG_FAILURE([NPM cannot working properly])])
 
 AC_ARG_VAR([NPX], [Path to npx executable])
+AC_ARG_VAR([NPXFLAGS], [NPX flags])
 
 AS_IF([test x$NPX = x],
       [AC_PATH_PROGS([NPX], [npx])])
@@ -43,6 +45,8 @@ AS_IF([$NPX --version > /dev/null 2>&1],
       [AC_MSG_FAILURE([NPX cannot working properly])])
 
 AC_SUBST([NPM])
+AC_SUBST([NPMFLAGS])
 AC_SUBST([NPX])
+AC_SUBST([NPXFLAGS])
 ]
 )

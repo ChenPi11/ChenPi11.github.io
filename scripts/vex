@@ -16,7 +16,8 @@
 # along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
 
 # Execute a command in venv.
-VENVROOT=$(pwd)/.venv
+ROOTDIR=$(dirname "$0")
+VENVROOT=$ROOTDIR/.venv
 if [ -d "$VENVROOT" ]; then
     # shellcheck source=/dev/null
     . "$VENVROOT/bin/activate"

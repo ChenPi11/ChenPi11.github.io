@@ -1,4 +1,4 @@
-# -*- Makefile -*-
+# -*- Makefile for build-post program -*-
 
 # Copyright (C) 2025 ChenPi11.
 # This file is part of chenpi11-blog.
@@ -19,18 +19,22 @@
 srcdir = @srcdir@
 top_srcdir = @top_srcdir@
 
-CC ?= @CC@
-CFLAGS ?= @CFLAGS@
-LDFLAGS ?= @LDFLAGS@
-INCLUDES ?= -I../include
+BUILD_TYPE ?= @BUILD_TYPE@
 PREFIX ?= @prefix@
-INSTALL = @INSTALL@
+CFLAGS_RELEASE = -fPIC -O3 -Wall -Wextra
+CFLAGS_DEBUG = @CFLAGS@
+
+CC ?= @CC@
+CFLAGS ?= $(CFLAGS_$(BUILD_TYPE))
+LDFLAGS ?= @LDFLAGS@
+INSTALL ?= @INSTALL@
 
 RM ?= rm -f
 
+INCLUDES ?= -I../include
 SRC= $(wildcard *.c)
 
-.PHONY : all install clean allclean
+.PHONY : all install uninstall clean binclean allclean
 
 all : build-post
 
@@ -40,12 +44,17 @@ build-post : $(SRC:.c=.o)
 install : all
 	$(INSTALL) -m 755 build-post $(PREFIX)/bin
 
+uninstall :
+	$(RM) $(PREFIX)/bin/build-post
+
 %.o : %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean :
 	$(RM) *.o
-	$(RM) blog-build
+	$(RM) build-post
 
-allclean : clean
+binclean : clean
+
+allclean : clean binclean
 	$(RM) Makefile
