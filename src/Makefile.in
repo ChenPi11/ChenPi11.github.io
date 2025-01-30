@@ -16,22 +16,25 @@
 # You should have received a copy of the GNU General Public License
 # along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
 
-srcdir = @srcdir@
-top_srcdir = @top_srcdir@
+srcdir = $(shell realpath -s "@srcdir@")
+top_srcdir = $(shell realpath -s "@top_srcdir@")
 
 BUILD_TYPE ?= @BUILD_TYPE@
 PREFIX ?= @prefix@
-CFLAGS_RELEASE = -fPIC -O3 -Wall -Wextra
+CFLAGS_RELEASE = -fPIC -O3 -Wall -Wextra -DNDEBUG
 CFLAGS_DEBUG = @CFLAGS@
+CPPFLAGS_RELEASE = -DNDEBUG
+CPPFLAGS_DEBUG = @CPPFLAGS@
 
 CC ?= @CC@
+CPPFLAGS = $(CPPFLAGS_$(BUILD_TYPE)) -std=c++20
 CFLAGS ?= $(CFLAGS_$(BUILD_TYPE))
 LDFLAGS ?= @LDFLAGS@
 INSTALL ?= @INSTALL@
 
 RM ?= rm -f
 
-INCLUDES ?= -I../include
+INCLUDES ?= "-I$(top_srcdir)/include" "-I$(top_srcdir)" "-I$(top_srcdir)/srclib"
 SRC= $(wildcard *.c)
 
 .PHONY : all install uninstall clean binclean allclean

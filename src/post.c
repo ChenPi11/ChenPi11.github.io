@@ -22,6 +22,7 @@
 #include "content.h"
 #include "defines.h"
 #include "file-util.h"
+#include "i18n.h"
 #include "log.h"
 #include "markdown-it.h"
 
@@ -58,7 +59,7 @@ static struct tags_t parse_tags(struct content_t line)
         if (tmp == NULL)
         {
             free_content(&tag);
-            die("Cannot reallocate memory.\n");
+            die(_("Cannot reallocate memory.\n"));
         }
         ptags = tmp;
         memcpy(ptags + num - 1, &tag, sizeof(struct content_t));
@@ -84,7 +85,7 @@ static int check_duplicate_tags(struct tags_t tags)
         {
             if (strcmp(tags.first[i].content, tags.first[j].content) == 0)
             {
-                die("Duplicate tag: \"%s\"\n", tags.first[i].content);
+                die(_("Duplicate tag: \"%s\".\n"), tags.first[i].content);
             }
         }
     }
@@ -99,9 +100,9 @@ void post_init(const char *template_file)
 {
     if (template_file == NULL)
     {
-        die("Post template file is NULL.\n");
+        die(_("Post template file is NULL.\n"));
     }
-    info("Using %s as post template\n", template_file);
+    info(_("Using %s as post template.\n"), template_file);
     post_template_file = template_file;
 
     return;
@@ -137,15 +138,15 @@ struct post_t load_post(const char *filepath)
     file = fopen(filepath, "r");
     if (file == NULL)
     {
-        die("Cannot open file: %s\n", filepath);
+        die(_("Cannot open file: %s\n"), filepath);
     }
 
     /* Title. */
     line = read_line(file, filepath);
     if (!startswith(line, CONTENT(TITLE_START)))
     {
-        warn("First line must start with \"# \"\n");
-        die("First line of %s is not a title\n", filepath);
+        warn(_("First line must start with \"%s\".\n"), TITLE_START);
+        die(_("First line of %s is not a title.\n"), filepath);
     }
     post.title = alloc_content(line.len - 2);
     if (is_null_content(post.title))
@@ -156,7 +157,7 @@ struct post_t load_post(const char *filepath)
     post.title.content[post.title.len] = '\0';
     if (strip(&post.title) != RET_SUCCESS)
     {
-        die("Cannot strip title.\n");
+        die(_("Cannot strip title.\n"));
     }
     free_content(&line);
 
@@ -164,21 +165,21 @@ struct post_t load_post(const char *filepath)
     line = read_line(file, filepath);
     if (!startswith(line, CONTENT(DATE_START)))
     {
-        warn("Second line must start with \"" DATE_START "\"\n");
-        die("Second line of %s is not a date\n", filepath);
+        warn(_("Second line must start with \"%s\".\n"), DATE_START);
+        die(_("Second line of %s is not a date.\n"), filepath);
     }
     if (!endswith(line, CONTENT(DATE_END)))
     {
-        warn("Second line must end with \"" DATE_END "\"\n");
-        die("Second line of %s is not a date.\n", filepath);
+        warn(_("Second line must end with \"%s\".\n"), DATE_END);
+        die(_("Second line of %s is not a date.\n"), filepath);
     }
     if (line.len <= strlen(DATE_END) + strlen(DATE_START))
     {
         fclose(file);
         free_content(&line);
         free_post(&post);
-        warn("Second line must contain a date.\n");
-        die("Second line of %s is not a date.\n", filepath);
+        warn(_("Second line must contain a date.\n"));
+        die(_("Second line of %s is not a date.\n"), filepath);
     }
     post.date = alloc_content(line.len - strlen(DATE_END) - strlen(DATE_START));
     if (is_null_content(post.date))
@@ -189,7 +190,7 @@ struct post_t load_post(const char *filepath)
     post.date.content[post.date.len] = '\0';
     if (strip(&post.date) != RET_SUCCESS)
     {
-        die("Cannot strip date.\n");
+        die(_("Cannot strip date.\n"));
     }
     free_content(&line);
 
@@ -197,18 +198,18 @@ struct post_t load_post(const char *filepath)
     line = read_line(file, filepath);
     if (!startswith(line, CONTENT(TAG_START)))
     {
-        warn("Third line must start with \"" TAG_START "\"\n");
-        die("Third line of %s is not a tag\n", filepath);
+        warn(_("Third line must start with \"%s\".\n"), TAG_START);
+        die(_("Third line of %s is not a tag.\n"), filepath);
     }
     if (!endswith(line, CONTENT(TAG_END)))
     {
-        warn("Third line must end with \"" TAG_END "\"\n");
-        die("Third line of %s is not a tag.\n", filepath);
+        warn(_("Third line must end with \"%s\".\n"), TAG_END);
+        die(_("Third line of %s is not a tag.\n"), filepath);
     }
     if (line.len <= strlen(TAG_END) + strlen(TAG_START))
     {
-        warn("Third line must contain a tag.\n");
-        die("Third line of %s is not a tag.\n", filepath);
+        warn(_("Third line must contain a tag.\n"));
+        die(_("Third line of %s is not a tag.\n"), filepath);
     }
 
     line.content[line.len - strlen(TAG_END)] = '\0';
@@ -251,32 +252,32 @@ int save_post(struct post_t post)
 
     if (snprintf(out_filename, BUFSIZ, POST_OUTPUT_DIR "%s.html", post.filename.content) < 0)
     {
-        die("Cannot generate filename.\n");
+        die(_("Cannot generate filename.\n"));
     }
     if (snprintf(postinfo_filename, BUFSIZ, POST_OUTPUT_DIR "%s.info", post.filename.content) < 0)
     {
-        die("Cannot generate filename.\n");
+        die(_("Cannot generate filename.\n"));
     }
     if (snprintf(tmp_filename, BUFSIZ, POST_OUTPUT_DIR "%s.html.tmp", post.filename.content) < 0)
     {
-        die("Cannot generate filename.\n");
+        die(_("Cannot generate filename.\n"));
     }
 
-    info("Generating %s ...\n", out_filename);
+    info(_("Generating %s ...\n"), out_filename);
 
     if (copy_file(post_template_file, out_filename) != RET_SUCCESS)
     {
-        die("Cannot copy file: %s\n", post_template_file);
+        die(_("Cannot copy file: %s\n"), post_template_file);
     }
 
     tmpfile = fopen(tmp_filename, "wb");
     if (tmpfile == NULL)
     {
-        die("Cannot open file: %s\n", tmp_filename);
+        die(_("Cannot open file: %s\n"), tmp_filename);
     }
     if (fwrite(post.content.content, sizeof(char), post.content.len, tmpfile) != post.content.len)
     {
-        die("Cannot write to file: %s\n", tmp_filename);
+        die(_("Cannot write to file: %s\n"), tmp_filename);
     }
 
     close_file(tmpfile);
@@ -284,42 +285,42 @@ int save_post(struct post_t post)
     html_snippet = markdown_it_tohtml(tmp_filename);
     if (is_null_content(html_snippet))
     {
-        die("Cannot convert markdown to html.\n");
+        die(_("Cannot convert markdown to html.\n"));
     }
 
     if (remove_file(tmp_filename) != RET_SUCCESS)
     {
-        die("Cannot remove file: %s\n", tmp_filename);
+        die(_("Cannot remove file: %s\n"), tmp_filename);
     }
 
     struct configure_t configures_[] = {PAIR("CONTENT", html_snippet.content), PAIR("SUBTITLE", post.title.content)};
 
     if (configure(create_configures(configures_), out_filename) != RET_SUCCESS)
     {
-        die("Cannot configure file: %s\n", out_filename);
+        die(_("Cannot configure file: %s\n"), out_filename);
     }
 
     postinfo = fopen(postinfo_filename, "w");
     if (postinfo == NULL)
     {
         free_content(&html_snippet);
-        die("Cannot open file: %s\n", postinfo_filename);
+        die(_("Cannot open file: %s\n"), postinfo_filename);
     }
 
     if (fprintf(postinfo, "%s\n", post.title.content) < 0)
     {
-        die("Cannot write to file: %s\n", postinfo_filename);
+        die(_("Cannot write to file: %s\n"), postinfo_filename);
     }
     if (fprintf(postinfo, "%s\n", post.date.content) < 0)
     {
-        die("Cannot write to file: %s\n", postinfo_filename);
+        die(_("Cannot write to file: %s\n"), postinfo_filename);
     }
 
     for (size_t i = 0; i < post.tags.num; i++)
     {
         if (fprintf(postinfo, "%s%s", post.tags.first[i].content, i == post.tags.num - 1 ? "\n" : ",") < 0)
         {
-            die("Cannot write to file: %s\n", postinfo_filename);
+            die(_("Cannot write to file: %s\n"), postinfo_filename);
         }
     }
 

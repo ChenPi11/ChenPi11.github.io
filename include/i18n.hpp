@@ -17,39 +17,44 @@
  */
 
 #pragma once
-#ifndef _DEFINES_H_
-#define _DEFINES_H_
+#ifndef _I18N_HPP_
+#define _I18N_HPP_
 
-#include "config.h"
+#include "config.hpp"
 
-#ifdef __cplusplus
-#define EXTERN_C_BEG extern "C" {
-#define EXTERN_C_END }
+#if HAVE_LIBINTL_H
+#include <libintl.h>
+#endif // HAVE_LIBINTL_H
+
+namespace i18n
+{
+/**
+ * @brief Initialize the i18n module.
+ */
+extern void i18n_init();
+
+/**
+ * @brief Get the i18n string.
+ * @param msg The message.
+ * @return The i18n string.
+ */
+extern const char *gettext(const char *msg);
+
+#if HAVE_LIBINTL_H
+/**
+ * @brief Get the i18n string.
+ * @param msg The message.
+ * @return The i18n string.
+ */
+#define _(msg) i18n::gettext(msg)
 #else
-#define EXTERN_C_BEG
-#define EXTERN_C_END
-#endif
+/**
+ * @brief i18n not supported.
+ * @param msg The message.
+ * @return The message.
+ */
+#define _(msg) msg
+#endif // HAVE_LIBINTL_H
 
-#ifndef TRUE
-#define TRUE 1
-#endif
-
-#ifndef FALSE
-#define FALSE 0
-#endif
-
-#ifndef RET_SUCCESS
-#define RET_SUCCESS 0
-#endif
-
-#ifndef RET_ERROR
-#define RET_ERROR -1
-#endif
-
-#ifdef HAVE_LINUX_LIMITS_H
-#include <linux/limits.h>
-#else
-#define PATH_MAX 4096
-#endif
-
-#endif
+} // namespace i18n
+#endif // _I18N_HPP_

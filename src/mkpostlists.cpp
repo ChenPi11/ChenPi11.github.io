@@ -16,6 +16,7 @@
  * along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include "i18n.hpp"
 #include "log.hpp"
 #include "post.hpp"
 
@@ -26,10 +27,18 @@
 int main(int argc, char *argv[])
 {
     logging::init(argc, argv);
+    i18n::i18n_init();
+
+    if (argc != 1)
+    {
+        logging::error(_("Usage: %s\n"), argv[0]);
+
+        return EXIT_FAILURE;
+    }
 
     try
     {
-        logging::info("Generate post lists ...\n");
+        logging::info(_("Generate post lists ...\n"));
 
         std::string all_posts;
 
@@ -44,7 +53,7 @@ int main(int argc, char *argv[])
     }
     catch (const std::system_error &e)
     {
-        logging::error("Errno %d: %s\n", e.code().value(), e.what());
+        logging::error(_("Errno %d: %s\n"), e.code().value(), e.what());
     }
     catch (const std::runtime_error &e)
     {

@@ -62,4 +62,5 @@ COLORS = {
     "restructuredtext": "#141414",
     "sed": "#64b970",
     "text": "#f2f2f2",
+    "po file": "#55bb55",
 }

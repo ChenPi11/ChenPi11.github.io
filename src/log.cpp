@@ -24,6 +24,8 @@
 
 #include "log.hpp"
 
+#include "i18n.hpp"
+
 #include <cerrno>
 #include <cstdarg>
 #include <cstdio>
@@ -47,7 +49,7 @@ void logging::info(const char *fmt, ...) noexcept
     std::va_list ap;
 
     va_start(ap, fmt);
-    std::fprintf(stderr, "INFO: ");
+    std::fprintf(stderr, "%s", _("INFO: "));
     std::vfprintf(stderr, fmt, ap);
     va_end(ap);
 }
@@ -57,7 +59,7 @@ void logging::warn(const char *fmt, ...) noexcept
     std::va_list ap;
 
     va_start(ap, fmt);
-    std::fprintf(stderr, "WARNING: ");
+    std::fprintf(stderr, "%s", _("WARNING: "));
     std::vfprintf(stderr, fmt, ap);
     va_end(ap);
 }
@@ -67,7 +69,7 @@ void logging::error(const char *fmt, ...) noexcept
     std::va_list ap;
 
     va_start(ap, fmt);
-    std::fprintf(stderr, "ERROR: ");
+    std::fprintf(stderr, "%s", _("ERROR: "));
     std::vfprintf(stderr, fmt, ap);
     va_end(ap);
     if (errno)

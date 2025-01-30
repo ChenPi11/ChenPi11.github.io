@@ -21,9 +21,9 @@
 #include "content.h"
 #include "defines.h"
 #include "file-util.h"
+#include "i18n.h"
 #include "log.h"
 
-#include <linux/limits.h>
 #include <malloc.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -60,7 +60,7 @@ int command_exec(const char *cmd)
 
 void markdown_it_init(void)
 {
-    info("Checking for markdown-it ... ");
+    info(_("Checking for markdown-it ... "));
     if (0)
     {
     }
@@ -87,9 +87,9 @@ void markdown_it_init(void)
     return;
 
 NOTFOUND:
-    fprintf(stderr, "not found\n");
-    error("Can't find markdown-it. Did you forget to run setup?\n");
-    error("You can also set the MARKDOWN_IT environment variable.\n");
+    fprintf(stderr, _("not found\n"));
+    error(_("Can't find markdown-it. Did you forget to run setup?\n"
+          "You can also set the MARKDOWN_IT environment variable.\n"));
 }
 
 struct content_t markdown_it_tohtml(const char *filepath)
@@ -104,23 +104,23 @@ struct content_t markdown_it_tohtml(const char *filepath)
 
     if (markdown_it_command == NULL)
     {
-        die("markdown-it is not initialized.\n");
+        die(_("markdown-it is not initialized.\n"));
     }
 
     if (snprintf(tmpfile, PATH_MAX, "%s.tmp", get_proc_name()) < 0)
     {
-        die("snprintf failed\n");
+        die(_("snprintf() failed.\n"));
     }
     if (snprintf(command, PATH_MAX, "%s %s > %s", markdown_it_command, filepath, tmpfile) < 0)
     {
-        die("snprintf failed\n");
+        die(_("snprintf() failed.\n"));
     }
 
-    info("Executing: %s\n", command);
+    info(_("Executing: %s\n"), command);
     ret = command_exec(command);
     if (ret != 0)
     {
-        die("markdown-it failed with exit code %d\n", ret);
+        die(_("markdown-it failed with exit code %d.\n"), ret);
     }
 
     content = read_file(tmpfile);
@@ -131,7 +131,7 @@ struct content_t markdown_it_tohtml(const char *filepath)
 
     if (remove_file(tmpfile) != RET_SUCCESS)
     {
-        warn("Remove %s failed\n", tmpfile);
+        warn(_("Remove %s failed.\n"), tmpfile);
     }
 
     return content;

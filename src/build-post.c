@@ -17,6 +17,7 @@
  */
 
 #include "file-util.h"
+#include "i18n.h"
 #include "log.h"
 #include "markdown-it.h"
 #include "post.h"
@@ -30,15 +31,16 @@ int main(int argc, char *argv[])
     struct post_t post = null_post;
 
     log_init(argc, argv);
+    i18n_init();
 
     if (argc != 3)
     {
-        die("Usage: %s <template file> <source file>\n", argv[0]);
+        die(_("Usage: %s <template file> <source file>\n"), argv[0]);
     }
 
     if (!is_chenpi11_blog_rootdir())
     {
-        die("You must run %s in project's root directory!\n", argv[0]);
+        die(_("You must run %s in project's root directory!\n"), argv[0]);
     }
 
     template_file = argv[1];
@@ -50,12 +52,12 @@ int main(int argc, char *argv[])
     post = load_post(source_file);
     if (is_null_post(post))
     {
-        die("Cannot load post: %s\n", source_file);
+        die(_("Cannot load post: %s\n"), source_file);
     }
 
     if (save_post(post) != RET_SUCCESS)
     {
-        die("Cannot save post: %s\n", source_file);
+        die(_("Cannot save post: %s\n"), source_file);
     }
 
     free_post(&post);

@@ -25,44 +25,50 @@ import sys
 from pathlib import Path
 from subprocess import Popen
 
+from chenpi11_blog.i18n import _
+
 POSTS_TEMPLATE = "posts/post-template.html.in"
 
 
 def build_blog_main() -> None:
     """Build all posts."""
     if not Path("src").exists():
-        msg = "Please run this script in the root directory of the project."
+        msg = _("Please run this script in the root directory of the project.")
         raise SystemExit(msg)
 
     if not Path(POSTS_TEMPLATE).exists():
-        msg = "posts/post-template.html.in is not found."
+        msg = _("posts/post-template.html.in is not found.")
         raise SystemExit(msg)
 
     build_post = shutil.which("build-post")
     if not build_post:
         # Not found if we are running outside of the venv.
-        build_post = (Path.cwd() / ".venv/bin/build-post").as_posix()
+        build_post = (Path.cwd() / ".venv" / "bin" / "build-post").as_posix()
 
     if not Path(build_post).exists():
-        msg = "build-post is not found."
+        msg = _("build-post is not found.")
         raise SystemExit(msg)
 
     for postfile in Path("orig-posts").iterdir():
         if postfile.suffix != ".md":
             continue
-        sys.stdout.write(f"========== Building {postfile}... ==========\n")
+        sys.stdout.write(
+            _("========== Building {postfile}... ==========\n").format(
+                postfile=postfile,
+            ),
+        )
         cmd = f"{build_post} {POSTS_TEMPLATE} {postfile.as_posix()}"
-        sys.stdout.write(f"Executing {cmd} ...\n")
+        sys.stdout.write(_("Executing {cmd} ...\n").format(cmd=cmd))
         with Popen(  # noqa: S602
             cmd,
             shell=True,
         ) as proc:
             if proc.wait() != 0:
-                msg = f"Failed to build {postfile}."
+                msg = _("Failed to build {postfile}.").format(postfile=postfile)
                 raise SystemExit(msg)
 
     # Copy applets.
-    sys.stdout.write("========== Copying applets ... ==========\n")
+    sys.stdout.write(_("========== Copying applets ... ==========\n"))
     if Path("posts/applets").exists():
         shutil.rmtree("posts/applets")
     shutil.copytree("orig-posts/applets", "posts/applets")

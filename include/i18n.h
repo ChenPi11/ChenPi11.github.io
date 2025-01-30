@@ -17,39 +17,28 @@
  */
 
 #pragma once
-#ifndef _DEFINES_H_
-#define _DEFINES_H_
+#ifndef _I18N_H_
+#define _I18N_H_
 
-#include "config.h"
+#include "defines.h"
 
-#ifdef __cplusplus
-#define EXTERN_C_BEG extern "C" {
-#define EXTERN_C_END }
+#if ENABLE_NLS
+#include "gettext.h"
+#endif // ENABLE_NLS
+
+EXTERN_C_BEG
+
+/* Initialize the i18n module. */
+extern void i18n_init();
+
+#if ENABLE_NLS
+/* Get the i18n string. */
+#define _(msg) gettext(msg)
 #else
-#define EXTERN_C_BEG
-#define EXTERN_C_END
-#endif
+/* i18n not supported. */
+#define _(msg) msg
+#endif // ENABLE_NLS
 
-#ifndef TRUE
-#define TRUE 1
-#endif
+EXTERN_C_END
 
-#ifndef FALSE
-#define FALSE 0
-#endif
-
-#ifndef RET_SUCCESS
-#define RET_SUCCESS 0
-#endif
-
-#ifndef RET_ERROR
-#define RET_ERROR -1
-#endif
-
-#ifdef HAVE_LINUX_LIMITS_H
-#include <linux/limits.h>
-#else
-#define PATH_MAX 4096
-#endif
-
-#endif
+#endif // _I18N_H_

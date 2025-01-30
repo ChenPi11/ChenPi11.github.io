@@ -21,6 +21,7 @@
 #include "content.h"
 #include "defines.h"
 #include "file-util.h"
+#include "i18n.h"
 #include "log.h"
 
 #include <malloc.h>
@@ -60,15 +61,15 @@ static int str_replace(const char *file_path, const char *to_str, const char *fr
 
     if (strlen(from_str) == 0)
     {
-        warn("Empty find string when replacing string in file: %s\n", file_path);
-        warn("Nothing will be replaced.\n");
+        warn(_("Empty find string when replacing string in file: %s\n"), file_path);
+        warn(_("Nothing will be replaced.\n"));
 
         goto SUCCESS;
     }
 
     if ((file = fopen(file_path, "r")) == NULL)
     {
-        die("Cannot open file: %s\n", file_path);
+        die(_("Cannot open file: %s\n"), file_path);
     }
 
     file_size = get_file_size(file_path);
@@ -85,12 +86,12 @@ static int str_replace(const char *file_path, const char *to_str, const char *fr
     orig_str = (char *)calloc(file_size + 1, sizeof(char));
     if (orig_str == NULL)
     {
-        die("Cannot allocate memory.\n");
+        die(_("Cannot allocate memory.\n"));
     }
 
     if (fread(orig_str, sizeof(char), file_size, file) != file_size)
     {
-        die("I/O Error: %s.\n", file_path);
+        die(_("I/O Error: %s.\n"), file_path);
     }
 
     close_file(file);
@@ -99,7 +100,7 @@ static int str_replace(const char *file_path, const char *to_str, const char *fr
     res_str = (char *)calloc(res_str_len, sizeof(char));
     if (res_str == NULL)
     {
-        die("Cannot allocate memory.\n");
+        die(_("Cannot allocate memory.\n"));
     }
 
     cpy_str = res_str;
@@ -119,12 +120,12 @@ static int str_replace(const char *file_path, const char *to_str, const char *fr
 
     if ((file = fopen(file_path, "w")) == NULL)
     {
-        die("Cannot open file: %s\n", file_path);
+        die(_("Cannot open file: %s\n"), file_path);
     }
 
     if (fwrite(res_str, sizeof(char), strlen(res_str), file) != strlen(res_str))
     {
-        die("I/O Error: %s.\n", file_path);
+        die(_("I/O Error: %s.\n"), file_path);
     }
 
 SUCCESS:
@@ -152,17 +153,17 @@ int configure(struct configures_t configs, const char *filepath)
 
     if (filepath == NULL)
     {
-        die("NULL filepath.\n");
+        die(_("NULL filepath.\n"));
     }
 
-    info("Configuring %s ...\n", filepath);
+    info(_("Configuring %s ...\n"), filepath);
 
     for (size_t i = 0; i < configs.num; ++i)
     {
         replace = configs.first[i];
         if (is_null_content(replace.key))
         {
-            warn("NULL key found in configures.\n");
+            warn(_("NULL key found in configures.\n"));
             continue;
         }
 
@@ -170,7 +171,7 @@ int configure(struct configures_t configs, const char *filepath)
 
         if (is_null_content(replace.value))
         {
-            warn("NULL value found in configures. Replace with empty string.\n");
+            warn(_("NULL value found in configures. Replace with empty string.\n"));
             value = "";
         }
 
@@ -178,7 +179,7 @@ int configure(struct configures_t configs, const char *filepath)
         init_struct(strkey);
         if (snprintf(strkey, BUFSIZ, "@%s@", replace.key.content) < 0)
         {
-            die("Cannot format string: %s\n", replace.key.content);
+            die(_("Cannot format string: %s\n"), replace.key.content);
         }
         if (str_replace(filepath, value, strkey) != RET_SUCCESS)
         {

@@ -19,6 +19,7 @@
 #include "file-util.h"
 
 #include "content.h"
+#include "i18n.h"
 #include "log.h"
 
 #include <stdio.h>
@@ -79,11 +80,13 @@ size_t get_file_size(const char *path)
 int is_chenpi11_blog_rootdir(void)
 {
     CHECK(is_dir("."));
-    CHECK(is_file("requirements.txt") && is_file("pyproject.toml"));
-    CHECK(is_file("Cargo.toml") && is_file("Makefile.toml"));
-    CHECK(is_file("configure.ac") && is_file("autogen.sh"));
-    CHECK(is_file("CMakeLists.txt"));
-    CHECK(is_file("package.json"));
+    CHECK(is_file("requirements.txt") && is_file("pyproject.toml")); // It's a Python project.
+    CHECK(is_file("Cargo.toml") && is_file("Makefile.toml"));        // It's a Rust project.
+    CHECK(is_file("configure.ac") && is_file("autogen.sh"));         // It's an Autotools project.
+    CHECK(is_file("CMakeLists.txt"));                                // It's a CMake project.
+    CHECK(is_file("package.json"));                                  // It's a Node.js project.
+    CHECK(is_file("Makefile.in"));                                   // It's an Autoconf+Makefile project.
+    CHECK(is_file("repo.json"));                                     // It's a Rubisco project.
 
     return TRUE;
 
@@ -112,19 +115,19 @@ struct content_t read_file(const char *path)
     file = fopen(path, "r");
     if (file == NULL)
     {
-        die("Cannot open file: %s\n", path);
+        die(_("Cannot open file: %s\n"), path);
     }
 
     if (fread(content.content, content.len, 1, file) != 1)
     {
         fclose(file);
         free_content(&content);
-        die("I/O Error: %s.\n", path);
+        die(_("I/O Error: %s.\n"), path);
     }
     if (ferror(file) != 0 && fclose(file) != 0)
     {
         free_content(&content);
-        die("I/O Error: %s.\n", path);
+        die(_("I/O Error: %s.\n"), path);
     }
 
     return content;
@@ -148,11 +151,11 @@ struct content_t read_line(FILE *file, const char *path)
     {
         if (feof(file))
         {
-            die("EOF reached.\n");
+            die(_("EOF reached.\n"));
         }
         else
         {
-            die("Cannot getline: %s\n", path);
+            die(_("Cannot getline: %s\n"), path);
         }
     }
 
@@ -200,19 +203,19 @@ int copy_file(const char *from, const char *to)
     from_file = fopen(from, "rb");
     if (from_file == NULL)
     {
-        die("Cannot open file: %s\n", from);
+        die(_("Cannot open file: %s\n"), from);
     }
 
     from_size = get_file_size(from);
     if (from_size == (size_t)(-1))
     {
-        die("Cannot get file size: %s\n", from);
+        die(_("Cannot get file size: %s\n"), from);
     }
 
     to_file = fopen(to, "wb");
     if (to_file == NULL)
     {
-        die("Cannot open file: %s\n", to);
+        die(_("Cannot open file: %s\n"), to);
     }
 
     while ((read = fread(buffer, sizeof(char), BUFSIZ, from_file)) > 0)

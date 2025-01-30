@@ -20,22 +20,52 @@ project (
     "chenpi11-blog"
     VERSION 0.1.0
     DESCRIPTION "ChenPi11's blog"
+    HOMEPAGE_URL "https://github.com/ChenPi11/ChenPi11.github.io"
+    LANGUAGES CXX
 )
 
+# Set C++ standard.
 set ( CMAKE_CXX_STANDARD 20 )
 
+# Find sources.
 file ( GLOB SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp" )
 
+# Include directories.
+include_directories ( "${CMAKE_CURRENT_SOURCE_DIR}" )
 include_directories ( "${CMAKE_CURRENT_SOURCE_DIR}/include" )
 
+# Find libraries.
+find_package ( Intl OPTIONAL_COMPONENTS )
+
+if ( NOT Intl_FOUND )
+    set ( HAVE_LIBINTL_H 0 )
+else ()
+    set ( HAVE_LIBINTL_H 1 )
+endif ()
+
+# Configure header file.
+set ( PACKAGE_NAME "${PROJECT_NAME}" )
+configure_file (
+    "${CMAKE_CURRENT_SOURCE_DIR}/config.hpp.in"
+    "${CMAKE_CURRENT_SOURCE_DIR}/config.hpp" )
+
+# Set compiler flags.
+set ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra" )
+
+# Build target.
 add_executable ( mkpostlists ${SOURCES} )
 
+# Link libraries.
+target_link_libraries ( mkpostlists Intl::Intl )
+
+# Install target.
 install ( TARGETS mkpostlists )
 
 # Uninstall target.
-configure_file(
+configure_file (
     "${CMAKE_CURRENT_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in"
     "${CMAKE_BINARY_DIR}/cmake_uninstall.cmake"
     IMMEDIATE @ONLY )
-add_custom_target(uninstall
+
+add_custom_target ( uninstall
     COMMAND ${CMAKE_COMMAND} -P "${CMAKE_BINARY_DIR}/cmake_uninstall.cmake" )

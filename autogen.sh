@@ -15,14 +15,57 @@
 # You should have received a copy of the GNU General Public License
 # along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
 
-die()
-{
-    echo "$0: Error."
-    exit 1
-}
+# Generate configure script.
 
-aclocal -I m4 --output=aclocal.m4 || die
-autoheader || die
-autoconf || die
-autoreconf --install --no-recursive || die
-echo "$0: done.  Now you can run './configure'."
+# shellcheck disable=SC2059
+# shellcheck disable=SC2086
+
+# shellcheck source=scripts/gettext.sh
+. ./scripts/gettext.sh || exit 1
+
+VERBOSE=
+
+case "$1" in
+    -h|--help)
+        printf "$(_g "Usage: %s [-h|--help] [-V|--version] [-v|--verbose]")" "$0"
+        printf "$(_g ".\n")"
+        printf "\n"
+        printf "$(_g "Options:\n")"
+        printf "$(_g "  -h, --help      Display this help and exit.\n")"
+        printf "$(_g "  -V, --version   Output version information and exit.\n")"
+        printf "$(_g "  -v, --verbose   Verbosely report processing.\n")"
+        exit 0
+        ;;
+    -V|--version)
+        show_version
+        exit 0
+        ;;
+    -v|--verbose)
+        VERBOSE=--verbose
+        shift
+        ;;
+    *)
+        ;;
+esac
+
+GNULIB_MODULES="gettext gettext-h"
+SRCBASE=srclib
+DOCBASE=srcdoc
+M4BASE=srcm4
+AUXDIR=build-aux
+GNULIB_TOOL_FLAGS="--no-libtool --macro-prefix=gl"
+AUTOTOOLS_INCLUDES="-I m4 -Isrcm4"
+AUTOTOOLS_WARNINGS="--warnings=all"
+
+
+gnulib-tool --import $GNULIB_MODULES \
+  --source-base="$SRCBASE" --m4-base="$M4BASE" --doc-base="$DOCBASE" --aux-dir="$AUXDIR" \
+  $GNULIB_TOOL_FLAGS $VERBOSE || die
+
+aclocal --output=aclocal.m4 $AUTOTOOLS_INCLUDES $AUTOTOOLS_WARNINGS $VERBOSE || die
+autoheader $AUTOTOOLS_INCLUDES $AUTOTOOLS_WARNINGS $VERBOSE || die
+autoconf $AUTOTOOLS_INCLUDES $AUTOTOOLS_WARNINGS $VERBOSE || die
+automake --add-missing --copy $AUTOTOOLS_WARNINGS $VERBOSE || die
+
+printf "$(_g "%s: done. Now you can run './configure'.\n")" "$0"
+exit 0

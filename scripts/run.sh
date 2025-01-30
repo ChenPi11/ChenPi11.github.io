@@ -15,11 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
 
-die()
-{
-    echo "$0: Error."
-    exit 1
-}
+# shellcheck source=gettext.sh
+. ./scripts/gettext.sh || exit 1
 
 # shellcheck source=/dev/null
 . ./.venv/bin/activate || die

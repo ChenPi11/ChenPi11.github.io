@@ -87,17 +87,20 @@ run :
 clean :
 	cd bin && $(MAKE) $@
 	cd lib && $(MAKE) $@
+	cd po && $(MAKE) $@
 	cd posts && $(MAKE) $@
 	cd src && $(MAKE) $@
 	$(RM) -r autom4te.cache
 	$(RM) config.log
 	$(RM) autoscan.log
 	$(RM) config.h
+	$(RM) config.hpp
+	$(RM) compile_commands.json
 	$(RM) config.status
 	$(RM) mkpostlists/configure
 	$(RM) configure
 	$(RM) configure~
-	$(RM) aclocal.m4
+	$(RM) stamp-h1
 	$(RM) src/build-post
 	$(RM) posts/post-template.html.in
 	$(RM) -r target
@@ -115,6 +118,7 @@ binclean :
 	cd bin && $(MAKE) $@
 	cd bin && $(MAKE) uninstall
 	cd lib && $(MAKE) $@
+	cd po && $(MAKE) $@
 	cd posts && $(MAKE) $@
 	cd src && $(MAKE) $@
 	$(RM) -r target
@@ -123,6 +127,7 @@ binclean :
 allclean : clean
 	cd bin && $(MAKE) $@
 	cd lib && $(MAKE) $@
+	cd po && $(MAKE) $@
 	cd posts && $(MAKE) $@
 	cd src && $(MAKE) $@
 	$(RM) package-lock.json
@@ -139,5 +144,8 @@ allclean : clean
 	$(RM) config.h.in
 	$(RM) config.h.in~
 	$(RM) configure.scan
+	$(RM) -r aclocal.m4
+	$(RM) -r srcm4
+	$(RM) -r srclib
 	$(RM) -r build-aux
 	$(RM) -r wwwroot

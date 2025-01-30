@@ -16,40 +16,8 @@
  * along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#pragma once
-#ifndef _DEFINES_H_
-#define _DEFINES_H_
+// Define to 1 if you have the <libintl.h> header file.
+#define HAVE_LIBINTL_H @HAVE_LIBINTL_H@
 
-#include "config.h"
-
-#ifdef __cplusplus
-#define EXTERN_C_BEG extern "C" {
-#define EXTERN_C_END }
-#else
-#define EXTERN_C_BEG
-#define EXTERN_C_END
-#endif
-
-#ifndef TRUE
-#define TRUE 1
-#endif
-
-#ifndef FALSE
-#define FALSE 0
-#endif
-
-#ifndef RET_SUCCESS
-#define RET_SUCCESS 0
-#endif
-
-#ifndef RET_ERROR
-#define RET_ERROR -1
-#endif
-
-#ifdef HAVE_LINUX_LIMITS_H
-#include <linux/limits.h>
-#else
-#define PATH_MAX 4096
-#endif
-
-#endif
+// Define to the full name of this package.
+#define PACKAGE_NAME "@PACKAGE_NAME@"

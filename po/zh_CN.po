@@ -1,0 +1,469 @@
+# Chinese translations for chenpi11-blog package
+# chenpi11-blog 软件包的简体中文翻译.
+# Copyright (C) 2025 2025 ChenPi11's Blog
+# This file is distributed under the same license as the chenpi11-blog package.
+#  <wushengwuxi-msctinoulk@outlook.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: chenpi11-blog 0.1.0\n"
+"Report-Msgid-Bugs-To: wushengwuxi-msctinoulk@outlook.com\n"
+"POT-Creation-Date: 2025-01-30 11:23+0800\n"
+"PO-Revision-Date: 2025-01-29 17:43+0800\n"
+"Last-Translator:  <wushengwuxi-msctinoulk@outlook.com>\n"
+"Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 38
+#, c-format
+msgid "Usage: %s <template file> <source file>\n"
+msgstr "用法：%s <模板文件> <源文件>\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 43
+#, c-format
+msgid "You must run %s in project's root directory!\n"
+msgstr "你必须在项目的根目录下运行 %s！\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 55
+#, c-format
+msgid "Cannot load post: %s\n"
+msgstr "无法加载文章：%s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 60
+#, c-format
+msgid "Cannot save post: %s\n"
+msgstr "无法保存文章：%s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/configure.c, line: 64
+#, c-format
+msgid "Empty find string when replacing string in file: %s\n"
+msgstr "在文件 %s 中替换字符串时，找不到要替换的字符串。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/configure.c, line: 65
+msgid "Nothing will be replaced.\n"
+msgstr "什么都不会被替换。\n"
+
+# #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/configure.c, line: 72
+# File: /workspaces/ChenPi11.github.io/src/configure.c, line: 123
+# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 118
+# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 206
+# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 218
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 141
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 276
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 307
+# #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/file-util.cpp, line: 41
+# File: /workspaces/ChenPi11.github.io/src/file-util.cpp, line: 59
+#, c-format
+msgid "Cannot open file: %s\n"
+msgstr "无法打开文件：%s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/configure.c, line: 89
+# File: /workspaces/ChenPi11.github.io/src/configure.c, line: 103
+# File: /workspaces/ChenPi11.github.io/src/content.c, line: 43
+msgid "Cannot allocate memory.\n"
+msgstr "无法分配内存。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/configure.c, line: 94
+# File: /workspaces/ChenPi11.github.io/src/configure.c, line: 128
+# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 125
+# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 130
+#, c-format
+msgid "I/O Error: %s.\n"
+msgstr "输入/输出错误：%s。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/configure.c, line: 156
+msgid "NULL filepath.\n"
+msgstr "文件名是空指针。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/configure.c, line: 159
+#, c-format
+msgid "Configuring %s ...\n"
+msgstr "正在配置 %s ...\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/configure.c, line: 166
+msgid "NULL key found in configures.\n"
+msgstr "配置中出现空指针键。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/configure.c, line: 174
+msgid "NULL value found in configures. Replace with empty string.\n"
+msgstr "配置中出现空值。将其替换为空字符串。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/configure.c, line: 182
+#, c-format
+msgid "Cannot format string: %s\n"
+msgstr "无法格式化字符串：%s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 154
+msgid "EOF reached.\n"
+msgstr "已到达文件末尾。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 158
+#, c-format
+msgid "Cannot getline: %s\n"
+msgstr "无法 getline：%s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 212
+#, c-format
+msgid "Cannot get file size: %s\n"
+msgstr "无法获取文件大小：%s\n"
+
+# #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/log.c, line: 43
+# #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/log.cpp, line: 52
+#, c-format
+msgid "INFO: "
+msgstr "信息："
+
+# #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/log.c, line: 53
+# #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/log.cpp, line: 62
+#, c-format
+msgid "WARNING: "
+msgstr "警告："
+
+# #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/log.c, line: 62
+# #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/log.cpp, line: 72
+#, c-format
+msgid "ERROR: "
+msgstr "错误："
+
+#
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 64
+msgid "Checking for markdown-it ... "
+msgstr "正在查找 markdown-it ... "
+
+#
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 91
+#, c-format
+msgid "not found\n"
+msgstr "未找到\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 92
+msgid ""
+"Can't find markdown-it. Did you forget to run setup?\n"
+"You can also set the MARKDOWN_IT environment variable.\n"
+msgstr ""
+"无法找到 markdown-it。是否忘记运行 setup ？\n"
+"你也可以设置 MARKDOWN_IT 环境变量。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 108
+msgid "markdown-it is not initialized.\n"
+msgstr "markdown-it 未初始化。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 113
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 117
+msgid "snprintf() failed.\n"
+msgstr "snprintf() 失败。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 120
+#, c-format
+msgid "Executing: %s\n"
+msgstr "正在执行：%s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 124
+#, c-format
+msgid "markdown-it failed with exit code %d.\n"
+msgstr "markdown-it 运行失败，退出码为 %d。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 135
+#, c-format
+msgid "Remove %s failed.\n"
+msgstr "无法删除 %s。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 62
+msgid "Cannot reallocate memory.\n"
+msgstr "无法重新分配内存。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 88
+#, c-format
+msgid "Duplicate tag: \"%s\".\n"
+msgstr "重复的标签：\"%s\"。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 103
+msgid "Post template file is NULL.\n"
+msgstr "文章模板文件是空指针。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 105
+#, c-format
+msgid "Using %s as post template.\n"
+msgstr "使用 %s 作为文章模板。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 148
+#, c-format
+msgid "First line must start with \"%s\".\n"
+msgstr "第一行必须以 \"%s\" 开头。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 149
+#, c-format
+msgid "First line of %s is not a title.\n"
+msgstr "%s 的第一行不是标题。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 160
+msgid "Cannot strip title.\n"
+msgstr "无法 strip 标题。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 168
+#, c-format
+msgid "Second line must start with \"%s\".\n"
+msgstr "第二行必须以 \"%s\" 开头。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 169
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 174
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 182
+#, c-format
+msgid "Second line of %s is not a date.\n"
+msgstr "%s 的第二行不是日期。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 173
+#, c-format
+msgid "Second line must end with \"%s\".\n"
+msgstr "第二行必须以 \"%s\" 结尾。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 181
+msgid "Second line must contain a date.\n"
+msgstr "第二行必须包含一个日期。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 193
+msgid "Cannot strip date.\n"
+msgstr "无法 strip 日期。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 201
+#, c-format
+msgid "Third line must start with \"%s\".\n"
+msgstr "第三行必须以 \"%s\" 开头。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 202
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 207
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 212
+#, c-format
+msgid "Third line of %s is not a tag.\n"
+msgstr "%s 的第三行不是标签。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 206
+#, c-format
+msgid "Third line must end with \"%s\".\n"
+msgstr "第三行必须以 \"%s\" 结尾。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 211
+msgid "Third line must contain a tag.\n"
+msgstr "第三行必须包含一个标签。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 255
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 259
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 263
+msgid "Cannot generate filename.\n"
+msgstr "无法生成文件名。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 266
+#, c-format
+msgid "Generating %s ...\n"
+msgstr "正在生成 %s...\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 270
+#, c-format
+msgid "Cannot copy file: %s\n"
+msgstr "无法复制文件：%s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 280
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 312
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 316
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 323
+#, c-format
+msgid "Cannot write to file: %s\n"
+msgstr "无法写入文件：%s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 288
+msgid "Cannot convert markdown to html.\n"
+msgstr "无法将 markdown 转换为 html。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 293
+#, c-format
+msgid "Cannot remove file: %s\n"
+msgstr "无法删除文件：%s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 300
+#, c-format
+msgid "Cannot configure file: %s\n"
+msgstr "无法配置文件：%s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 34
+#, c-format
+msgid "Usage: %s\n"
+msgstr "用法：%s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 41
+msgid "Generate post lists ...\n"
+msgstr "正在生成文章列表 ...\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 56
+#, c-format
+msgid "Errno %d: %s\n"
+msgstr "错误码 %d：%s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.cpp, line: 44
+msgid "No such file: "
+msgstr "找不到文件："
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.cpp, line: 54
+# File: /workspaces/ChenPi11.github.io/src/post.cpp, line: 59
+# File: /workspaces/ChenPi11.github.io/src/post.cpp, line: 64
+msgid "Read file failed: "
+msgstr "无法读取文件："
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 36
+msgid "Please run this script in the root directory of the project."
+msgstr "请在项目的根目录下运行此脚本。"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 40
+msgid "posts/post-template.html.in is not found."
+msgstr "posts/post-template.html.in 未找到。"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 49
+msgid "build-post is not found."
+msgstr "build-post 未找到。"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 56
+#, python-brace-format
+msgid "========== Building {postfile}... ==========\n"
+msgstr "========== 正在构建 {postfile}... ==========\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 120
+#, python-brace-format
+msgid "Executing {cmd} ...\n"
+msgstr "正在执行：{cmd} ...\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 67
+#, python-brace-format
+msgid "Failed to build {postfile}."
+msgstr "无法构建 {postfile}。"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 71
+#. Copy applets.
+msgid "========== Copying applets ... ==========\n"
+msgstr "========== 正在复制应用程序... ==========\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/lang_stat.py, line: 129
+msgid "Git command failed."
+msgstr "Git 命令失败。"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/lang_stat.py, line: 131
+msgid "Cloc command failed."
+msgstr "Cloc 命令失败。"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 73
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 98
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 123
+#, python-brace-format
+msgid "========== Minifying {file_path}... ==========\n"
+msgstr "========== 正在压缩 {file_path}... ==========\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 85
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 110
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 135
+msgid "Minify command run failed."
+msgstr "压缩命令运行失败。"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 102
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 127
+#, python-brace-format
+msgid "Running command: {cmd}\n"
+msgstr "正在运行命令：{cmd}\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 144
+msgid "'wwwroot' not exists."
+msgstr "'wwwroot' 不存在。"
+
+#
+# File: /workspaces/ChenPi11.github.io/scripts/gettext.sh, line: 36
+msgid "Error."
+msgstr "错误。"
+
+#
+# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 27
+msgid "Usage: %s [--help] [--verbose]\\n"
+msgstr "用法：%s [--help] [--verbose]\\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 54
+msgid "%s: done. Now you can run './configure'.\\n"
+msgstr "%s: 完成。现在你可以运行 './configure'。\\n"

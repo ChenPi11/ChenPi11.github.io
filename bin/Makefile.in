@@ -59,7 +59,7 @@ PYTHON_BUILDFLAGS = @PYTHON_BUILDFLAGS@
 
 env-setup : all
 
-all : venv node_modules build-post mkpostlists new-post build-blog
+all : venv node_modules build-post mkpostlists new-post build-blog po
 
 venv :
 	$(LOCAL_PYTHON3) $(PYTHON3FLAGS) -m venv $(PREFIX)
@@ -91,6 +91,10 @@ build-blog : venv
 	cd $(top_srcdir) && $(PYTHON3) -m rubisco install-build-blog
 	@$(CREATE_TAG) $@
 
+po : venv
+	cd $(top_srcdir)/po && $(MAKE) install
+	@$(CREATE_TAG) $@
+
 clean :
 
 binclean :
@@ -98,6 +102,7 @@ binclean :
 	$(RM) build-post
 	$(RM) mkpostlists
 	$(RM) new-post
+	$(RM) po
 	cd $(top_srcdir) && $(CARGO) clean
 
 allclean : clean binclean

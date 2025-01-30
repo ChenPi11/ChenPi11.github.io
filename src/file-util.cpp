@@ -24,6 +24,9 @@
 
 #include "file-util.hpp"
 
+#include "i18n.hpp"
+#include "log.hpp"
+
 #include <filesystem>
 #include <fstream>
 #include <string>
@@ -34,7 +37,9 @@ std::string file::readfile(const std::filesystem::path &filepath)
     std::ifstream file(filepath);
     if (!file)
     {
-        throw std::system_error(errno, std::generic_category(), "Cannot open file: " + filepath.string());
+        std::string filepath_str = filepath.string();
+        logging::error(_("Cannot open file: %s\n"), filepath_str.c_str());
+        throw std::system_error(errno, std::generic_category());
     }
 
     std::size_t size = std::filesystem::file_size(filepath);
@@ -50,7 +55,9 @@ void file::writefile(const std::filesystem::path &filepath, const std::string &d
     std::ofstream file(filepath);
     if (!file)
     {
-        throw std::system_error(errno, std::generic_category(), "Cannot open file: " + filepath.string());
+        std::string filepath_str = filepath.string();
+        logging::error(_("Cannot open file: %s\n"), filepath_str.c_str());
+        throw std::system_error(errno, std::generic_category());
     }
     file << data;
     file.close();

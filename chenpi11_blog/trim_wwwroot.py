@@ -25,6 +25,8 @@ import sys
 from pathlib import Path
 from subprocess import PIPE, Popen
 
+from chenpi11_blog.i18n import _
+
 IGNORE_LIST = [
     "xterm.js",
     "xterm.css",
@@ -68,9 +70,11 @@ def trim_html(file_path: Path) -> None:
 
     """
     cmd = " ".join([*HTML_MINIFIER_CMD, str(file_path)])
-    msg = f"========== Minifying {file_path}... ==========\n"
+    msg = _("========== Minifying {file_path}... ==========\n").format(
+        file_path=file_path,
+    )
     sys.stdout.write(msg)
-    sys.stdout.write(f"Running command: {cmd}\n")
+    sys.stdout.write(_("Running command: {cmd}\n").format(cmd=cmd))
     with Popen(  # noqa: S602
         cmd,
         shell=True,
@@ -78,7 +82,7 @@ def trim_html(file_path: Path) -> None:
         encoding="UTF-8",
     ) as proc:
         if (proc.wait() != 0) or (proc.stdout is None):
-            sys.exit("Minify command run failed.")
+            sys.exit(_("Minify command run failed."))
         with Path.open(file_path, "w", encoding="UTF-8") as f:
             f.write(proc.stdout.read())
 
@@ -91,9 +95,11 @@ def trim_js(file_path: Path) -> None:
 
     """
     cmd = " ".join([*TERSER_CMD, str(file_path)])
-    msg = f"========== Minifying {file_path}... ==========\n"
+    msg = _("========== Minifying {file_path}... ==========\n").format(
+        file_path=file_path,
+    )
     sys.stdout.write(msg)
-    sys.stdout.write(f"Running command: {cmd}\n")
+    sys.stdout.write(_("Running command: {cmd}\n").format(cmd=cmd))
     with Popen(  # noqa: S602
         cmd,
         shell=True,
@@ -101,7 +107,7 @@ def trim_js(file_path: Path) -> None:
         encoding="UTF-8",
     ) as proc:
         if (proc.wait() != 0) or (proc.stdout is None):
-            sys.exit("Minify command run failed.")
+            sys.exit(_("Minify command run failed."))
         with Path.open(file_path, "w", encoding="UTF-8") as f:
             f.write(proc.stdout.read())
 
@@ -114,9 +120,11 @@ def trim_css(file_path: Path) -> None:
 
     """
     cmd = " ".join([*CLEANCSS_CMD, str(file_path)])
-    msg = f"========== Minifying {file_path}... ==========\n"
+    msg = _("========== Minifying {file_path}... ==========\n").format(
+        file_path=file_path,
+    )
     sys.stdout.write(msg)
-    sys.stdout.write(f"Running command: {cmd}\n")
+    sys.stdout.write(_("Running command: {cmd}\n").format(cmd=cmd))
     with Popen(  # noqa: S602
         cmd,
         shell=True,
@@ -124,7 +132,7 @@ def trim_css(file_path: Path) -> None:
         encoding="UTF-8",
     ) as proc:
         if (proc.wait() != 0) or (proc.stdout is None):
-            sys.exit("Minify command run failed.")
+            sys.exit(_("Minify command run failed."))
         with Path.open(file_path, "w", encoding="UTF-8") as f:
             f.write(proc.stdout.read())
 
@@ -133,13 +141,13 @@ def trim_wwwroot_main() -> None:
     """Copy files to wwwroot."""
     wwwroot = Path("wwwroot")
     if not wwwroot.exists():
-        sys.exit("'wwwroot' not exists.")
+        sys.exit(_("'wwwroot' not exists."))
 
-    # Walk wwwroot recursively
-    for root, _, files in os.walk(wwwroot):
+    # Walk wwwroot recursively.
+    for root, _w, files in os.walk(wwwroot):
         for file in files:
             file_path = Path(root) / file
-            # Skip non-HTML files
+            # Skip non-HTML files.
             if file_path.suffix not in [".html", ".htm", ".js", ".css"]:
                 continue
             if file_path.name in IGNORE_LIST:

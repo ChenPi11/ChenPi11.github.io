@@ -21,6 +21,7 @@
 #include "configure.hpp"
 #include "content.hpp"
 #include "file-util.hpp"
+#include "i18n.hpp"
 
 #include <filesystem>
 #include <fstream>
@@ -40,7 +41,7 @@ post::PostInfo::PostInfo(const std::filesystem::path &metafile)
 {
     if (!std::filesystem::is_regular_file(metafile))
     {
-        throw std::runtime_error("No such file: " + metafile.string());
+        throw std::runtime_error(_("No such file: ") + metafile.string());
     }
     m_filename = metafile.stem().string() + ".html";
     std::ifstream infile(metafile);
@@ -50,17 +51,17 @@ post::PostInfo::PostInfo(const std::filesystem::path &metafile)
     // tags
     if (std::getline(infile, line).fail())
     {
-        throw std::runtime_error("Read file failed: " + metafile.string());
+        throw std::runtime_error(_("Read file failed: ") + metafile.string());
     }
     m_title = line;
     if (std::getline(infile, line).fail())
     {
-        throw std::runtime_error("Read file failed: " + metafile.string());
+        throw std::runtime_error(_("Read file failed: ") + metafile.string());
     }
     m_date = line;
     if (std::getline(infile, line).fail())
     {
-        throw std::runtime_error("Read file failed: " + metafile.string());
+        throw std::runtime_error(_("Read file failed: ") + metafile.string());
     }
     infile.close();
     m_tags = content::split(line, ',');

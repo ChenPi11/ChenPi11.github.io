@@ -15,16 +15,48 @@
 # You should have received a copy of the GNU General Public License
 # along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
 
-die()
-{
-    echo "$0: Error."
-    exit 1
-}
+# Build chenpi11-blog.
 
-neofetch || die
-./autogen.sh || die
-./configure CFLAGS="-Wall -Wextra" CPPFLAGS="-Wall -Wextra" || die
-echo "========== config.log =========="
-cat config.log || die
-echo "========== config.log =========="
+# shellcheck disable=SC2059
+
+# shellcheck source=gettext.sh
+. ./scripts/gettext.sh || exit 1
+
+V=0
+VERBOSE=
+
+case "$1" in
+    -h|--help)
+        printf "$(_g "Usage: %s [-h|--help] [-V|--version] [-v|--verbose]")" "$0"
+        printf "$(_g "Build chenpi11-blog.\n")"
+        printf "\n"
+        printf "$(_g "Options:\n")"
+        printf "$(_g "  -h, --help      Display this help and exit.\n")"
+        printf "$(_g "  -V, --version   Output version information and exit.\n")"
+        printf "$(_g "  -v, --verbose   Verbosely report processing.\n")"
+        exit 0
+        ;;
+    -V|--version)
+        show_version
+        exit 0
+        ;;
+    -v|--verbose)
+        V=1
+        VERBOSE=--verbose
+        ;;
+esac
+
+if [ "$V" -eq 0 ]; then
+    neofetch || die
+else
+    neofetch -vv 2> /tmp/neofetch.log || die
+    cat /tmp/neofetch.log
+fi
+./autogen.sh $VERBOSE || die
+./configure CFLAGS="-Wall -Wextra $CFLAGS" CPPFLAGS="-Wall -Wextra $CPPFLAGS" || die
+if [ "$V" -ne 0 ]; then
+    echo "========== config.log =========="
+    cat config.log || die
+    echo "========== config.log =========="
+fi
 make all || die

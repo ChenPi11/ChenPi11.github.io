@@ -43,7 +43,7 @@ fn main() {
             cur_num += 1;
         }
     }
-    println!("Creating {}", filename);
+    println!("Creating {} ...", filename);
     let mut file = std::fs::File::create(filename.as_str()).unwrap();
     file.write_all(post_tempate.as_bytes()).unwrap();
 

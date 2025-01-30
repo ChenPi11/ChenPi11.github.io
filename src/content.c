@@ -17,7 +17,9 @@
  */
 
 #include "content.h"
+
 #include "defines.h"
+#include "i18n.h"
 #include "log.h"
 
 #include <malloc.h>
@@ -38,7 +40,7 @@ struct content_t alloc_content(size_t length)
     res.content = malloc(length + 1);
     if (res.content == NULL)
     {
-        die("Memory allocation failed.");
+        die(_("Cannot allocate memory.\n"));
     }
 
     res.len = length;

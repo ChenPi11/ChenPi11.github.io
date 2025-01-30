@@ -19,6 +19,7 @@ AC_INIT([chenpi11-blog], [0.1.0] [https://github.com/ChenPi11/ChenPi11.github.io
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR([build-aux])
+AM_INIT_AUTOMAKE
 AC_PREFIX_DEFAULT([$(pwd)/.venv])
 
 dnl Constants.
@@ -41,7 +42,10 @@ AC_ARG_ENABLE([debug],
   [BUILD_TYPE=RELEASE])
 AC_SUBST([BUILD_TYPE])
 
-dnl Checks for basic programs.
+dnl Configure automake.
+AC_CONFIG_MACRO_DIRS([srcm4])
+
+dnl Checks for programs.
 AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_INSTALL
@@ -50,11 +54,24 @@ CB_PROG_CARGO
 CB_PROG_CMAKE
 CB_PROG_NPM
 CB_PROG_PYTHON3
+CL_PROG_CP
+gl_EARLY
+gl_INIT
+
+dnl Checks for compiler output filename suffixes.
+
+AC_OBJEXT
+AC_EXEEXT
+
+dnl python-build flags.
 
 AC_ARG_VAR([PYTHON_BUILDFLAGS], [python -m build's flags])
 AC_SUBST([PYTHON_BUILDFLAGS])
 
-dnl Checks for commands.
+dnl Hack.
+dnl Automake don't support variable with line break. So remove thr variables
+dnl with line break.
+sed -i "s|SIDEBAR = @SIDEBAR@||g" srclib/Makefile.in
 
 dnl Checks for header files.
 AC_CHECK_HEADERS([malloc.h unistd.h])
@@ -68,18 +85,24 @@ AC_FUNC_ERROR_AT_LINE
 AC_FUNC_MALLOC
 AC_FUNC_REALLOC
 AC_CHECK_FUNCS([strchr strrchr strstr])
+AC_CHECK_HEADERS([libintl.h])
+AC_CHECK_HEADERS([linux/limits.h])
+AC_CHECK_FUNCS([setlocale])
+AM_GNU_GETTEXT_REQUIRE_VERSION([0.20])
+AM_GNU_GETTEXT([external])
 
-dnl Configure C++ part with CMake.
-
+dnl Configure C++ part.
 AC_CONFIG_SUBDIRS([mkpostlists])
 
 dnl Output.
 AC_CONFIG_FILES([bin/Makefile])
 AC_CONFIG_FILES([lib/Makefile])
+AC_CONFIG_FILES([srclib/Makefile])
 AC_CONFIG_FILES([posts/post-template.html.in])
 AC_CONFIG_FILES([posts/Makefile])
 AC_CONFIG_FILES([index.html.in])
 AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([po/Makefile])
 AC_CONFIG_FILES([src/Makefile])
 AC_CONFIG_FILES([mkpostlists/configure])
 AC_OUTPUT

@@ -267,6 +267,8 @@ autom4te.cache
 /config.h.in
 /config.h.in~
 /config.h
+/config.hpp
+/config.sub
 /config.log
 /config.status
 /config.sub
@@ -443,13 +445,18 @@ out
 # Executables
 src/build-post
 
+# Gnulib
+srclib
+srcm4
+
 # Build output
 /bin/build-blog
 /bin/build-post
 /bin/mkpostlists
 /bin/new-post
-/bin/venv
 /bin/node_modules
+/bin/po
+/bin/venv
 
 index.html.in
 posts/post-template.html.in

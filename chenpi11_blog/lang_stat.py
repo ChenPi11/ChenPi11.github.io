@@ -30,10 +30,8 @@ import sys
 from pathlib import Path
 from subprocess import PIPE, Popen
 
-try:
-    from chenpi11_blog import languages
-except ImportError:
-    import languages
+from chenpi11_blog import languages
+from chenpi11_blog.i18n import _
 
 CLOC_FLAGS = ["--autoconf", "--json"]
 
@@ -128,9 +126,9 @@ def get_lang_stat(scope: LangStatScope) -> dict:
         ) as cloc_proc,
     ):
         if git_proc.wait() != 0 and scope == LangStatScope.REPO:
-            sys.exit("Git command failed.")
+            sys.exit(_("Git command failed."))
         if cloc_proc.wait() != 0:
-            sys.exit("Cloc command failed.")
+            sys.exit(_("Cloc command failed."))
         return json.loads(cloc_proc.stdout.read().decode("utf-8"))
 
 

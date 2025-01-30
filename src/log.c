@@ -18,6 +18,8 @@
 
 #include "log.h"
 
+#include "i18n.h"
+
 #include <errno.h>
 #include <stdarg.h>
 #include <stdio.h>
@@ -38,7 +40,7 @@ void info(const char *fmt, ...)
     va_list ap;
 
     va_start(ap, fmt);
-    fprintf(stderr, "INFO: ");
+    fprintf(stderr, _("INFO: "));
     vfprintf(stderr, fmt, ap);
     va_end(ap);
 }
@@ -48,7 +50,7 @@ void warn(const char *fmt, ...)
     va_list ap;
 
     va_start(ap, fmt);
-    fprintf(stderr, "WARNING: ");
+    fprintf(stderr, _("WARNING: "));
     vfprintf(stderr, fmt, ap);
     va_end(ap);
 }
@@ -57,7 +59,7 @@ void error(const char *fmt, ...)
 {
     va_list ap;
     va_start(ap, fmt);
-    fprintf(stderr, "ERROR: ");
+    fprintf(stderr, _("ERROR: "));
     vfprintf(stderr, fmt, ap);
     va_end(ap);
     if (errno)
