@@ -34,6 +34,7 @@
 namespace
 {
 static const char *proc_name = "";
+static enum logging::LogLevel log_level = logging::LogLevel::WARN;
 }
 
 void logging::init(int argc, char *argv[]) noexcept
@@ -44,8 +45,23 @@ void logging::init(int argc, char *argv[]) noexcept
     }
 }
 
+void logging::set_level(const enum LogLevel level) noexcept
+{
+    log_level = level;
+}
+
+enum logging::LogLevel logging::get_level() noexcept
+{
+    return log_level;
+}
+
 void logging::info(const char *fmt, ...) noexcept
 {
+    if (log_level > LogLevel::INFO)
+    {
+        return;
+    }
+
     std::va_list ap;
 
     va_start(ap, fmt);
@@ -56,6 +72,11 @@ void logging::info(const char *fmt, ...) noexcept
 
 void logging::warn(const char *fmt, ...) noexcept
 {
+    if (log_level > LogLevel::WARN)
+    {
+        return;
+    }
+
     std::va_list ap;
 
     va_start(ap, fmt);

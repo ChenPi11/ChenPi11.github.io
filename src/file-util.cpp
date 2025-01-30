@@ -62,3 +62,36 @@ void file::writefile(const std::filesystem::path &filepath, const std::string &d
     file << data;
     file.close();
 }
+
+#define CHECK(x)                                                                                                       \
+    do                                                                                                                 \
+    {                                                                                                                  \
+        if (!(x))                                                                                                      \
+        {                                                                                                              \
+            goto NOT;                                                                                                  \
+        }                                                                                                              \
+    } while (false)
+
+#define is_dir std::filesystem::is_directory
+#define is_file std::filesystem::is_regular_file
+
+bool file::is_chenpi11_blog_rootdir()
+{
+    CHECK(is_dir(std::filesystem::current_path()));
+    CHECK(is_file("requirements.txt") && is_file("pyproject.toml")); /* It's a Python project. */
+    CHECK(is_file("Cargo.toml") && is_file("Makefile.toml"));        /* It's a Rust project. */
+    CHECK(is_file("configure.ac") && is_file("autogen.sh"));         /* It's an Autotools project. */
+    CHECK(is_file("CMakeLists.txt"));                                /* It's a CMake project. */
+    CHECK(is_file("package.json"));                                  /* It's a Node.js project. */
+    CHECK(is_file("Makefile.in"));                                   /* It's an Autoconf+Makefile project. */
+    CHECK(is_file("repo.json"));                                     /* It's a Rubisco project. */
+
+    errno = 0;
+
+    return true;
+
+NOT:
+    errno = 0;
+
+    return false;
+}

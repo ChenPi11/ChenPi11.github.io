@@ -26,6 +26,7 @@
 #include <stdlib.h>
 
 static const char *proc_name = "";
+static enum LogLevel log_level = LOG_INFO;
 
 void log_init(int argc, char *argv[])
 {
@@ -35,9 +36,24 @@ void log_init(int argc, char *argv[])
     }
 }
 
+void set_log_level(enum LogLevel level)
+{
+    log_level = level;
+}
+
+enum LogLevel get_log_level()
+{
+    return log_level;
+}
+
 void info(const char *fmt, ...)
 {
     va_list ap;
+
+    if (log_level > LOG_INFO)
+    {
+        return;
+    }
 
     va_start(ap, fmt);
     fprintf(stderr, _("INFO: "));
@@ -49,6 +65,11 @@ void warn(const char *fmt, ...)
 {
     va_list ap;
 
+    if (log_level > LOG_WARN)
+    {
+        return;
+    }
+
     va_start(ap, fmt);
     fprintf(stderr, _("WARNING: "));
     vfprintf(stderr, fmt, ap);
@@ -58,16 +79,16 @@ void warn(const char *fmt, ...)
 void error(const char *fmt, ...)
 {
     va_list ap;
+
     va_start(ap, fmt);
     fprintf(stderr, _("ERROR: "));
     vfprintf(stderr, fmt, ap);
     va_end(ap);
+
     if (errno)
     {
         perror(proc_name);
     }
-
-    exit(EXIT_FAILURE);
 }
 
 const char *get_proc_name()

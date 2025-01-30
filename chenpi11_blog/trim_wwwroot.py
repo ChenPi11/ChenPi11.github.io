@@ -26,6 +26,7 @@ from pathlib import Path
 from subprocess import PIPE, Popen
 
 from chenpi11_blog.i18n import _
+from chenpi11_blog.is_blog import is_chenpi11_blog_rootdir
 
 IGNORE_LIST = [
     "xterm.js",
@@ -61,6 +62,7 @@ CLEANCSS_CMD = [
     "-O2",
 ]
 
+_verbose = False  # pylint: disable=invalid-name
 
 def trim_html(file_path: Path) -> None:
     """Minify HTML file.
@@ -74,7 +76,8 @@ def trim_html(file_path: Path) -> None:
         file_path=file_path,
     )
     sys.stdout.write(msg)
-    sys.stdout.write(_("Running command: {cmd}\n").format(cmd=cmd))
+    if _verbose:
+        sys.stdout.write(_("Running command: {cmd}\n").format(cmd=cmd))
     with Popen(  # noqa: S602
         cmd,
         shell=True,
@@ -99,7 +102,8 @@ def trim_js(file_path: Path) -> None:
         file_path=file_path,
     )
     sys.stdout.write(msg)
-    sys.stdout.write(_("Running command: {cmd}\n").format(cmd=cmd))
+    if _verbose:
+        sys.stdout.write(_("Running command: {cmd}\n").format(cmd=cmd))
     with Popen(  # noqa: S602
         cmd,
         shell=True,
@@ -124,7 +128,8 @@ def trim_css(file_path: Path) -> None:
         file_path=file_path,
     )
     sys.stdout.write(msg)
-    sys.stdout.write(_("Running command: {cmd}\n").format(cmd=cmd))
+    if _verbose:
+        sys.stdout.write(_("Running command: {cmd}\n").format(cmd=cmd))
     with Popen(  # noqa: S602
         cmd,
         shell=True,
@@ -137,8 +142,47 @@ def trim_css(file_path: Path) -> None:
             f.write(proc.stdout.read())
 
 
+def _parse_arg() -> bool:
+    if "-h" in sys.argv or "--help" in sys.argv:
+        sys.stdout.write(
+            _("Usage: trim-wwwroot [-h|--help] [-V|--version] [-v|--verbose]\n"),
+        )
+        sys.stdout.write("\n")
+        sys.stdout.write(_("Options:\n"))
+        sys.stdout.write(_("  -h, --help     Display this help and exit.\n"))
+        sys.stdout.write(_("  -V, --version  Output version information and exit.\n"))
+        sys.stdout.write(_("  -v, --verbose  Verbosely report processing.\n"))
+        sys.exit(0)
+    elif "-V" in sys.argv or "--version" in sys.argv:
+        sys.stdout.write("chenpi11-blog 0.1.0\n")
+        sys.stdout.write(_("Copyright (C) 2025 ChenPi11\n"))
+        sys.stdout.write(
+            _(
+                "License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\n",
+            ),
+        )
+        sys.stdout.write(
+            _("This is free software: you are free to change and redistribute it.\n"),
+        )
+        sys.stdout.write(_("There is NO WARRANTY, to the extent permitted by law.\n"))
+        sys.stdout.write(_("Written by ChenPi11.\n"))
+        sys.exit(0)
+    elif "-v" in sys.argv or "--verbose" in sys.argv:
+        return True
+
+    return False
+
+
 def trim_wwwroot_main() -> None:
     """Copy files to wwwroot."""
+    global _verbose  # pylint: disable=global-statement  # noqa: PLW0603
+    _verbose = _parse_arg()
+    if not is_chenpi11_blog_rootdir():
+        msg = _("You must run {prog} in project's root directory!\n").format(
+            prog="build-blog",
+        )
+        raise SystemExit(msg)
+
     wwwroot = Path("wwwroot")
     if not wwwroot.exists():
         sys.exit(_("'wwwroot' not exists."))

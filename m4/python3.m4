@@ -19,18 +19,16 @@ dnl along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
 AC_DEFUN([CB_PROG_PYTHON3],
 [
 AC_ARG_VAR([PYTHON3], [Path to Python3 executable])
+AC_ARG_VAR([PYTHON3VERBOSE], [Python3 interpreter verbose flags])
 AC_ARG_VAR([PYTHON3FLAGS], [Python3 interpreter flags])
+AC_ARG_VAR([PIPVERBOSE], [Pip verbose flags])
 AC_ARG_VAR([PIPFLAGS], [Pip flags])
 
 AS_IF([test x$PYTHON3 = x],
       [AC_PATH_PROGS([PYTHON3], [python3 python])])
 
 AC_MSG_CHECKING([Python is Python3])
-AS_IF([test x$PYTHON3 = x],
-      [AC_MSG_RESULT([no])]
-      [AC_MSG_FAILURE([No python3 executable found])])
-
-AS_IF([$PYTHON3 --version 2>&1 | grep -q "^Python 3"],
+AS_IF([$PYTHON3 $PYTHON3VERBOSE $PYTHON3FLAGS --version 2>&1 | grep -q "^Python 3"],
       [AC_MSG_RESULT([yes])],
       [AC_MSG_RESULT([no])]
       [AC_MSG_FAILURE([Python executable is not Python3])])
@@ -48,7 +46,9 @@ AS_IF([$PYTHON3 -m venv -h > /dev/null 2>&1],
       [AC_MSG_FAILURE([Python3 don't have venv])])
 
 AC_SUBST([PYTHON3])
+AC_SUBST([PYTHON3VERBOSE])
 AC_SUBST([PYTHON3FLAGS])
+AC_SUBST([PIPVERBOSE])
 AC_SUBST([PIPFLAGS])
 ]
 )

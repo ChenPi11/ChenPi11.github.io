@@ -15,7 +15,7 @@ dnl You should have received a copy of the GNU General Public License
 dnl along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
 
 AC_PREREQ([2.64])
-AC_INIT([chenpi11-blog], [0.1.0] [https://github.com/ChenPi11/ChenPi11.github.io/issues])
+AC_INIT([chenpi11-blog], [0.1.0])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR([build-aux])
@@ -63,10 +63,80 @@ dnl Checks for compiler output filename suffixes.
 AC_OBJEXT
 AC_EXEEXT
 
-dnl python-build flags.
+dnl Flags.
+AC_ARG_VAR([PYTHON_BUILDVERBOSE], [python -m build's verbose flag])
+AC_SUBST([PYTHON_BUILDVERBOSE])
 
 AC_ARG_VAR([PYTHON_BUILDFLAGS], [python -m build's flags])
 AC_SUBST([PYTHON_BUILDFLAGS])
+
+AC_ARG_VAR([CCVERBOSE], [C compiler verbose flag])
+AC_SUBST([CCVERBOSE])
+
+AC_ARG_VAR([CXXVERBOSE], [C++ compiler verbose flag])
+AC_SUBST([CXXVERBOSE])
+
+AC_ARG_VAR([LDVERBOSE], [linker verbose flag])
+AC_SUBST([LDVERBOSE])
+
+AC_ARG_VAR([CMAKE_MAKEVERBOSE], [cmake --build verbose flag])
+AC_SUBST([CMAKE_MAKEVERBOSE])
+
+AC_ARG_VAR([CB_UTILSVERBOSE], [ChenPi11's Blog utils verbose flag])
+AC_SUBST([CB_UTILSVERBOSE])
+
+dnl Verbose settings.
+AC_ARG_WITH([verbose],
+            AS_HELP_STRING([--with-verbose], [verbose level]),
+            [VERBOSE_LEVEL=$withval],
+            [VERBOSE_LEVEL=1]
+)
+AC_SUBST([VERBOSE_LEVEL])
+
+AC_MSG_CHECKING([verbose level])
+AS_IF([test x"$VERBOSE_LEVEL" = x],
+      [AC_MSG_RESULT([ok $VERBOSE_LEVEL])],
+      [VERBOSE_LEVEL=1])
+
+if test "$VERBOSE_LEVEL" -ge 1; then
+  CARGOVERBOSE=--verbose
+  PIPVERBOSE=--verbose
+  PYTHON_BUILDVERBOSE=--verbose
+  NPMVERBOSE=--verbose
+  CB_UTILSVERBOSE=--verbose
+elif test "$VERBOSE_LEVEL" -ge 2; then
+  CARGOVERBOSE=--verbose
+  PIPVERBOSE=--verbose
+  PYTHON_BUILDVERBOSE=--verbose
+  NPMVERBOSE=--verbose
+  CMAKE_MAKEVERBOSE="VERBOSE=1"
+  CB_UTILSVERBOSE=--verbose
+elif test "$VERBOSE_LEVEL" -ge 3; then
+  CARGOVERBOSE=-vv
+  PIPVERBOSE="--verbose --verbose"
+  PYTHON_BUILDVERBOSE="--verbose --verbose"
+  NPMVERBOSE=--verbose
+  CMAKE_MAKEVERBOSE="VERBOSE=1"
+  CB_UTILSVERBOSE=--verbose
+elif test "$VERBOSE_LEVEL" -ge 4; then
+  CARGOVERBOSE=-vv
+  CMAKEVERBOSE=--trace
+  PYTHON3VERBOSE=-v
+  PIPVERBOSE="--verbose --verbose --verbose"
+  PYTHON_BUILDVERBOSE="--verbose --verbose --verbose"
+  CCVERBOSE=-v
+  CXXVERBOSE=-v
+  LDVERBOSE=-v
+  NPMVERBOSE=--verbose
+  CMAKE_MAKEVERBOSE="VERBOSE=1"
+  CB_UTILSVERBOSE=--verbose
+else
+  CARGOVERBOSE=--verbose
+  PIPVERBOSE=--verbose
+  PYTHON_BUILDVERBOSE=--verbose
+  NPMVERBOSE=--verbose
+  CB_UTILSVERBOSE=--verbose
+fi
 
 dnl Hack.
 dnl Automake don't support variable with line break. So remove thr variables

@@ -16,6 +16,8 @@
  * along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include "config.h"
+
 #include "file-util.h"
 #include "i18n.h"
 #include "log.h"
@@ -24,8 +26,19 @@
 
 #include <stdlib.h>
 
+static void show_help()
+{
+    printf("%s", _("Usage: build-post [-h|--help] [-V|--version] [-v|--verbose] <template file> <source file>\n"));
+    printf("\n");
+    printf("%s", _("Options:\n"));
+    printf("%s", _("  -h, --help     Display this help and exit.\n"));
+    printf("%s", _("  -V, --version  Output version information and exit.\n"));
+    printf("%s", _("  -v, --verbose  Verbosely report processing.\n"));
+}
+
 int main(int argc, char *argv[])
 {
+    int verbose = 0;
     const char *template_file = NULL;
     const char *source_file = NULL;
     struct post_t post = null_post;
@@ -33,18 +46,53 @@ int main(int argc, char *argv[])
     log_init(argc, argv);
     i18n_init();
 
-    if (argc != 3)
+    for (int i = 1; i < argc; i++)
     {
-        die(_("Usage: %s <template file> <source file>\n"), argv[0]);
+        if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0)
+        {
+            show_help();
+
+            return EXIT_SUCCESS;
+        }
+        if (strcmp(argv[i], "-V") == 0 || strcmp(argv[i], "--version") == 0)
+        {
+            printf("build-post " PACKAGE_VERSION "\n");
+            printf("%s", _("Copyright (C) 2025 ChenPi11\n"));
+            printf("%s", _("License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\n"));
+            printf("%s", _("This is free software: you are free to change and redistribute it.\n"));
+            printf("%s", _("There is NO WARRANTY, to the extent permitted by law.\n"));
+            printf("%s", _("Written by ChenPi11.\n"));
+
+            return EXIT_SUCCESS;
+        }
+        else if (strcmp(argv[i], "-v") == 0 || strcmp(argv[i], "--verbose") == 0)
+        {
+            verbose = 1;
+            continue;
+        }
+        if (template_file == NULL)
+        {
+            template_file = argv[i];
+        }
+        else
+        {
+            source_file = argv[i];
+        }
+    }
+
+    set_log_level(verbose ? LOG_INFO : LOG_WARN);
+
+    if (template_file == NULL || source_file == NULL)
+    {
+        show_help();
+
+        return EXIT_FAILURE;
     }
 
     if (!is_chenpi11_blog_rootdir())
     {
-        die(_("You must run %s in project's root directory!\n"), argv[0]);
+        die(_("You must run %s in project's root directory!\n"), "build-post");
     }
-
-    template_file = argv[1];
-    source_file = argv[2];
 
     markdown_it_init();
     post_init(template_file);

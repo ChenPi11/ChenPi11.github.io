@@ -22,9 +22,6 @@ top_srcdir = $(shell realpath -s "@top_srcdir@")
 BUILD_TYPE ?= @BUILD_TYPE@
 PREFIX ?= @prefix@
 
-CMAKE_CONFIG_RELEASE = --config=Release
-CMAKE_CONFIG_DEBUG = --config=Debug
-CMAKE_CONFIG = $(CMAKE_CONFIG_$(BUILD_TYPE))
 CARGO_CONFIG_RELEASE = --release
 CARGO_CONFIG_DEBUG = --debug
 CARGO_CONFIG = $(CARGO_CONFIG_$(BUILD_TYPE))
@@ -34,21 +31,37 @@ MKDIR ?= mkdir -p
 RM ?= rm -f
 TOUCH ?= touch
 NPM ?= @NPM@
-NPMFLAGS = @NPMFLAGS@
 NPX ?= @NPX@
-NPXFLAGS ?= @NPXFLAGS@
 LOCAL_PYTHON3 ?= @PYTHON3@
-PYTHON3FLAGS ?= @PYTHON3FLAGS@
 CARGO ?= @CARGO@
-CMAKE ?= @CMAKE@
-CMAKEFLAGS ?= @CMAKEFLAGS@
 
 CREATE_TAG = echo "This file is a tag for Makefile." >
 VEX = $(top_srcdir)/scripts/vex
 PYTHON3 = $(VEX) python3
-PIP = $(VEX) $(PYTHON3) $(PYTHON3FLAGS) -m pip --require-virtualenv
-PIPFLAGS = @PIPFLAGS@
-PYTHON_BUILDFLAGS = @PYTHON_BUILDFLAGS@
+PIP = $(PYTHON3) $(PYTHON3FLAGS) -m pip --require-virtualenv
+
+NPMVERBOSE ?= @NPMVERBOSE@
+NPMFLAGS ?= $(NPMVERBOSE) @NPMFLAGS@
+NPM += $(NPMFLAGS)
+NPXVERBOSE ?= @NPXVERBOSE@
+NPXFLAGS ?= $(NPXVERBOSE) @NPXFLAGS@
+NPX += $(NPXFLAGS)
+CARGOVERBOSE ?= @CARGOVERBOSE@
+CARGOFLAGS ?= $(CARGOVERBOSE) @CARGOFLAGS@
+CARGO += $(CARGOFLAGS)
+PYTHON3VERBOSE ?= @PYTHON3VERBOSE@
+PYTHON3FLAGS ?= $(PYTHON3VERBOSE) @PYTHON3FLAGS@
+LOCAL_PYTHON3 += $(PYTHON3FLAGS)
+PYTHON3 += $(PYTHON3FLAGS)
+PIPVERBOSE ?= @PIPVERBOSE@
+PIPFLAGS ?= $(PIPVERBOSE) @PIPFLAGS@
+PIP += $(PIPFLAGS)
+PYTHON_BUILDVERBOSE ?= @PYTHON_BUILDVERBOSE@
+PYTHON_BUILDFLAGS ?= $(PYTHON_BUILDVERBOSE) @PYTHON_BUILDFLAGS@
+CMAKE_MAKEVERBOSE ?= @CMAKE_MAKEVERBOSE@
+
+PYTHON_BUILD = $(PYTHON3) -m build $(PYTHON_BUILDFLAGS)
+RUBISCO = $(VEX) rubisco
 
 .PHONY : all clean env-setup allclean uninstall
 
@@ -57,12 +70,12 @@ env-setup : all
 all : venv node_modules build-post mkpostlists new-post build-blog po
 
 venv :
-	$(LOCAL_PYTHON3) $(PYTHON3FLAGS) -m venv $(PREFIX)
-	$(PIP) install -r $(top_srcdir)/requirements.txt $(PIPFLAGS)
+	$(LOCAL_PYTHON3) -m venv $(PREFIX)
+	cd $(top_srcdir) && $(PIP) install -r $(top_srcdir)/requirements.txt
 	@$(CREATE_TAG) $@
 
 node_modules :
-	$(NPM) install $(NPMFLAGS)
+	$(NPM) install
 	@$(CREATE_TAG) $@
 
 build-post : venv
@@ -70,10 +83,10 @@ build-post : venv
 	cd $(top_srcdir)/src && $(MAKE) install
 	@$(CREATE_TAG) $@
 
-mkpostlists : venv
 # We must configure CMake first with Unix Makefiles Generator. `mkpostlists/configure` do this.
-	cd $(top_srcdir)/build && $(MAKE)
-	cd $(top_srcdir)/build && $(CMAKE) $(CMAKEFLAGS) --install $(top_srcdir)/build $(CMAKE_CONFIG)
+mkpostlists : venv
+	cd $(top_srcdir)/build && $(MAKE) $(CMAKE_MAKEVERBOSE)
+	cd $(top_srcdir)/build && $(MAKE) install $(CMAKE_MAKEVERBOSE)
 	@$(CREATE_TAG) $@
 
 # Cargo is configured with an external jobserver in its environment.
@@ -83,8 +96,8 @@ new-post : venv
 	@$(CREATE_TAG) $@
 
 build-blog : venv
-	cd $(top_srcdir) && $(PYTHON3) -m build $(PYTHON_BUILDFLAGS) --wheel --outdir $(top_srcdir)/dist --installer pip
-	cd $(top_srcdir) && $(PYTHON3) -m rubisco install-build-blog
+	cd $(top_srcdir) && $(PYTHON_BUILD) --wheel --outdir $(top_srcdir)/dist --installer pip
+	cd $(top_srcdir) && $(RUBISCO) install-build-blog
 	@$(CREATE_TAG) $@
 
 po : venv

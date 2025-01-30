@@ -21,18 +21,23 @@ top_srcdir = $(shell realpath -s "@top_srcdir@")
 
 BUILD_TYPE ?= @BUILD_TYPE@
 PREFIX ?= @prefix@
-CFLAGS_RELEASE = -fPIC -O3 -Wall -Wextra -DNDEBUG
-CFLAGS_DEBUG = @CFLAGS@
-CPPFLAGS_RELEASE = -DNDEBUG
-CPPFLAGS_DEBUG = @CPPFLAGS@
+AC_CFLAGS = @CFLAGS@
+AC_CFLAGS := $(subst -g,,$(subst -O2,,$(AC_CFLAGS)))
+WARNINGS ?= -Wall -Wextra
+CFLAGS_RELEASE = -fPIC -O3 $(WARNINGS) -DNDEBUG $(AC_CFLAGS)
+CFLAGS_DEBUG = -g $(WARNINGS) $(AC_CFLAGS)
 
 CC ?= @CC@
-CPPFLAGS = $(CPPFLAGS_$(BUILD_TYPE)) -std=c++20
-CFLAGS ?= $(CFLAGS_$(BUILD_TYPE))
-LDFLAGS ?= @LDFLAGS@
-INSTALL ?= @INSTALL@
-
+INSTALL ?= @install_sh@
 RM ?= rm -f
+
+CFLAGS ?= $(CFLAGS_$(BUILD_TYPE))
+CCVERBOSE ?= @CCVERBOSE@
+CFLAGS += $(CCVERBOSE)
+LDVERBOSE ?= @LDFLAGS@
+LDFLAGS ?= @LDFLAGS@
+LDFLAGS += $(LDVERBOSE)
+
 
 INCLUDES ?= "-I$(top_srcdir)/include" "-I$(top_srcdir)" "-I$(top_srcdir)/srclib"
 SRC= $(wildcard *.c)

@@ -22,6 +22,12 @@ VENVROOT=$ROOTDIR/.venv
 if [ -d "$VENVROOT" ]; then
     # shellcheck source=/dev/null
     . "$VENVROOT/bin/activate"
+else
+    VENVROOT=$ROOTDIR/../.venv
+    if [ -d "$VENVROOT" ]; then
+        # shellcheck source=/dev/null
+       . "$VENVROOT/bin/activate"
+    fi
 fi
 
 # shellcheck disable=SC2068

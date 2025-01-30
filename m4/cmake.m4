@@ -19,6 +19,7 @@ dnl along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
 AC_DEFUN([CB_PROG_CMAKE],
 [
 AC_ARG_VAR([CMAKE], [Path to CMake executable])
+AC_ARG_VAR([CMAKEVERBOSE], [CMake verbose flags])
 AC_ARG_VAR([CMAKEFLAGS], [CMake flags])
 
 AS_IF([test x$CMAKE = x],
@@ -26,12 +27,13 @@ AS_IF([test x$CMAKE = x],
 
 AC_MSG_CHECKING([CMake is working properly])
 
-AS_IF([$CMAKE --version > /dev/null 2>&1],
+AS_IF([$CMAKE $CMAKEVERBOSE $CMAKEFLAGS --version > /dev/null 2>&1],
       [AC_MSG_RESULT([yes])],
       [AC_MSG_RESULT([no])]
       [AC_MSG_FAILURE([CMake cannot working properly])])
 
 AC_SUBST([CMAKE])
+AC_SUBST([CMAKEVERBOSE])
 AC_SUBST([CMAKEFLAGS])
 ]
 )

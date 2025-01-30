@@ -82,7 +82,10 @@ void markdown_it_init(void)
         markdown_it_command = markdown_it_env;
     }
 
-    fprintf(stderr, "%s\n", markdown_it_command);
+    if (get_log_level() <= LOG_INFO)
+    {
+        fprintf(stderr, "%s\n", markdown_it_command);
+    }
 
     return;
 

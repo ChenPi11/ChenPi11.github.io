@@ -43,7 +43,8 @@ extern size_t get_file_size(const char *path);
 /* Remove a file or an empty directory. Return RET_SUCCESS if success. RET_ERROR otherwise. */
 extern int remove_file(const char *path);
 
-/* Checking if he current path is ChenPi11's blog root directory. Return TRUE if it is. FALSE otherwise. */
+/* Checking if the current working directory is ChenPi11's blog root directory.
+   Return TRUE if it is. FALSE otherwise. */
 extern int is_chenpi11_blog_rootdir(void);
 
 /* Read all data from a file to a content. Return null content if failed. */

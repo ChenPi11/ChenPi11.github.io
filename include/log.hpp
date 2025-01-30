@@ -36,6 +36,34 @@ namespace logging
 void init(int argc, char *argv[]) noexcept;
 
 /**
+ * @brief Logging level.
+ */
+enum class LogLevel
+{
+    /**
+     * @brief Show INFO and upper levels.
+     */
+    INFO,
+
+    /**
+     * @brief Show WARN and upper levels.
+     */
+    WARN,
+};
+
+/**
+ * @brief Set logging level.
+ * @param level The logging level.
+ */
+void set_level(const enum LogLevel level) noexcept;
+
+/**
+ * @brief Get logging level.
+ * @return The logging level.
+ */
+enum LogLevel get_level() noexcept;
+
+/**
  * @brief Show info.
  * @param fmt The format string.
  * @param ... The format arguments.

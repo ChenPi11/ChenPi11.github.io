@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: chenpi11-blog 0.1.0\n"
 "Report-Msgid-Bugs-To: wushengwuxi-msctinoulk@outlook.com\n"
-"POT-Creation-Date: 2025-01-30 11:23+0800\n"
+"POT-Creation-Date: 2025-01-30 14:27+0800\n"
 "PO-Revision-Date: 2025-01-29 17:43+0800\n"
 "Last-Translator:  <wushengwuxi-msctinoulk@outlook.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
@@ -16,6 +16,38 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 38
+#, fuzzy, c-format
+msgid ""
+"Usage: %s [-h|--help] [-V|--version] [-v|--verbose] <template file> <source "
+"file>\n"
+msgstr "用法：%s <模板文件> <源文件>\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 42
+#, c-format
+msgid "Options:\n"
+msgstr ""
+
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 43
+#, c-format
+msgid "  -h, --help     Display this help and exit.\n"
+msgstr ""
+
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 44
+#, c-format
+msgid "  -V, --version  Output version information and exit.\n"
+msgstr ""
+
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 45
+#, c-format
+msgid "  -v, --verbose  Enable verbose output.\n"
+msgstr ""
 
 #
 # File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 38
@@ -414,7 +446,7 @@ msgstr "无法构建 {postfile}。"
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 71
 #. Copy applets.
 msgid "========== Copying applets ... ==========\n"
-msgstr "========== 正在复制应用程序... ==========\n"
+msgstr "========== 正在复制应用程序 ... ==========\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/lang_stat.py, line: 129
@@ -435,18 +467,18 @@ msgid "========== Minifying {file_path}... ==========\n"
 msgstr "========== 正在压缩 {file_path}... ==========\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 85
-# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 110
-# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 135
-msgid "Minify command run failed."
-msgstr "压缩命令运行失败。"
-
-#
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 102
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 127
 #, python-brace-format
 msgid "Running command: {cmd}\n"
 msgstr "正在运行命令：{cmd}\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 85
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 110
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 135
+msgid "Minify command run failed."
+msgstr "压缩命令运行失败。"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 144
@@ -459,9 +491,71 @@ msgid "Error."
 msgstr "错误。"
 
 #
+# File: /workspaces/ChenPi11.github.io/scripts/gettext.sh, line: 49
+msgid "Copyright (C) 2025 ChenPi11.\\n"
+msgstr ""
+
+#
+# File: /workspaces/ChenPi11.github.io/scripts/gettext.sh, line: 50
+msgid ""
+"License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl."
+"html>\\n"
+msgstr ""
+
+#
+# File: /workspaces/ChenPi11.github.io/scripts/gettext.sh, line: 51
+msgid "This is free software: you are free to change and redistribute it.\\n"
+msgstr ""
+
+#
+# File: /workspaces/ChenPi11.github.io/scripts/gettext.sh, line: 52
+msgid "There is NO WARRANTY, to the extent permitted by law.\\n"
+msgstr ""
+
+#
+# File: /workspaces/ChenPi11.github.io/scripts/gettext.sh, line: 53
+msgid "Written by ChenPi11.\\n"
+msgstr ""
+
+#
 # File: /workspaces/ChenPi11.github.io/autogen.sh, line: 27
-msgid "Usage: %s [--help] [--verbose]\\n"
+#, fuzzy
+msgid "Usage: %s [-h|--help] [-V|--version] [-v|--verbose]"
 msgstr "用法：%s [--help] [--verbose]\\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/scripts/real-build.sh, line: 31
+msgid "Build chenpi11-blog.\\n"
+msgstr ""
+
+#
+# File: /workspaces/ChenPi11.github.io/scripts/real-build.sh, line: 33
+# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 33
+msgid "Options:\\n"
+msgstr ""
+
+#
+# File: /workspaces/ChenPi11.github.io/scripts/real-build.sh, line: 34
+# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 34
+msgid "  -h, --help      Display this help and exit.\\n"
+msgstr ""
+
+#
+# File: /workspaces/ChenPi11.github.io/scripts/real-build.sh, line: 35
+# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 35
+msgid "  -V, --version   Output version information and exit.\\n"
+msgstr ""
+
+#
+# File: /workspaces/ChenPi11.github.io/scripts/real-build.sh, line: 36
+# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 36
+msgid "  -v, --verbose   Verbosely report processing.\\n"
+msgstr ""
+
+#
+# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 31
+msgid ".\\n"
+msgstr ""
 
 #
 # File: /workspaces/ChenPi11.github.io/autogen.sh, line: 54

@@ -19,17 +19,21 @@ dnl along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
 AC_DEFUN([CB_PROG_CARGO],
 [
 AC_ARG_VAR([CARGO], [Path to Cargo executable])
+AC_ARG_VAR([CARGOVERBOSE], [Cargo verbose flags])
+AC_ARG_VAR([CARGOFLAGS], [Cargo flags])
 
 AS_IF([test x$CARGO = x],
       [AC_PATH_PROGS([CARGO], [cargo])])
 
 AC_MSG_CHECKING([Cargo is working properly])
 
-AS_IF([$CARGO --version > /dev/null 2>&1],
+AS_IF([$CARGO $CARGOVERBOSE $CARGOFLAGS --version > /dev/null 2>&1],
       [AC_MSG_RESULT([yes])],
       [AC_MSG_RESULT([no])]
       [AC_MSG_FAILURE([Cargo cannot working properly])])
 
 AC_SUBST([CARGO])
+AC_SUBST([CARGOVERBOSE])
+AC_SUBST([CARGOFLAGS])
 ]
 )

@@ -45,6 +45,12 @@ extern std::string readfile(const std::filesystem::path &filepath);
  */
 extern void writefile(const std::filesystem::path &filepath, const std::string &data);
 
+/**
+ * @brief Check if the current working directory is ChenPi11's blog root directory.
+ * @return true if it is, false otherwise.
+ */
+extern bool is_chenpi11_blog_rootdir();
+
 } // namespace file
 
 #endif // _CONTENT_HPP_

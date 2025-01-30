@@ -16,6 +16,9 @@
  * along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include "config.hpp"
+
+#include "file-util.hpp"
 #include "i18n.hpp"
 #include "log.hpp"
 #include "post.hpp"
@@ -24,14 +27,60 @@
 #include <iostream>
 #include <string>
 
+namespace
+{
+void show_help()
+{
+    std::printf("%s", _("Usage: mkpostlists [-h|--help] [-V|--version] [-v|--verbose]\n"));
+    std::printf("\n");
+    std::printf("%s", _("Options:\n"));
+    std::printf("%s", _("  -h, --help     Display this help and exit.\n"));
+    std::printf("%s", _("  -V, --version  Output version information and exit.\n"));
+    std::printf("%s", _("  -v, --verbose  Verbosely report processing.\n"));
+}
+} // namespace
+
 int main(int argc, char *argv[])
 {
     logging::init(argc, argv);
+    logging::set_level(logging::LogLevel::WARN);
     i18n::i18n_init();
 
-    if (argc != 1)
+    for (int i = 1; i < argc; ++i)
     {
-        logging::error(_("Usage: %s\n"), argv[0]);
+        std::string arg = argv[i];
+        if (arg == "-h" || arg == "--help")
+        {
+            show_help();
+
+            return EXIT_SUCCESS;
+        }
+        else if (arg == "-V" || arg == "--version")
+        {
+            std::printf("mkpostlists " PACKAGE_VERSION "\n");
+            std::printf("%s", _("Copyright (C) 2025 ChenPi11\n"));
+            std::printf("%s", _("License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\n"));
+            std::printf("%s", _("This is free software: you are free to change and redistribute it.\n"));
+            std::printf("%s", _("There is NO WARRANTY, to the extent permitted by law.\n"));
+            std::printf("%s", _("Written by ChenPi11.\n"));
+
+            return EXIT_SUCCESS;
+        }
+        else if (arg == "-v" || arg == "--verbose")
+        {
+            logging::set_level(logging::LogLevel::INFO);
+        }
+        else
+        {
+            show_help();
+
+            return EXIT_FAILURE;
+        }
+    }
+
+    if (!file::is_chenpi11_blog_rootdir())
+    {
+        logging::error(_("You must run %s in project's root directory!\n"), "mkpostlists");
 
         return EXIT_FAILURE;
     }

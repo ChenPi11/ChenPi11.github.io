@@ -22,6 +22,7 @@
 #include "i18n.h"
 #include "log.h"
 
+#include <errno.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/stat.h>
@@ -80,17 +81,21 @@ size_t get_file_size(const char *path)
 int is_chenpi11_blog_rootdir(void)
 {
     CHECK(is_dir("."));
-    CHECK(is_file("requirements.txt") && is_file("pyproject.toml")); // It's a Python project.
-    CHECK(is_file("Cargo.toml") && is_file("Makefile.toml"));        // It's a Rust project.
-    CHECK(is_file("configure.ac") && is_file("autogen.sh"));         // It's an Autotools project.
-    CHECK(is_file("CMakeLists.txt"));                                // It's a CMake project.
-    CHECK(is_file("package.json"));                                  // It's a Node.js project.
-    CHECK(is_file("Makefile.in"));                                   // It's an Autoconf+Makefile project.
-    CHECK(is_file("repo.json"));                                     // It's a Rubisco project.
+    CHECK(is_file("requirements.txt") && is_file("pyproject.toml")); /* It's a Python project. */
+    CHECK(is_file("Cargo.toml") && is_file("Makefile.toml"));        /* It's a Rust project. */
+    CHECK(is_file("configure.ac") && is_file("autogen.sh"));         /* It's an Autotools project. */
+    CHECK(is_file("CMakeLists.txt"));                                /* It's a CMake project. */
+    CHECK(is_file("package.json"));                                  /* It's a Node.js project. */
+    CHECK(is_file("Makefile.in"));                                   /* It's an Autoconf+Makefile project. */
+    CHECK(is_file("repo.json"));                                     /* It's a Rubisco project. */
+
+    errno = 0;
 
     return TRUE;
 
 NOT:
+    errno = 0;
+
     return FALSE;
 }
 

@@ -27,6 +27,18 @@ EXTERN_C_BEG
 /* Initialize the log module. */
 extern void log_init(int argc, char *argv[]);
 
+enum LogLevel
+{
+    LOG_INFO,
+    LOG_WARN,
+};
+
+/* Set log level. */
+extern void set_log_level(enum LogLevel level);
+
+/* Get log level. */
+extern enum LogLevel get_log_level();
+
 /* Show info. */
 extern void info(const char *fmt, ...);
 

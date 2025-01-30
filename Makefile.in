@@ -22,20 +22,23 @@ top_srcdir = $(shell realpath -s "@top_srcdir@")
 PREFIX ?= @prefix@
 
 SHELL ?= @SHELL@
-CP ?= cp
+CP ?= @CP@
 MKDIR ?= mkdir -p
 RM ?= rm -f
 TOUCH ?= touch
 NPX ?= @NPX@
-LOCAL_PYTHON3 = @PYTHON3@
 CMAKE ?= @CMAKE@
-CMAKEFLAGS ?= @CMAKEFLAGS@
 
 CMAKE_CONFIGURE_SCRIPT = $(top_srcdir)/cmake/configure.cmake
 VEX = $(top_srcdir)/scripts/vex
-PYTHON3 = $(VEX) python3
-PIP = $(VEX) $(PYTHON3) $(PYTHON3FLAGS) -m pip --require-virtualenv
-PIPFLAGS = @PIPFLAGS@
+
+NPXVERBOSE ?= @NPXVERBOSE@
+NPXFLAGS ?= $(NPXVERBOSE) @NPXFLAGS@
+NPX += $(NPXFLAGS)
+CMAKEVERBOSE ?= @CMAKEVERBOSE@
+CMAKEFLAGS ?= $(CMAKEVERBOSE) @CMAKEFLAGS@
+CMAKE += $(CMAKEFLAGS)
+CB_UTILSVERBOSE ?= @CB_UTILSVERBOSE@
 
 .PHONY : all env-setup wwwroot fonts favicon.ico log.html index.html lib posts build-blog trim run clean binclean allclean
 
@@ -63,10 +66,10 @@ index.html.in :
 	if [ ! -f $@ ]; then echo "Please run ./configure first!"; exit 1; fi
 
 build-blog : env-setup
-	$(VEX) build-blog
+	$(VEX) build-blog $(CB_UTILSVERBOSE)
 
 index.html : env-setup index.html.in build-blog wwwroot
-	$(VEX) mkpostlists > postlists.tmp
+	$(VEX) mkpostlists $(CB_UTILSVERBOSE) > postlists.tmp
 	$(CMAKE) -DFROM=index.html.in -DTO=wwwroot/$@ \
 	-DK0=CONTENT -DV0=FILE=postlists.tmp -DK1=SUBTITLE -DV1="Main" \
 	-P $(CMAKE_CONFIGURE_SCRIPT) $(CMAKEFLAGS)
@@ -78,7 +81,7 @@ log.html : log-term.html index.html.in wwwroot
 	-P $(CMAKE_CONFIGURE_SCRIPT) $(CMAKEFLAGS)
 
 trim : wwwroot posts index.html
-	$(VEX) trim-wwwroot
+	$(VEX) trim-wwwroot $(CB_UTILSVERBOSE)
 
 run :
 	$(SHELL) ./scripts/run.sh

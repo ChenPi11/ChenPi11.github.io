@@ -19,7 +19,7 @@
 srcdir = $(shell realpath -s "@srcdir@")
 top_srcdir = $(shell realpath -s "@top_srcdir@")
 
-CP ?= cp
+CP ?= @CP@
 MKDIR ?= mkdir -p
 RM ?= rm -f
 

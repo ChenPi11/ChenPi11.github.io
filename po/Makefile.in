@@ -19,14 +19,16 @@
 srcdir = $(shell realpath -s "@srcdir@")
 top_srcdir = $(shell realpath -s "@top_srcdir@")
 
-PREFIX = @prefix@
+PREFIX ?= @prefix@
 
 SHELL ?= @SHELL@
 MKDIR ?= mkdir -p
 RM ?= rm -f
-INSTALL = @install_sh@
+INSTALL ?= @install_sh@
+XGETTEXT ?= @XGETTEXT@
+MSGCAT ?= msgcat
+MSGFMT ?= @MSGFMT@
 
-XGETTEXT = @XGETTEXT@
 FROMCODE = --from-code=UTF-8
 PKG_INFO = --package-name=chenpi11-blog --package-version=0.1.0
 KEYWORDS = --keyword=_ --keyword=_g
@@ -55,10 +57,10 @@ scripts.pot : $(wildcard $(top_srcdir)/scripts/*) $(top_srcdir)/autogen.sh
 	cd $(top_srcdir)/scripts && $(XGETTEXT) $(XGETTEXT_FLAGS) --output=$(srcdir)/$@ --language=Shell $^
 
 messages.pot : build-post.pot mkpostlists.pot python-part.pot scripts.pot
-	msgcat $^ > $@
+	$(MSGCAT) $^ > $@
 
 %.mo : %.po
-	msgfmt $^ -o $@
+	$(MSGFMT) $^ -o $@
 
 install-% : %.mo
 	$(MKDIR) $(DESTDIR)$(PREFIX)/share/locale/$*/LC_MESSAGES

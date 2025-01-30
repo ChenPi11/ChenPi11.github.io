@@ -24,8 +24,10 @@ project (
     LANGUAGES CXX
 )
 
-# Set C++ standard.
+# Set options.
 set ( CMAKE_CXX_STANDARD 20 )
+cmake_policy(SET CMP0156 NEW)
+cmake_policy(SET CMP0179 NEW)
 
 # Find sources.
 file ( GLOB SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp" )
@@ -45,6 +47,7 @@ endif ()
 
 # Configure header file.
 set ( PACKAGE_NAME "${PROJECT_NAME}" )
+set ( PACKAGE_VERSION "${PROJECT_VERSION}" )
 configure_file (
     "${CMAKE_CURRENT_SOURCE_DIR}/config.hpp.in"
     "${CMAKE_CURRENT_SOURCE_DIR}/config.hpp" )
