@@ -60,8 +60,7 @@ favicon.ico : wwwroot
 	$(CP) $@ $<
 
 index.html.in :
-	@echo "Please run ./configure first!"
-	@exit 1
+	if [ ! -f $@ ]; then echo "Please run ./configure first!"; exit 1; fi
 
 build-blog : env-setup
 	$(VEX) build-blog
