@@ -62,8 +62,8 @@ style : style.css lib node_modules
 log-term : log-term.js lib node_modules
 	$(CP) $< $(WWWROOT)/lib/
 
-terminal : terminal.js lib node_modules
-	$(CP) $< $(WWWROOT)/lib/
+terminal : terminal.js term-themes.js lib node_modules
+	$(CP) terminal.js term-themes.js $(WWWROOT)/lib/
 	$(CP) $(srcdir)/terminal.css $(WWWROOT)/lib/
 
 node_modules :

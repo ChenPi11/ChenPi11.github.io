@@ -22,16 +22,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../lib/style.css">
-    <link rel="stylesheet" href="../lib/terminal.css">
+    <link rel="stylesheet" href="/lib/style.css">
+    <link rel="stylesheet" href="/lib/terminal.css">
+    <script src="/lib/jquery.js"></script>
+    <script src="/lib/addon-fit.js"></script>
     <title>@TITLE@</title>
 </head>
 
 <body>
-    <script src="../lib/xterm.js"></script>
-    <script src="../lib/theme-button.js"></script>
-    <script src="../lib/theme-loader.js"></script>
-    <script src="../lib/terminal.js"></script>
+    <script src="/lib/xterm.js"></script>
+    <script src="/lib/theme-button.js"></script>
+    <script src="/lib/theme-loader.js"></script>
+    <script src="/lib/terminal.js" type="module"></script>
 
     <header>
         <button id="nav-toggle" class="nav-toggle" type="button">&#9776;</button>
@@ -47,7 +49,7 @@
         @CONTENT@
     </div>
 
-    <script src="../lib/sidebar.js"></script>
+    <script src="/lib/sidebar.js"></script>
 
     <footer>
         <p>@COPYRIGHT@</p>
