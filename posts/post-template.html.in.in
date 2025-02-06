@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="/lib/style.css">
     <link rel="stylesheet" href="/lib/terminal.css">
     <script src="/lib/jquery.js"></script>
+    <script src="/lib/cookie.js"></script>
     <script src="/lib/addon-fit.js"></script>
     <title>@TITLE@</title>
 </head>

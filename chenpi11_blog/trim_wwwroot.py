@@ -60,6 +60,7 @@ CLEANCSS_CMD = [
     "npx",
     "cleancss",
     "-O2",
+    "removeDuplicateRules:off",
 ]
 
 _verbose = False  # pylint: disable=invalid-name

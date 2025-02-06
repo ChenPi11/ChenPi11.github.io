@@ -1,0 +1,144 @@
+@import "style.css";
+
+:root {
+    --langs-item-background-color: #f4f4f4;
+    --dark-invert: invert(0%);
+}
+
+.invert-in-dark {
+    transition: filter 0.5s ease;
+}
+
+[data-theme="dark"] {
+    --langs-item-background-color: #333333;
+    --dark-invert: invert(100%);
+}
+
+.invert-in-dark {
+    filter: var(--dark-invert);
+    transition: filter 0.5s ease;
+}
+
+* {
+    font-family: "Meslo", "HanSans", sans-serif;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid #919191;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.avatar:hover {
+    transform: rotate(5deg) scale(1.05);
+}
+
+.intro-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.title-name {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.social-links {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.social-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+.langs-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.langs-item {
+    background: var(--langs-item-background-color);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: background-color 0.5s ease;
+}
+
+.langs-meter {
+    height: 8px;
+    background: #eee;
+    border-radius: 4px;
+    margin-top: 1rem;
+    overflow: hidden;
+}
+
+.langs-progress {
+    height: 100%;
+    width: 0;
+    transition: width 1s ease-in-out;
+}
+
+.repo-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: #1b6a80;
+}
+
+.repo-icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: left;
+}
+
+.langs-comment {
+    color: #606060;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    h1::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

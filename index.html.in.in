@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="zh">
-
 <!--
   -- Copyright (C) 2025 ChenPi11
   -- This file is part of the chenpi11-blog.
@@ -19,12 +16,17 @@
   -- along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
   -->
 
+<!DOCTYPE html>
+<html lang="zh">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/lib/style.css">
     <link rel="stylesheet" href="/lib/xterm.css">
+    <link rel="stylesheet" href="/lib/index.css">
     <script src="/lib/jquery.js"></script>
+    <script src="/lib/cookie.js"></script>
     <link rel="icon" href="favicon.ico">
     <title>@SUBTITLE@ - @TITLE@</title>
 </head>
@@ -35,6 +37,8 @@
     <header>
         <button id="nav-toggle" class="nav-toggle" type="button">&#9776;</button>
         <h1>@TITLE@</h1>
+        <!-- 58901 is gear icon in our nerd font -->
+        <button id="setting-toggle" class="setting-toggle" type="button">&#58901;</button>
     </header>
 
     <nav id="sidebar" class="sidebar">

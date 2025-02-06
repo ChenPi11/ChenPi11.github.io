@@ -26,9 +26,11 @@ RM ?= rm -f
 NODE_MODULES = $(top_srcdir)/node_modules
 WWWROOT = $(top_srcdir)/wwwroot
 
-.PHONY: all node_modules xterm jquery prism theme-button theme-loader sidebar style log-term terminal clean binclean allclean
+.PHONY: all node_modules xterm jquery clean binclean allclean
 
-all : lib xterm jquery prism theme-button theme-loader sidebar style log-term terminal
+all : lib xterm jquery
+	$(CP) *.css $(WWWROOT)/lib/
+	$(CP) *.js $(WWWROOT)/lib/
 
 lib :
 	$(MKDIR) $(WWWROOT)/lib
@@ -40,31 +42,6 @@ xterm : lib node_modules
 
 jquery : lib node_modules
 	$(CP) $(NODE_MODULES)/jquery/dist/jquery.min.js $(WWWROOT)/lib/jquery.js
-
-prism : prism-dark.css lib node_modules
-	$(CP) $< $(WWWROOT)/lib/
-	$(CP) prism-dark.js $(WWWROOT)/lib/
-	$(CP) prism-light.css $(WWWROOT)/lib/
-	$(CP) prism-light.js $(WWWROOT)/lib/
-
-theme-button : theme-button.js lib node_modules
-	$(CP) $< $(WWWROOT)/lib/
-
-theme-loader : theme-loader.js lib node_modules
-	$(CP) $< $(WWWROOT)/lib/
-
-sidebar : sidebar.js lib node_modules
-	$(CP) $< $(WWWROOT)/lib/
-
-style : style.css lib node_modules
-	$(CP) $< $(WWWROOT)/lib/
-
-log-term : log-term.js lib node_modules
-	$(CP) $< $(WWWROOT)/lib/
-
-terminal : terminal.js term-themes.js lib node_modules
-	$(CP) terminal.js term-themes.js $(WWWROOT)/lib/
-	$(CP) $(srcdir)/terminal.css $(WWWROOT)/lib/
 
 node_modules :
 	cd $(top_srcdir)/bin && $(MAKE) $@

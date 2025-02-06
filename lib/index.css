@@ -1,0 +1,79 @@
+/*
+ * Copyright (C) 2025 ChenPi11
+ * This file is part of the chenpi11-blog.
+ *
+ * chenpi11-blog is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published
+ * by the Free Software Foundation, either version 3 of the License,
+ * or (at your option) any later version.
+ *
+ * chenpi11-blog is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+@import url("style.css");
+
+* {
+    font-family: "Meslo", "HanSans", sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.post {
+    background: var(--post-color);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.5s ease;
+    opacity: 100%;
+}
+
+.postlink {
+    text-decoration: none;
+}
+
+.post h2 {
+    margin-top: 0;
+    color: var(--post-title-color);
+}
+
+.post p {
+    color: var(--post-description-color);
+    line-height: 1.6;
+}
+
+.post em {
+    color: var(--post-date-color);
+}
+
+.tags {
+    margin-top: 10px;
+}
+
+.tag {
+    display: inline-block;
+    background-color: var(--tag-background-color);
+    color: white;
+    padding: 5px 10px;
+    margin-right: 5px;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.tag:hover {
+    background-color: var(--hover-tag-background-color);
+}
