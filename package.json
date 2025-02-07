@@ -22,6 +22,7 @@
     "html-minifier": "^4.0.0",
     "jquery": "^3.7.1",
     "marked": "^15.0.6",
-    "terser": "^5.37.0"
+    "terser": "^5.37.0",
+    "xterm-theme": "^1.1.0"
   }
 }

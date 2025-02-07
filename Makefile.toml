@@ -24,8 +24,8 @@ command = "./configure"
 
 [tasks.build]
 description = "Build everything."
-command = "make"
-args = ["-f", "Makefile", "all"]
+command = "./scripts/real-build.sh"
+args = ["--verbose"]
 
 [tasks.run]
 description = "Run http server."

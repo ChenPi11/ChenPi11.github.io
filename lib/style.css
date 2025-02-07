@@ -48,6 +48,19 @@
     src: url("/fonts/SourceHanSansHWHC-VF.otf.woff2") format("woff");
 }
 
+* {
+    font-family: "Meslo", "HanSans", sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 header {
     background-color: #333;
     color: #fff;
@@ -90,7 +103,7 @@ footer {
     right: 10px;
 }
 
-.setting-toggle {
+.settings-toggle {
     background: none;
     border: none;
     color: white;

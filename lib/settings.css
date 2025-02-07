@@ -1,0 +1,65 @@
+@import url("style.css");
+
+.settings-toggle {
+    display: none;
+}
+
+.section {
+    background: var(--post-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.theme-option {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.theme-preview {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 300px;
+}
+
+.xterm-viewport {
+    transition: all 0.3s ease;
+}
+
+#term-preview {
+    padding: 0.5rem;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background: var(--post-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.item-content {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    padding-right: 1rem;
+}
+
+.item-name {
+    color: var(--post-title-color);
+    font-weight: 500;
+    min-width: 200px;
+}
+
+.item-value {
+    color: var(--post-description-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

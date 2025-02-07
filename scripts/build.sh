@@ -15,6 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
 
-rm -f buildlog.txt
+rm -f wwwroot/buildlog.txt
 
-script -q -c "npm run build" buildlog.txt
+mkdir -p wwwroot
+
+script -q -c "npm run build" wwwroot/buildlog.txt

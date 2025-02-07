@@ -40,9 +40,9 @@ CMAKEFLAGS ?= $(CMAKEVERBOSE) @CMAKEFLAGS@
 CMAKE += $(CMAKEFLAGS)
 CB_UTILSVERBOSE ?= @CB_UTILSVERBOSE@
 
-.PHONY : all env-setup wwwroot fonts img favicon.ico log.html about.html index.html lib posts build-blog trim run clean binclean allclean
+.PHONY : all env-setup wwwroot fonts img favicon.ico log.html about.html settings.html index.html lib posts build-blog trim run clean binclean allclean
 
-all : env-setup wwwroot fonts img favicon.ico lib build-blog log.html about.html index.html posts trim
+all : env-setup wwwroot fonts img favicon.ico lib build-blog log.html about.html settings.html index.html posts trim
 
 env-setup :
 	cd bin && $(MAKE) $@
@@ -86,6 +86,11 @@ log.html : log-term.html index.html.in wwwroot
 about.html : index.html.in wwwroot
 	$(CMAKE) -DFROM=index.html.in -DTO=wwwroot/$@ \
 	-DK0=CONTENT -DV0=FILE=$@ -DK1=SUBTITLE -DV1="About" \
+	-P $(CMAKE_CONFIGURE_SCRIPT) $(CMAKEFLAGS)
+
+settings.html : index.html.in wwwroot
+	$(CMAKE) -DFROM=index.html.in -DTO=wwwroot/$@ \
+	-DK0=CONTENT -DV0=FILE=$@ -DK1=SUBTITLE -DV1="Settings" \
 	-P $(CMAKE_CONFIGURE_SCRIPT) $(CMAKEFLAGS)
 
 trim : wwwroot posts index.html
