@@ -36,7 +36,8 @@
     <header>
         <button id="nav-toggle" class="nav-toggle" type="button">&#983900;</button>
         <h1>@TITLE@</h1>
-        <button id="settings-toggle" class="settings-toggle" type="button">&#58901; </button>
+        <button id="settings-toggle" class="settings-toggle" type="button">&#58901;</button>
+        <button id="home-toggle" class="settings-toggle" type="button">&#61461;</button>
     </header>
 
     <nav id="sidebar" class="sidebar">

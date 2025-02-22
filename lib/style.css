@@ -118,6 +118,10 @@ footer {
     margin-left: 10px;
 }
 
+#home-toggle {
+    display: none;
+}
+
 .sidebar {
     height: 100%;
     width: 250px;

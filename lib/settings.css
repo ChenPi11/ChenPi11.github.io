@@ -1,7 +1,25 @@
 @import url("style.css");
 
-.settings-toggle {
+:root {
+    --checkbox-color: #6c8ebf;
+    --checkbox-button-color: #ffffff;
+    --checkbox-background-color: #cccccc;
+    --desc-color: #aaaaaa;
+}
+
+[data-theme="dark"] {
+    --checkbox-color: #2b3a55;
+    --checkbox-button-color: #1195d7;
+    --checkbox-background-color: #bcbcbc;
+    --desc-color: #bcbcbc;
+}
+
+#settings-toggle {
     display: none;
+}
+
+#home-toggle {
+    display: block;
 }
 
 .section {
@@ -18,19 +36,88 @@
     margin: 1rem 0;
 }
 
+.theme-preview-and-tag {
+    display: flex;
+    align-items: normal;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
 .theme-preview {
     border: 2px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
     width: 300px;
+    flex: 0 0 auto;
+}
+
+.theme-preview-tag {
+    padding: 0.5rem;
+    flex: 1;
 }
 
 .xterm-viewport {
+    flex: 0 0 auto;
     transition: all 0.3s ease;
 }
 
 #term-preview {
     padding: 0.5rem;
+}
+
+.toggle-button-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    width: 100%;
+}
+
+.toggle-button {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background-color: var(--checkbox-background-color);
+    border-radius: 15px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+}
+
+.toggle-button::before {
+    content: '';
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    background-color: var(--checkbox-button-color);
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s;
+}
+
+.toggle-button.active {
+    background-color: var(--checkbox-color);
+}
+
+.toggle-button.active::before {
+    transform: translateX(30px);
+}
+
+.toggle-button-text {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.toggle-button-description {
+    font-size: 16px;
+    color: var(--desc-color);
+    margin-top: 5px;
+    text-align: center;
+    cursor: default;
 }
 
 .list-item {
