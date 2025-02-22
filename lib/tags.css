@@ -1,0 +1,43 @@
+@import url("/lib/style.css");
+
+:root {
+    --tag-background-color: #007bff;
+    --tag-text-color: #ffffff;
+    --active-box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+}
+
+[data-theme="dark"] {
+    --active-box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.tags-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.tag {
+    background-color: var(--tag-background-color);
+    color: var(--tag-text-color);
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: transform 0.3s, background-color 0.3s;
+    transition: all 0.3s ease;
+}
+
+.tag:hover {
+    transform: scale(1.1);
+}
+
+.tag.active {
+    box-shadow: var(--active-box-shadow);
+    filter: blur(0.25px);
+    transform: scale(1.1);
+}

@@ -37,19 +37,25 @@
 }
 
 @font-face {
+    font-family: "Nerd";
+    src: url("/fonts/NerdFont.woff2") format("woff2");
+}
+
+@font-face {
     font-family: "Meslo";
-    src: url("/fonts/MesloLGS-NF-Regular.woff") format("woff");
+    src: url("/fonts/MesloLGL-NF.woff2") format("woff2");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "HanSans";
-    src: url("/fonts/SourceHanSansHWHC-VF.otf.woff2") format("woff");
+    src: url("/fonts/SourceHanSansCN.woff2") format("woff2");
 }
 
 * {
-    font-family: "Meslo", "HanSans", sans-serif;
+    font-family: "Nerd", "Meslo", "HanSans", sans-serif;
+    font-display: swap;
 }
 
 body {
@@ -135,6 +141,7 @@ footer {
 
 .sidebar li {
     color: #818181;
+    list-style-type: none;
 }
 
 .sidebar a:hover {
