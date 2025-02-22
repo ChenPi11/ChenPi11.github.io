@@ -52,6 +52,11 @@ static struct tags_t parse_tags(struct content_t line)
             goto ERROR;
         }
         memcpy(tag.content, token, tag.len);
+        if (strip(&tag) != RET_SUCCESS)
+        {
+            free_content(&tag);
+            goto ERROR;
+        }
         tag.content[tag.len] = '\0';
         num++;
 
