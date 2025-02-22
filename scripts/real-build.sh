@@ -46,12 +46,8 @@ case "$1" in
         ;;
 esac
 
-if [ "$V" -eq 0 ]; then
-    neofetch || die
-else
-    neofetch -vv 2> /tmp/neofetch.log || die
-    cat /tmp/neofetch.log
-fi
+neofetch || die
+
 ./autogen.sh $VERBOSE || die
 ./configure CFLAGS="-Wall -Wextra $CFLAGS" CPPFLAGS="-Wall -Wextra $CPPFLAGS" || die
 if [ "$V" -ne 0 ]; then
