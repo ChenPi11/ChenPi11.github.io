@@ -28,6 +28,7 @@ INSTALL ?= @install_sh@
 XGETTEXT ?= @XGETTEXT@
 MSGCAT ?= msgcat
 MSGFMT ?= @MSGFMT@
+MSGMERGE ?= @MSGMERGE@
 
 FROMCODE = --from-code=UTF-8
 PKG_INFO = --package-name=chenpi11-blog --package-version=0.1.0
@@ -40,7 +41,7 @@ XGETTEXT_FLAGS = $(FROMCODE) $(PKG_INFO) $(KEYWORDS) $(OUTPUT_FLAGS) $(COMMENTS)
 
 SUPPORT_LANGS = $(shell ls *.po | sed 's/\.po//g')
 
-.PHONY: all clean binclean allclean
+.PHONY: all clean install update-po binclean allclean
 
 all :
 
@@ -56,7 +57,10 @@ python-part.pot : $(wildcard $(top_srcdir)/chenpi11_blog/*.py)
 scripts.pot : $(wildcard $(top_srcdir)/scripts/*) $(top_srcdir)/autogen.sh
 	cd $(top_srcdir)/scripts && $(XGETTEXT) $(XGETTEXT_FLAGS) --output=$(srcdir)/$@ --language=Shell $^
 
-messages.pot : build-post.pot mkpostlists.pot python-part.pot scripts.pot
+gen-post-json.pot : $(wildcard $(top_srcdir)/src/*.ts)
+	cd $(top_srcdir)/src && $(XGETTEXT) $(XGETTEXT_FLAGS) --output=$(srcdir)/$@ --language=JavaScript $^
+
+messages.pot : build-post.pot mkpostlists.pot python-part.pot scripts.pot gen-post-json.pot
 	$(MSGCAT) $^ > $@
 
 %.mo : %.po
@@ -67,6 +71,15 @@ install-% : %.mo
 	$(INSTALL) -m 0644 $< $(DESTDIR)$(PREFIX)/share/locale/$*/LC_MESSAGES/chenpi11-blog.mo
 
 install : $(SUPPORT_LANGS:%=install-%)
+
+update-po : $(LOCALE).po messages.pot
+	if test "x$(LOCALE)" = "x"; then \
+		echo "Please set LOCALE variable to update po files."; \
+		exit 1; \
+	fi
+	for lang in $(SUPPORT_LANGS); do \
+		$(MSGMERGE) --update $$lang.po messages.pot; \
+	done
 
 clean :
 

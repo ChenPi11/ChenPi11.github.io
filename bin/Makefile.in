@@ -67,7 +67,7 @@ RUBISCO = $(VEX) rubisco
 
 env-setup : all
 
-all : venv node_modules build-post mkpostlists new-post build-blog po
+all : venv node_modules gen-post-json build-post mkpostlists new-post build-blog po
 
 venv :
 	$(LOCAL_PYTHON3) -m venv $(PREFIX)
@@ -100,6 +100,10 @@ build-blog : venv
 	cd $(top_srcdir) && $(RUBISCO) install-build-blog
 	@$(CREATE_TAG) $@
 
+gen-post-json : node_modules venv
+	cd $(top_srcdir) && $(CARGO) make build-gen-post-json
+	@$(CREATE_TAG) $@
+
 po : venv
 	cd $(top_srcdir)/po && $(MAKE) install
 	@$(CREATE_TAG) $@
@@ -109,6 +113,8 @@ clean :
 binclean :
 	$(RM) build-blog
 	$(RM) build-post
+	$(RM) gen-post-json
+	$(RM) -r $(top_srcdir)/out
 	$(RM) mkpostlists
 	$(RM) new-post
 	$(RM) po

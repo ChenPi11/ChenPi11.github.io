@@ -1,0 +1,5 @@
+name: 📄 Generate wwwroot/post-meta.json
+
+steps:
+  - name: Generate wwwroot/post-meta.json
+    run: [cargo, make, gen-post-json]

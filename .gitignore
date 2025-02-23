@@ -455,6 +455,7 @@ srcm4
 # Build output
 /bin/build-blog
 /bin/build-post
+/bin/gen-post-json
 /bin/mkpostlists
 /bin/new-post
 /bin/node_modules

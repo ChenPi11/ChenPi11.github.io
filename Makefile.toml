@@ -36,3 +36,13 @@ args = ["-f", "Makefile", "run"]
 description = "Clean the project."
 command = "make"
 args = ["-f", "Makefile", "clean"]
+
+[tasks.build-gen-post-json]
+description = "Build build-gen-post-json."
+command = "make"
+args = ["-f", "Makefile", "build-gen-post-json"]
+
+[tasks.gen-post-json]
+description = "Generate wwwroot/post-meta.json file."
+command = "npm"
+args = ["run", "gen-post-json"]

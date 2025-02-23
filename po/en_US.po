@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: chenpi11-blog 0.1.0\n"
 "Report-Msgid-Bugs-To: wushengwuxi-msctinoulk@outlook.com\n"
-"POT-Creation-Date: 2025-01-30 11:23+0800\n"
+"POT-Creation-Date: 2025-02-23 21:26+0800\n"
 "PO-Revision-Date: 2025-01-30 11:24+0800\n"
 "Last-Translator:  <wushengwuxi-msctinoulk@outlook.com>\n"
 "Language-Team: English\n"
@@ -19,9 +19,133 @@ msgstr ""
 
 #
 # File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 38
-#, c-format
-msgid "Usage: %s <template file> <source file>\n"
-msgstr "Usage: %s <template file> <source file>\n"
+msgid ""
+"Usage: build-post [-h|--help] [-V|--version] [-v|--verbose] <template file> "
+"<source file>\n"
+msgstr ""
+"Usage: build-post [-h|--help] [-V|--version] [-v|--verbose] <template file> "
+"<source file>\n"
+
+# #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 33
+# #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 36
+# #-#-#-#-#  python-part.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 40
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 152
+msgid "Options:\n"
+msgstr "Options:\n"
+
+# #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 34
+# #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 37
+# #-#-#-#-#  python-part.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 41
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 153
+msgid "  -h, --help     Display this help and exit.\n"
+msgstr " -h, --help     Display this help and exit.\n"
+
+# #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 35
+# #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 38
+# #-#-#-#-#  python-part.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 42
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 154
+msgid "  -V, --version  Output version information and exit.\n"
+msgstr " -V, --version  Output version information and exit.\n"
+
+# #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 36
+# #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 39
+# #-#-#-#-#  python-part.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 43
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 155
+msgid "  -v, --verbose  Verbosely report processing.\n"
+msgstr " -v, --verbose  Verbosely report processing.\n"
+
+# #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 60
+# #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 61
+# #-#-#-#-#  python-part.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 47
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 159
+msgid "Copyright (C) 2025 ChenPi11\n"
+msgstr "Copyright (C) 2025 ChenPi11\n"
+
+# #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 61
+# #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 62
+# #-#-#-#-#  python-part.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 50
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 162
+msgid ""
+"License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl."
+"html>\n"
+msgstr ""
+"License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl."
+"html>\n"
+
+# #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 62
+# #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 63
+# #-#-#-#-#  python-part.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 54
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 166
+msgid "This is free software: you are free to change and redistribute it.\n"
+msgstr "This is free software: you are free to change and redistribute it.\n"
+
+# #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 63
+# #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 64
+# #-#-#-#-#  python-part.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 56
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 168
+msgid "There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr "There is NO WARRANTY, to the extent permitted by law.\n"
+
+# #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 64
+# #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 65
+# #-#-#-#-#  python-part.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 57
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 169
+msgid "Written by ChenPi11.\n"
+msgstr "Written by ChenPi11.\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 43
@@ -349,10 +473,9 @@ msgid "Cannot configure file: %s\n"
 msgstr "Cannot configure file: %s\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 34
-#, c-format
-msgid "Usage: %s\n"
-msgstr "Usage: %s\n"
+# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 27
+msgid "Usage: mkpostlists [-h|--help] [-V|--version] [-v|--verbose]\n"
+msgstr "Usage: mkpostlists [-h|--help] [-V|--version] [-v|--verbose]\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 41
@@ -378,9 +501,15 @@ msgid "Read file failed: "
 msgstr "Read file failed: "
 
 #
-# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 36
-msgid "Please run this script in the root directory of the project."
-msgstr "Please run this script in the root directory of the project."
+# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 27
+msgid "Usage: build-blog [-h|--help] [-V|--version] [-v|--verbose]\n"
+msgstr "Usage: build-blog [-h|--help] [-V|--version] [-v|--verbose]\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 43
+#, python-brace-format
+msgid "You must run {prog} in project's root directory!\n"
+msgstr "You must run {prog} in project's root directory!\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 40
@@ -412,7 +541,6 @@ msgstr "Failed to build {postfile}."
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 71
-#. Copy applets.
 msgid "========== Copying applets ... ==========\n"
 msgstr "========== Copying applets ... ==========\n"
 
@@ -435,6 +563,13 @@ msgid "========== Minifying {file_path}... ==========\n"
 msgstr "========== Minifying {file_path}... ==========\n"
 
 #
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 102
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 127
+#, python-brace-format
+msgid "Running command: {cmd}\n"
+msgstr "Running command: {cmd}\n"
+
+#
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 85
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 110
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 135
@@ -442,11 +577,9 @@ msgid "Minify command run failed."
 msgstr "Minify command run failed."
 
 #
-# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 102
-# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 127
-#, python-brace-format
-msgid "Running command: {cmd}\n"
-msgstr "Running command: {cmd}\n"
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 149
+msgid "Usage: trim-wwwroot [-h|--help] [-V|--version] [-v|--verbose]\n"
+msgstr "Usage: trim-wwwroot [-h|--help] [-V|--version] [-v|--verbose]\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 144
@@ -459,11 +592,92 @@ msgid "Error."
 msgstr "Error."
 
 #
+# File: /workspaces/ChenPi11.github.io/scripts/gettext.sh, line: 49
+msgid "Copyright (C) 2025 ChenPi11.\\n"
+msgstr "Copyright (C) 2025 ChenPi11.\\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/scripts/gettext.sh, line: 50
+msgid ""
+"License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl."
+"html>\\n"
+msgstr ""
+"License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl."
+"html>\\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/scripts/gettext.sh, line: 51
+msgid "This is free software: you are free to change and redistribute it.\\n"
+msgstr "This is free software: you are free to change and redistribute it.\\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/scripts/gettext.sh, line: 52
+msgid "There is NO WARRANTY, to the extent permitted by law.\\n"
+msgstr "There is NO WARRANTY, to the extent permitted by law.\\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/scripts/gettext.sh, line: 53
+msgid "Written by ChenPi11.\\n"
+msgstr "Written by ChenPi11.\\n"
+
+#
 # File: /workspaces/ChenPi11.github.io/autogen.sh, line: 27
-msgid "Usage: %s [--help] [--verbose]\\n"
-msgstr "Usage: %s [--help] [--verbose]\\n"
+msgid "Usage: %s [-h|--help] [-V|--version] [-v|--verbose]"
+msgstr "Usage: %s [-h|--help] [-V|--version] [-v|--verbose]"
+
+#
+# File: /workspaces/ChenPi11.github.io/scripts/real-build.sh, line: 31
+msgid "Build chenpi11-blog.\\n"
+msgstr "Build chenpi11-blog.\\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/scripts/real-build.sh, line: 33
+# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 33
+msgid "Options:\\n"
+msgstr "Options:\\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/scripts/real-build.sh, line: 34
+# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 34
+msgid "  -h, --help      Display this help and exit.\\n"
+msgstr "  -h, --help      Display this help and exit.\\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/scripts/real-build.sh, line: 35
+# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 35
+msgid "  -V, --version   Output version information and exit.\\n"
+msgstr "  -V, --version   Output version information and exit.\\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/scripts/real-build.sh, line: 36
+# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 36
+msgid "  -v, --verbose   Verbosely report processing.\\n"
+msgstr "  -v, --verbose   Verbosely report processing.\\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/autogen.sh, line: 54
 msgid "%s: done. Now you can run './configure'.\\n"
 msgstr "%s: done. Now you can run './configure'.\\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 85
+msgid "Not a chenpi11-blog project."
+msgstr "Not a chenpi11-blog project."
+
+#
+# File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 89
+# File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 93
+msgid "Usage: gen-post-json <posts-dir> <output-file>"
+msgstr "Usage: gen-post-json <posts-dir> <output-file>"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 90
+#
+msgid "No posts found."
+msgstr "No posts found."
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post-meta.ts, line: 110
+#, javascript-format
+msgid "Loaded post: %s"
+msgstr "Loaded post: %s"

@@ -28,7 +28,6 @@ VERBOSE=
 case "$1" in
     -h|--help)
         printf "$(_g "Usage: %s [-h|--help] [-V|--version] [-v|--verbose]")" "$0"
-        printf "$(_g ".\n")"
         printf "\n"
         printf "$(_g "Options:\n")"
         printf "$(_g "  -h, --help      Display this help and exit.\n")"

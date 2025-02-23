@@ -8,8 +8,14 @@
     "wwwroot": {
       "run": ".rubisco/wwwroot.yaml"
     },
-    "install-build-blog" : {
+    "install-build-blog": {
       "run": "bin/install-build-blog.yaml"
+    },
+    "gen-post-json": {
+      "run": "bin/gen-post-json.yaml"
+    },
+    "post-meta-json": {
+      "run": "bin/post-meta-json.yaml"
     }
   }
 }

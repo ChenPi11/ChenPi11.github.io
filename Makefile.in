@@ -27,22 +27,27 @@ MKDIR ?= mkdir -p
 RM ?= rm -f
 TOUCH ?= touch
 NPX ?= @NPX@
+NPM?= @NPM@
 CMAKE ?= @CMAKE@
 
 CMAKE_CONFIGURE_SCRIPT = $(top_srcdir)/cmake/configure.cmake
 VEX = $(top_srcdir)/scripts/vex
+RUBISCO = $(VEX) rubisco
 
 NPXVERBOSE ?= @NPXVERBOSE@
 NPXFLAGS ?= $(NPXVERBOSE) @NPXFLAGS@
 NPX += $(NPXFLAGS)
+NPMVERBOSE ?= @NPMVERBOSE@
+NPMFLAGS ?= $(NPMVERBOSE) @NPMFLAGS@
+NPM += $(NPMFLAGS)
 CMAKEVERBOSE ?= @CMAKEVERBOSE@
 CMAKEFLAGS ?= $(CMAKEVERBOSE) @CMAKEFLAGS@
 CMAKE += $(CMAKEFLAGS)
 CB_UTILSVERBOSE ?= @CB_UTILSVERBOSE@
 
-.PHONY : all env-setup wwwroot fonts img favicon.ico log.html about.html settings.html tags.html index.html lib posts build-blog trim run clean binclean allclean
+.PHONY : all env-setup wwwroot fonts img favicon.ico log.html about.html settings.html tags.html index.html lib posts post-meta-json build-blog trim run clean binclean allclean
 
-all : env-setup wwwroot fonts img favicon.ico lib build-blog log.html about.html settings.html tags.html index.html posts trim
+all : env-setup wwwroot fonts img favicon.ico lib build-blog log.html about.html settings.html tags.html index.html posts post-meta-json trim
 
 env-setup :
 	cd bin && $(MAKE) $@
@@ -71,6 +76,11 @@ index.html.in :
 build-blog : env-setup
 	$(VEX) build-blog $(CB_UTILSVERBOSE)
 
+# Don't use ANY requirements for this target. This target in called by
+# bin/Makefile's "gen-post-json" target.
+build-gen-post-json :
+	$(NPM) run build-gen-post-json
+
 index.html : env-setup index.html.in build-blog wwwroot
 	$(VEX) mkpostlists $(CB_UTILSVERBOSE) > postlists.tmp
 	$(CMAKE) -DFROM=index.html.in -DTO=wwwroot/$@ \
@@ -97,6 +107,9 @@ settings.html : index.html.in wwwroot
 	$(CMAKE) -DFROM=index.html.in -DTO=wwwroot/$@ \
 	-DK0=CONTENT -DV0=FILE=$@ -DK1=SUBTITLE -DV1="Settings" \
 	-P $(CMAKE_CONFIGURE_SCRIPT) $(CMAKEFLAGS)
+
+post-meta-json : wwwroot posts
+	cd $(top_srcdir) && $(RUBISCO) gen-post-json
 
 trim : wwwroot posts index.html
 	$(VEX) trim-wwwroot $(CB_UTILSVERBOSE)
@@ -143,6 +156,7 @@ binclean :
 	cd src && $(MAKE) $@
 	$(RM) -r target
 	$(RM) -r dist
+	$(RM) -r out
 
 allclean : clean
 	cd bin && $(MAKE) $@
