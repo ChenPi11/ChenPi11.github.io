@@ -16,4 +16,4 @@
   -- along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
   -->
 
-<a href="@NAME@" class="tag">@NAME@</a>
+<a href="/tags.html#@NAME@" class="tag">@NAME@</a>

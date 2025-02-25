@@ -24,6 +24,7 @@ import process from "process";
 import * as fs from "fs";
 
 interface PostMeta {
+    link: string;
     title: string;
     date: string;
     tags: string[];
@@ -33,6 +34,7 @@ function toPostMetas(posts: Post[]): PostMeta[] {
     const postsJson: PostMeta[] = [];
     posts.forEach((post) => {
         postsJson.push({
+            link: post.getLink(),
             title: post.getTitle(),
             date: post.getDate(),
             tags: post.getTagList(),

@@ -41,3 +41,19 @@
     filter: blur(0.25px);
     transform: scale(1.1);
 }
+
+#posts-hint {
+    text-align: center;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+
+#posts {
+    transition: all 0.3s ease;
+}
+
+.post {
+    margin: 0 auto;
+    width: 80%;
+    padding: 20px;
+}

@@ -19,7 +19,7 @@
 import { logInfo } from "./log.js";
 import { _ } from "./i18n.js";
 import { sprintf } from "sprintf-js";
-import { readFileSync, readdirSync } from "fs";
+import { fstat, readFileSync, readdirSync } from "fs";
 import upath from "upath";
 
 /**
@@ -31,6 +31,7 @@ import upath from "upath";
  * @implements {Post}
  */
 export class Post {
+    private link: string;
     private title: string;
     private date: string;
     private tags: Set<string>;
@@ -38,15 +39,27 @@ export class Post {
     /**
      * Creates an instance of Post.
      *
+     * @param {string} link Link of the post.
      * @param {string} title Title of the post.
      * @param {string} date Date of the post.
      * @param {string[]} tags Tags of the post.
      * @memberof Post
      */
-    constructor(title: string, date: string, tags: string[]) {
+    constructor(link:string, title: string, date: string, tags: string[]) {
+        this.link = link;
         this.title = title;
         this.date = date;
         this.tags = new Set(tags);
+    }
+
+    /**
+     * Returns the link of the post.
+     *
+     * @returns {string} Link of the post.
+     * @memberof Post
+     */
+    getLink(): string {
+        return this.link;
     }
 
     /**
@@ -87,13 +100,14 @@ export class Post {
  * @returns {Post} Post loaded from the file.
  */
 function loadPost(filePath: string): Post {
+    const link = upath.basename(filePath, ".html");
     const content = readFileSync(filePath, "utf-8");
     const lines = content.split("\n");
     const title = lines[0];
     const date = lines[1];
     const tags = lines[2].split(",");
 
-    return new Post(title, date, tags);
+    return new Post(link, title, date, tags);
 }
 
 /**
