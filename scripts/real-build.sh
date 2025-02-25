@@ -46,6 +46,8 @@ case "$1" in
         ;;
 esac
 
+USER=user
+HOSTNAME=BuildRunner
 neofetch || die
 
 ./autogen.sh $VERBOSE || die
