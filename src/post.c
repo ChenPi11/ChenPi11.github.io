@@ -225,6 +225,36 @@ struct post_t load_post(const char *filepath)
         goto ERROR;
     }
 
+    /* Description. */
+    line = read_line(file, filepath);
+    if (!startswith(line, CONTENT(DESC_START)))
+    {
+        warn(_("Fourth line must start with \"%s\".\n"), DESC_START);
+        die(_("Fourth line of %s is not a description.\n"), filepath);
+    }
+    if (!endswith(line, CONTENT(DESC_END)))
+    {
+        warn(_("Fourth line must end with \"%s\".\n"), DESC_END);
+        die(_("Fourth line of %s is not a description.\n"), filepath);
+    }
+    if (line.len <= strlen(DESC_END) + strlen(DESC_START))
+    {
+        warn(_("Fourth line must contain a description.\n"));
+        die(_("Fourth line of %s is not a description.\n"), filepath);
+    }
+    post.description = alloc_content(line.len - strlen(DESC_END) - strlen(DESC_START));
+    if (is_null_content(post.description))
+    {
+        goto ERROR;
+    }
+    memcpy(post.description.content, line.content + strlen(DESC_START), post.description.len);
+    post.description.content[post.description.len] = '\0';
+    if (strip(&post.description)!= RET_SUCCESS)
+    {
+        die(_("Cannot strip description.\n"));
+    }
+    free_content(&line);
+
     post.content = read_file(filepath);
     if (is_null_content(post.content))
     {
@@ -311,7 +341,7 @@ int save_post(struct post_t post)
         free_content(&html_snippet);
         die(_("Cannot open file: %s\n"), postinfo_filename);
     }
-
+    
     if (fprintf(postinfo, "%s\n", post.title.content) < 0)
     {
         die(_("Cannot write to file: %s\n"), postinfo_filename);
@@ -327,6 +357,11 @@ int save_post(struct post_t post)
         {
             die(_("Cannot write to file: %s\n"), postinfo_filename);
         }
+    }
+
+    if (fprintf(postinfo, "%s\n", post.description.content) < 0)
+    {
+        die(_("Cannot write to file: %s\n"), postinfo_filename);
     }
 
     free_content(&html_snippet);

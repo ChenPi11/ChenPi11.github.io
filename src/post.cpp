@@ -46,9 +46,6 @@ post::PostInfo::PostInfo(const std::filesystem::path &metafile)
     m_filename = metafile.stem().string() + ".html";
     std::ifstream infile(metafile);
     std::string line;
-    // title
-    // date
-    // tags
     if (std::getline(infile, line).fail())
     {
         throw std::runtime_error(_("Read file failed: ") + metafile.string());
@@ -63,8 +60,14 @@ post::PostInfo::PostInfo(const std::filesystem::path &metafile)
     {
         throw std::runtime_error(_("Read file failed: ") + metafile.string());
     }
-    infile.close();
     m_tags = content::split(line, ',');
+    if (std::getline(infile, line).fail())
+    {
+        throw std::runtime_error(_("Read file failed: ") + metafile.string());
+    }
+    m_description = line;
+
+    infile.close();
 }
 
 std::string post::PostInfo::generate_tags() const
@@ -84,7 +87,7 @@ std::string post::PostInfo::generate() const
     std::string template_data = file::readfile(POST_TEMPLATE);
     configure::configures_t configs = {
         {"FILENAME", m_filename}, {"TITLE", m_title},        {"DATE", m_date},
-        {"DESCRIPTION", "TODO"},  {"TAGS", generate_tags()},
+        {"DESCRIPTION", m_description},  {"TAGS", generate_tags()},
     };
     return configure::configure(configs, template_data);
 }

@@ -30,6 +30,8 @@
 #define TAG_START "<!-- tag: "
 #define TAG_END " -->"
 #define TAGS_SEP ","
+#define DESC_START "<!-- desc: "
+#define DESC_END " -->"
 #define POST_OUTPUT_DIR "posts/"
 
 /* Tags. */
@@ -62,6 +64,9 @@ struct post_t
 
     /* The post's tags. */
     struct tags_t tags;
+
+    /* The post's description */
+    struct content_t description;
 };
 
 /* Null post. */

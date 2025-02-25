@@ -44,6 +44,7 @@ class PostInfo
     std::string m_date;
     std::string m_filename;
     std::vector<std::string> m_tags;
+    std::string m_description;
 
   public:
     PostInfo() = delete;
@@ -63,6 +64,11 @@ class PostInfo
     std::vector<std::string> get_tags() const noexcept
     {
         return m_tags;
+    }
+
+    std::string get_description() const noexcept
+    {
+        return m_description;
     }
 
     std::string generate_tags() const;

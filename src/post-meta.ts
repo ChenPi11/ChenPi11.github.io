@@ -35,6 +35,7 @@ export class Post {
     private title: string;
     private date: string;
     private tags: Set<string>;
+    private description: string;
 
     /**
      * Creates an instance of Post.
@@ -43,13 +44,15 @@ export class Post {
      * @param {string} title Title of the post.
      * @param {string} date Date of the post.
      * @param {string[]} tags Tags of the post.
+     * @param {string} description Description of the post.
      * @memberof Post
      */
-    constructor(link:string, title: string, date: string, tags: string[]) {
+    constructor(link:string, title: string, date: string, tags: string[], description: string) {
         this.link = link;
         this.title = title;
         this.date = date;
         this.tags = new Set(tags);
+        this.description = description;
     }
 
     /**
@@ -91,6 +94,16 @@ export class Post {
     getDate(): string {
         return this.date;
     }
+
+    /**
+     * Returns the description of the post.
+     * 
+     * @returns {string} Description of the post.
+     * @memberof Post
+     */
+    getDescription(): string {
+        return this.description;
+    }
 }
 
 /**
@@ -100,14 +113,14 @@ export class Post {
  * @returns {Post} Post loaded from the file.
  */
 function loadPost(filePath: string): Post {
-    const link = upath.basename(filePath, ".html");
+    const link = `/posts/${upath.basename(filePath, ".info")}.html`;
     const content = readFileSync(filePath, "utf-8");
     const lines = content.split("\n");
     const title = lines[0];
     const date = lines[1];
     const tags = lines[2].split(",");
-
-    return new Post(link, title, date, tags);
+    const description = lines[3];
+    return new Post(link, title, date, tags, description);
 }
 
 /**

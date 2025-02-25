@@ -28,6 +28,7 @@ interface PostMeta {
     title: string;
     date: string;
     tags: string[];
+    desc: string;
 }
 
 function toPostMetas(posts: Post[]): PostMeta[] {
@@ -38,6 +39,7 @@ function toPostMetas(posts: Post[]): PostMeta[] {
             title: post.getTitle(),
             date: post.getDate(),
             tags: post.getTagList(),
+            desc: post.getDescription(),
         });
     });
     return postsJson;

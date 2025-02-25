@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: chenpi11-blog 0.1.0\n"
 "Report-Msgid-Bugs-To: wushengwuxi-msctinoulk@outlook.com\n"
-"POT-Creation-Date: 2025-02-23 21:26+0800\n"
+"POT-Creation-Date: 2025-02-25 22:35+0800\n"
 "PO-Revision-Date: 2025-01-29 17:43+0800\n"
 "Last-Translator:  <wushengwuxi-msctinoulk@outlook.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
@@ -402,6 +402,34 @@ msgstr "第三行必须以 \"%s\" 结尾。\n"
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 211
 msgid "Third line must contain a tag.\n"
 msgstr "第三行必须包含一个标签。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 148
+#, c-format
+msgid "Fourth line must start with \"%s\".\n"
+msgstr "第四行必须以 \"%s\" 开头。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 149
+#, c-format
+msgid "Fourth line of %s is not a description.\n"
+msgstr "%s 的第四行不是标题。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 206
+#, c-format
+msgid "Fourth line must end with \"%s\".\n"
+msgstr "第四行必须以 \"%s\" 结尾。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 181
+msgid "Fourth line must contain a description.\n"
+msgstr "第四行必须包含一个描述。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 193
+msgid "Cannot strip description.\n"
+msgstr "无法 strip 日期。\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 255

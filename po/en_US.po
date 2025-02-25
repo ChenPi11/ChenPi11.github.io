@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: chenpi11-blog 0.1.0\n"
 "Report-Msgid-Bugs-To: wushengwuxi-msctinoulk@outlook.com\n"
-"POT-Creation-Date: 2025-02-23 21:26+0800\n"
+"POT-Creation-Date: 2025-02-25 22:35+0800\n"
 "PO-Revision-Date: 2025-01-30 11:24+0800\n"
 "Last-Translator:  <wushengwuxi-msctinoulk@outlook.com>\n"
 "Language-Team: English\n"
@@ -428,6 +428,34 @@ msgid "Third line must contain a tag.\n"
 msgstr "Third line must contain a tag.\n"
 
 #
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 148
+#, c-format
+msgid "Fourth line must start with \"%s\".\n"
+msgstr "Fourth line must start with \"%s\".\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 149
+#, c-format
+msgid "Fourth line of %s is not a description.\n"
+msgstr "Fourth line of %s is not a description.\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 206
+#, c-format
+msgid "Fourth line must end with \"%s\".\n"
+msgstr "Fourth line must end with \"%s\".\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 181
+msgid "Fourth line must contain a description.\n"
+msgstr "Fourth line must contain a description.\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 193
+msgid "Cannot strip description.\n"
+msgstr "Cannot strip description.\n"
+
+#
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 255
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 259
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 263
@@ -541,6 +569,7 @@ msgstr "Failed to build {postfile}."
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 71
+#. Copy applets.
 msgid "========== Copying applets ... ==========\n"
 msgstr "========== Copying applets ... ==========\n"
 
