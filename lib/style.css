@@ -196,3 +196,13 @@ footer {
 .post em {
     color: var(--post-date-color);
 }
+
+.page-msg-container {
+    padding: 10px;
+    text-align: center;
+    
+}
+
+.page-msg-text {
+    font-family: unset;
+}

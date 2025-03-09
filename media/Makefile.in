@@ -23,31 +23,13 @@ CP ?= @CP@
 MKDIR ?= mkdir -p
 RM ?= rm -f
 
-NODE_MODULES = $(top_srcdir)/node_modules
 WWWROOT = $(top_srcdir)/wwwroot
 
-.PHONY: all node_modules xterm sprintf-js jquery clean binclean allclean
+.PHONY: all clean binclean allclean
 
-all : lib xterm sprintf-js jquery
-	$(CP) *.css $(WWWROOT)/lib/
-	$(CP) *.js $(WWWROOT)/lib/
-
-lib :
-	$(MKDIR) $(WWWROOT)/lib
-
-xterm : lib node_modules
-	$(CP) $(NODE_MODULES)/@xterm/xterm/lib/xterm.js $(WWWROOT)/lib/
-	$(CP) $(NODE_MODULES)/@xterm/xterm/css/xterm.css $(WWWROOT)/lib/
-	$(CP) $(NODE_MODULES)/@xterm/addon-fit/lib/addon-fit.js $(WWWROOT)/lib/
-
-sprintf-js : lib node_modules
-	$(CP) $(NODE_MODULES)/sprintf-js/dist/sprintf.min.js $(WWWROOT)/lib/sprintf.js
-
-jquery : lib node_modules
-	$(CP) $(NODE_MODULES)/jquery/dist/jquery.min.js $(WWWROOT)/lib/jquery.js
-
-node_modules :
-	cd $(top_srcdir)/bin && $(MAKE) $@
+all :
+	$(MKDIR) $(WWWROOT)/media
+	$(CP) *.mp3 $(WWWROOT)/media
 
 clean :
 

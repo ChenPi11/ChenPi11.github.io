@@ -174,5 +174,6 @@ AC_CONFIG_FILES([index.html.in])
 AC_CONFIG_FILES([Makefile])
 AC_CONFIG_FILES([po/Makefile])
 AC_CONFIG_FILES([src/Makefile])
+AC_CONFIG_FILES([media/Makefile])
 AC_CONFIG_FILES([mkpostlists/configure])
 AC_OUTPUT
