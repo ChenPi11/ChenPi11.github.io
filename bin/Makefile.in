@@ -27,6 +27,7 @@ CARGO_CONFIG_DEBUG = --debug
 CARGO_CONFIG = $(CARGO_CONFIG_$(BUILD_TYPE))
 
 SHELL ?= @SHELL@
+CP ?= @CP@
 MKDIR ?= mkdir -p
 RM ?= rm -f
 TOUCH ?= touch
@@ -59,6 +60,9 @@ PIP += $(PIPFLAGS)
 PYTHON_BUILDVERBOSE ?= @PYTHON_BUILDVERBOSE@
 PYTHON_BUILDFLAGS ?= $(PYTHON_BUILDVERBOSE) @PYTHON_BUILDFLAGS@
 CMAKE_MAKEVERBOSE ?= @CMAKE_MAKEVERBOSE@
+GO ?= @GO@
+GOFLAGS ?= @GOFLAGS@
+# GO += $(GOFLAGS)
 
 PYTHON_BUILD = $(PYTHON3) -m build $(PYTHON_BUILDFLAGS)
 RUBISCO = $(VEX) rubisco
@@ -67,7 +71,7 @@ RUBISCO = $(VEX) rubisco
 
 env-setup : all
 
-all : venv node_modules gen-post-json build-post mkpostlists new-post build-blog po
+all : venv node_modules gen-post-json build-post mkpostlists new-post build-blog post-tab-render po
 
 venv :
 	$(LOCAL_PYTHON3) -m venv $(PREFIX)
@@ -104,6 +108,12 @@ gen-post-json : node_modules venv
 	cd $(top_srcdir) && $(CARGO) make build-gen-post-json
 	@$(CREATE_TAG) $@
 
+post-tab-render : venv
+	$(GO) build $(top_srcdir) $(GOFLAGS)
+	$(TOUCH) post-tab-render
+	$(CP) post-tab-render $(PREFIX)/bin
+# Don't create tag because go will create executable with same name.
+
 po : venv
 	cd $(top_srcdir)/po && $(MAKE) install
 	@$(CREATE_TAG) $@
@@ -114,6 +124,7 @@ binclean :
 	$(RM) build-blog
 	$(RM) build-post
 	$(RM) gen-post-json
+	$(RM) post-tab-render
 	$(RM) -r $(top_srcdir)/out
 	$(RM) mkpostlists
 	$(RM) new-post

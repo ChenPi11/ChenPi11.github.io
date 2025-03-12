@@ -236,7 +236,7 @@ cython_debug/
 *.pdb
 
 # Kernel Module Compile Results
-*.mod*
+# *.mod*
 *.cmd
 .tmp_versions/
 modules.order
@@ -442,6 +442,32 @@ out
 .yarn/install-state.gz
 .pnp.*
 
+# If you prefer the allow list template instead of the deny list, see community template:
+# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
+#
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Dependency directories (remove the comment below to include it)
+# vendor/
+
+# Go workspace file
+go.work
+go.work.sum
+
+# env file
+.env
+
 # VSCode
 .vscode
 
@@ -453,11 +479,13 @@ srclib
 srcm4
 
 # Build output
+/post-tab-render
 /bin/build-blog
 /bin/build-post
 /bin/gen-post-json
 /bin/mkpostlists
 /bin/new-post
+/bin/post-tab-render
 /bin/node_modules
 /bin/po
 /bin/venv

@@ -53,5 +53,7 @@ export function isChenPi11Blog(): boolean {
         && isFile("package.json")  // It's a Node.js project.
         && isFile("Makefile.in")  // It's an Autoconf+Makefile project.
         && isFile("repo.json")  // It's a Rubisco project.
+        && isFile("tsconfig.json")  // It's a TypeScript project.
+        && isFile("go.mod")  // It's a Go project.
     )
 }

@@ -32,7 +32,7 @@ MSGMERGE ?= @MSGMERGE@
 
 FROMCODE = --from-code=UTF-8
 PKG_INFO = --package-name=chenpi11-blog --package-version=0.1.0
-KEYWORDS = --keyword=_ --keyword=_g
+KEYWORDS = --keyword=_ --keyword=_g --keyword=gotext.Get
 OUTPUT_FLAGS = --width=100
 COMMENTS = --add-comments --add-location --strict
 COPYRIGHT = --copyright-holder="2025 ChenPi11's Blog"
@@ -60,7 +60,10 @@ scripts.pot : $(wildcard $(top_srcdir)/scripts/*) $(top_srcdir)/autogen.sh
 gen-post-json.pot : $(wildcard $(top_srcdir)/src/*.ts)
 	cd $(top_srcdir)/src && $(XGETTEXT) $(XGETTEXT_FLAGS) --output=$(srcdir)/$@ --language=JavaScript $^
 
-messages.pot : build-post.pot mkpostlists.pot python-part.pot scripts.pot gen-post-json.pot
+post-tab-render.pot : $(top_srcdir)/post-tab-render.go $(wildcard $(top_srcdir)/chenpi11_blog/*.go)
+	cd $(top_srcdir) && $(XGETTEXT) $(XGETTEXT_FLAGS) --output=$(srcdir)/$@ --language=C# $^
+
+messages.pot : build-post.pot mkpostlists.pot python-part.pot scripts.pot gen-post-json.pot post-tab-render.pot
 	$(MSGCAT) $^ > $@
 
 %.mo : %.po

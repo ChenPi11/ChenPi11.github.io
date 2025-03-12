@@ -65,9 +65,9 @@ void markdown_it_init(void)
     {
     }
     CHECK_CASE("npx markdown-it")
-    CHECK_CASE("markdown-it")
     CHECK_CASE(".venv/bin/markdown-it")
     CHECK_CASE("venv/bin/markdown-it")
+    CHECK_CASE("markdown-it")
     else
     {
         char *markdown_it_env = getenv("MARKDOWN_IT");

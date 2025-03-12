@@ -47,7 +47,10 @@ def is_chenpi11_blog_rootdir() -> bool:
         and Path("package.json").is_file()  # It's a Node.js project.
         and Path("Makefile.in").is_file()  # It's an Autoconf+Makefile project.
         and Path("repo.json").is_file()  # It's a Rubisco project.
+        and Path("tsconfig.json").is_file()  # It's a TypeScript project.
+        and Path("go.mod").is_file()  # It's a Go project.
     )
+
 
 if __name__ == "__main__":
     if not is_chenpi11_blog_rootdir():

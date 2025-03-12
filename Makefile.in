@@ -78,6 +78,7 @@ index.html.in :
 
 build-blog : env-setup
 	$(VEX) build-blog $(CB_UTILSVERBOSE)
+	$(VEX) post-tab-render $(CB_UTILSVERBOSE)
 
 # Don't use ANY requirements for this target. This target in called by
 # bin/Makefile's "gen-post-json" target.
@@ -137,6 +138,7 @@ clean :
 	$(RM) mkpostlists/configure
 	$(RM) configure
 	$(RM) configure~
+	$(RM) post-tab-render
 	$(RM) stamp-h1
 	$(RM) src/build-post
 	$(RM) posts/post-template.html.in

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: chenpi11-blog 0.1.0\n"
 "Report-Msgid-Bugs-To: wushengwuxi-msctinoulk@outlook.com\n"
-"POT-Creation-Date: 2025-02-25 22:35+0800\n"
+"POT-Creation-Date: 2025-03-11 21:33+0800\n"
 "PO-Revision-Date: 2025-01-29 17:43+0800\n"
 "Last-Translator:  <wushengwuxi-msctinoulk@outlook.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
@@ -685,3 +685,96 @@ msgstr "未找到帖子."
 #, javascript-format
 msgid "Loaded post: %s"
 msgstr "已加载文章：%s"
+
+#
+# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 27
+msgid "Usage: post-tab-render [-h|--help] [-V|--version] [-v|--verbose]\n"
+msgstr "用法：post-tab-render [-h|--help] [-V|--version] [-v|--verbose]\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 43
+msgid "You must run post-tab-render in project's root directory!\n"
+msgstr "你必须在项目的根目录下运行 post-tab-render！\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/post-tab-render.go, line: 86
+#
+msgid "Error accessing path %s: %v\n"
+msgstr "无法访问路径 %s：%v\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/post-tab-render.go, line: 97
+msgid "Error walking the path %q: %v\n"
+msgstr "无法遍历路径 %q：%v\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/extract-tab.go, line: 36
+msgid "Rendering tab-div-page '%s' in '%s' ...\n"
+msgstr "正在渲染 tab-div-page '%s' （在 '%s'中）...\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/extract-tab.go, line: 39
+msgid "<tab-div-page> '%s' in '%s' has no content.\n"
+msgstr "<tab-div-page> '%s' 在 '%s' 没有内容。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/extract-tab.go, line: 63
+msgid "Error while creating HTML file: %v\n"
+msgstr "无法创建 HTML 文件：%v\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/extract-tab.go, line: 74
+msgid "Error rendering HTML: %s\n"
+msgstr "渲染 HTML 时出错：%s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 280
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 312
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 316
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 323
+#
+msgid "Error writing HTML file: %s\n"
+msgstr "无法写入 HTML 文件：%s\n"
+
+# #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/configure.c, line: 72
+# File: /workspaces/ChenPi11.github.io/src/configure.c, line: 123
+# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 118
+# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 206
+# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 218
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 141
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 276
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 307
+# #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/file-util.cpp, line: 41
+# File: /workspaces/ChenPi11.github.io/src/file-util.cpp, line: 59
+#
+msgid "Error opening HTML file: %s\n"
+msgstr "无法打开 HTML 文件：%s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/extract-tab.go, line: 105
+msgid "Error parsing HTML file: %s\n"
+msgstr "无法解析 HTML 文件：%s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/markdown.go, line: 84
+msgid "Error creating temporary file: %v\n"
+msgstr "无法创建临时文件：%v\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/markdown.go, line: 90
+msgid "Error writing to temporary file: %v\n"
+msgstr "无法写入临时文件：%v\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 120
+msgid "Executing command %s %s ...\n"
+msgstr "正在执行：%s %s ...\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/markdown.go, line: 104
+msgid "Error while executing command: %v\n"
+msgstr "执行命令时出错：%v\n"

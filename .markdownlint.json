@@ -1,0 +1,5 @@
+{
+  "MD033": {
+    "allowed_elements": ["terminal-applet", "tab-div", "tab-div-page", "img"]
+  }
+}

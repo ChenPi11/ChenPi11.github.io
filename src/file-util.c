@@ -88,6 +88,8 @@ int is_chenpi11_blog_rootdir(void)
     CHECK(is_file("package.json"));                                  /* It's a Node.js project. */
     CHECK(is_file("Makefile.in"));                                   /* It's an Autoconf+Makefile project. */
     CHECK(is_file("repo.json"));                                     /* It's a Rubisco project. */
+    CHECK(is_file("tsconfig.json"));                                 /* It's a TypeScript project. */
+    CHECK(is_file("go.mod"));                                        /* It's a Go project. */
 
     errno = 0;
 
