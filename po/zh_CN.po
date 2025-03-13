@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: chenpi11-blog 0.1.0\n"
 "Report-Msgid-Bugs-To: wushengwuxi-msctinoulk@outlook.com\n"
-"POT-Creation-Date: 2025-03-11 21:33+0800\n"
+"POT-Creation-Date: 2025-03-13 21:55+0800\n"
 "PO-Revision-Date: 2025-01-29 17:43+0800\n"
 "Last-Translator:  <wushengwuxi-msctinoulk@outlook.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
@@ -29,17 +29,17 @@ msgstr ""
 #
 # File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 42
 msgid "Options:\n"
-msgstr "选项:\n"
+msgstr "选项：\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 43
 msgid "  -h, --help     Display this help and exit.\n"
-msgstr "  -h, --help     显示此帮助并退出.\n"
+msgstr "  -h，--help     显示此帮助并退出。\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 44
 msgid "  -V, --version  Output version information and exit.\n"
-msgstr "  -V, --version  输出版本信息并退出.\n"
+msgstr "  -V，--version  输出版本信息并退出。\n"
 
 # #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
@@ -52,7 +52,7 @@ msgstr "  -V, --version  输出版本信息并退出.\n"
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 43
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 155
 msgid "  -v, --verbose  Verbosely report processing.\n"
-msgstr "  -v, --verbose  详细报告处理过程.\n"
+msgstr "  -v，--verbose  详细报告处理过程。\n"
 
 # #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
@@ -665,20 +665,59 @@ msgid "%s: done. Now you can run './configure'.\\n"
 msgstr "%s: 完成。现在你可以运行 './configure'。\\n"
 
 #
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 38
+msgid ""
+"Usage: gen-post-json [-h|--help] [-V|--version] [-v|--verbose] <posts dir> "
+"<output file>\n"
+msgstr ""
+"用法：gen-post-json [-h|--help] [-V|--version] [-v|--verbose] <帖子文件夹> "
+"<输出文件>\n"
+
+#
 # File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 85
 msgid "Not a chenpi11-blog project."
 msgstr "不是 chenpi11-blog 项目。"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 89
-# File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 93
-msgid "Usage: gen-post-json <posts-dir> <output-file>"
-msgstr "用法：gen-post-json <posts-dir> <output-file>"
-
-#
 # File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 91
 msgid "No posts found."
-msgstr "未找到帖子."
+msgstr "未找到帖子。"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post-meta.ts, line: 140
+#, javascript-format
+msgid "Post \"%s\":"
+msgstr "文章 \"%s\":"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post-meta.ts, line: 141
+#, javascript-format
+msgid "\tTitle: %s"
+msgstr "\t标题: %s"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post-meta.ts, line: 142
+#, javascript-format
+msgid "\tContent: %d Bytes (%s)"
+msgstr "\t内容: %d 字节 (%s)"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post-meta.ts, line: 143
+#, javascript-format
+msgid "\tDate: %s"
+msgstr "\t日期: %s"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post-meta.ts, line: 144
+#, javascript-format
+msgid "\tTags: %s"
+msgstr "\t标签: %s"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 120
+#, javascript-format
+msgid "\tDescription: %s"
+msgstr "\t描述: %s"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 55
@@ -698,7 +737,6 @@ msgstr "你必须在项目的根目录下运行 post-tab-render！\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/post-tab-render.go, line: 86
-#
 msgid "Error accessing path %s: %v\n"
 msgstr "无法访问路径 %s：%v\n"
 

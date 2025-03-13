@@ -18,8 +18,9 @@
 
 import { isChenPi11Blog } from "./is-blog.js";
 import { loadPosts, Post } from "./post-meta.js";
-import { logInfo, logError } from "./log.js";
+import { logError } from "./log.js";
 import { _, initI18n } from "./i18n.js";
+import { setVerbose } from "./verbose.js";
 import process from "process";
 import * as fs from "fs";
 
@@ -83,24 +84,57 @@ function getPostsJson(posts: Post[], tagsMap: Map<string, number>): string {
     });
 }
 
+function showHelp() {
+    process.stdout.write(_("Usage: gen-post-json [-h|--help] [-V|--version] [-v|--verbose] <posts dir> <output file>\n"));
+    process.stdout.write("\n");
+    process.stdout.write(_("Options:\n"));
+    process.stdout.write(_("  -h, --help     Display this help and exit.\n"));
+    process.stdout.write(_("  -V, --version  Output version information and exit.\n"));
+    process.stdout.write(_("  -v, --verbose  Verbosely report processing.\n"));
+}
+
+function showVersion() {
+    process.stdout.write("gen-post-json 0.1.0\n");
+    process.stdout.write(_("Copyright (C) 2025 ChenPi11\n"));
+    process.stdout.write(_("License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\n"));
+    process.stdout.write(_("This is free software: you are free to change and redistribute it.\n"));
+    process.stdout.write(_("There is NO WARRANTY, to the extent permitted by law.\n"));
+    process.stdout.write(_("Written by ChenPi11.\n"));
+}
+
 function main() {
     initI18n();
+
     if (!isChenPi11Blog()) {
         logError(_("Not a chenpi11-blog project."));
         process.exit(1);
     }
-    if ("--help" in process.argv || "-h" in process.argv) {
-        logInfo(_("Usage: gen-post-json <posts-dir> <output-file>"));
+    if (process.argv.includes("--help") || process.argv.includes("-h")) {
+        showHelp();
         process.exit(0);
     }
-    if (process.argv.length != 4) {
-        logError(_("Usage: gen-post-json <posts-dir> <output-file>"));
+    if (process.argv.includes("--version") || process.argv.includes("-V")) {
+        showVersion();
+        process.exit(0);
+    }
+
+    let args = process.argv.slice(2);
+    if (process.argv.includes("--verbose") || process.argv.includes("-v")) {
+        setVerbose(true);
+        args = args.filter((arg) => {
+            return arg != "--verbose" && arg != "-v";
+        })
+    } else {
+        setVerbose(false);
+    }
+    if (args.length != 2) {
+        logError(_("Usage: gen-post-json [-h|--help] [-V|--version] [-v|--verbose] <posts dir> <output file>\n"));
         process.exit(1);
     }
 
     try {
-        const postsDir: string = process.argv[2];
-        const outputFile: string = process.argv[3];
+        const postsDir: string = args[0];
+        const outputFile: string = args[1];
 
         const posts: Post[] = loadPosts(postsDir);
         const tagsMap: Map<string, number> = getTagsMap(posts);
@@ -108,7 +142,12 @@ function main() {
         if (posts.length == 0) {
             throw new Error(_("No posts found."));
         }
-        fs.writeFileSync(outputFile, getPostsJson(posts, tagsMap));
+        const jsonData = getPostsJson(posts, tagsMap);
+        if (outputFile == "-") {
+            process.stdout.write(jsonData);
+            return;
+        }
+        fs.writeFileSync(outputFile, jsonData);
     }
     catch (exception: any) {
         logError(exception.message);

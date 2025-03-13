@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: chenpi11-blog 0.1.0\n"
 "Report-Msgid-Bugs-To: wushengwuxi-msctinoulk@outlook.com\n"
-"POT-Creation-Date: 2025-03-11 21:33+0800\n"
+"POT-Creation-Date: 2025-03-13 21:55+0800\n"
 "PO-Revision-Date: 2025-01-30 11:24+0800\n"
 "Last-Translator:  <wushengwuxi-msctinoulk@outlook.com>\n"
 "Language-Team: English\n"
@@ -689,21 +689,60 @@ msgid "%s: done. Now you can run './configure'.\\n"
 msgstr "%s: done. Now you can run './configure'.\\n"
 
 #
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 38
+msgid ""
+"Usage: gen-post-json [-h|--help] [-V|--version] [-v|--verbose] <posts dir> "
+"<output file>\n"
+msgstr ""
+"Usage: gen-post-json [-h|--help] [-V|--version] [-v|--verbose] <posts dir> "
+"<output file>\n"
+
+#
 # File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 85
 msgid "Not a chenpi11-blog project."
 msgstr "Not a chenpi11-blog project."
-
-#
-# File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 89
-# File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 93
-msgid "Usage: gen-post-json <posts-dir> <output-file>"
-msgstr "Usage: gen-post-json <posts-dir> <output-file>"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 90
 #
 msgid "No posts found."
 msgstr "No posts found."
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post-meta.ts, line: 140
+#, javascript-format
+msgid "Post \"%s\":"
+msgstr "Post \"%s\":"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post-meta.ts, line: 141
+#, javascript-format
+msgid "\tTitle: %s"
+msgstr "\tTitle: %s"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post-meta.ts, line: 142
+#, javascript-format
+msgid "\tContent: %d Bytes (%s)"
+msgstr "\tContent: %d Bytes (%s)"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post-meta.ts, line: 143
+#, javascript-format
+msgid "\tDate: %s"
+msgstr "\tDate: %s"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post-meta.ts, line: 144
+#, javascript-format
+msgid "\tTags: %s"
+msgstr "\tTags: %s"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 119
+#, javascript-format
+msgid "\tDescription: %s"
+msgstr "\tDescription: %s"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/post-meta.ts, line: 110
@@ -725,7 +764,6 @@ msgstr "You must run post-tab-render in project's root directory!\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/post-tab-render.go, line: 86
-#
 msgid "Error accessing path %s: %v\n"
 msgstr "Error accessing path %s: %v\n"
 

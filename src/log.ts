@@ -18,6 +18,7 @@
 
 import { _ } from "./i18n.js";
 import { stderr } from "process";
+import { getVerbose } from "./verbose.js";
 
 /**
  * Logs a message to stderr.
@@ -33,6 +34,18 @@ function logMsg(msg: string, control: string) {
         msg = `\x1b[${control}m${msg}\x1b[0m`;
     }
     stderr.write(msg);
+}
+
+/**
+ * Logs a verbose message to stderr.
+ * 
+ * @param msg Message to log.
+ */
+export function logVerbose(msg: string) {
+    if (getVerbose())
+    {
+        logMsg(msg, "32");
+    }
 }
 
 /**

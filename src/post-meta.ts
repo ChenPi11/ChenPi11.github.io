@@ -16,10 +16,11 @@
  * along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { logInfo } from "./log.js";
+import { logInfo, logVerbose } from "./log.js";
 import { _ } from "./i18n.js";
+import { getVerbose } from "./verbose.js";
 import { sprintf } from "sprintf-js";
-import { fstat, readFileSync, readdirSync } from "fs";
+import { readFileSync, readdirSync } from "fs";
 import upath from "upath";
 
 /**
@@ -107,6 +108,22 @@ export class Post {
 }
 
 /**
+ * Returns a human-readable size string.
+ *
+ * @param size The size of the file in bytes.
+ * @returns 
+ */
+function getHumanReadableSize(size: number): string {
+    const units = ["B", "KB", "MB", "GB", "TB"];
+    let i = 0;
+    while (size >= 1024 && i < units.length - 1) {
+        size /= 1024;
+        i++;
+    }
+    return sprintf("%d %s", size, units[i]);
+}
+
+/**
  * Loads a post from a file.
  * 
  * @param {string} filePath Path of the file.
@@ -120,6 +137,13 @@ function loadPost(filePath: string): Post {
     const date = lines[1];
     const tags = lines[2].split(",");
     const description = lines[3];
+    logVerbose(sprintf(_("Post \"%s\":"), link));
+    logVerbose(sprintf(_("\tTitle: %s"), title));
+    logVerbose(sprintf(_("\tContent: %d Bytes (%s)"), content.length, getHumanReadableSize(content.length)));
+    logVerbose(sprintf(_("\tDate: %s"), date));
+    logVerbose(sprintf(_("\tTags: %s"), tags.join(", ")));
+    logVerbose(sprintf(_("\tDescription: %s"), description));
+
     return new Post(link, title, date, tags, description);
 }
 
