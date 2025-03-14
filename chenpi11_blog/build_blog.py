@@ -89,7 +89,7 @@ def build_blog_main() -> None:
         if postfile.suffix != ".md":
             continue
         sys.stdout.write(
-            _("========== Building {postfile}... ==========\n").format(
+            _("========== Building {postfile} ... ==========\n").format(
                 postfile=postfile,
             ),
         )

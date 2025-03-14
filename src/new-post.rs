@@ -16,23 +16,76 @@
  * along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-use std::{io::Write, process::exit};
+mod configure;
+mod i18n;
+mod log;
+mod post_template;
+mod verbose;
 
-use chrono::prelude::*;
+use std::io::Write;
 
-static POST_TEMPLATE: &str = r#"# 标题
-<!-- date: @DATE@ -->
-<!-- tag: 标签1,2 -->
-"#;
+fn show_help(catalog: &gettext::Catalog) {
+    print!(
+        "{}",
+        catalog.gettext("Usage: new-post [-h|--help] [-V|--version] [-v|--verbose]\n")
+    );
+    print!("\n");
+    print!("{}", catalog.gettext("Options:\n"));
+    print!(
+        "{}",
+        catalog.gettext("  -h, --help     Display this help and exit.\n")
+    );
+    print!(
+        "{}",
+        catalog.gettext("  -V, --version  Output version information and exit.\n")
+    );
+    print!(
+        "{}",
+        catalog.gettext("  -v, --verbose  Verbosely report processing.\n")
+    );
+}
+
+fn show_version(catalog: &gettext::Catalog) {
+    print!("{}", catalog.gettext("new-post 0.1.0\n"));
+    print!("{}", catalog.gettext("Copyright (C) 2025 ChenPi11\n"));
+    print!(
+        "{}",
+        catalog.gettext(
+            "License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\n"
+        )
+    );
+    print!(
+        "{}",
+        catalog.gettext("This is free software: you are free to change and redistribute it.\n")
+    );
+    print!(
+        "{}",
+        catalog.gettext("There is NO WARRANTY, to the extent permitted by law.\n")
+    );
+    print!("{}", catalog.gettext("Written by ChenPi11.\n"));
+}
 
 fn main() {
-    let now = Local::now();
+    let catalog = i18n::init_i18n();
+
+    let args: Vec<String> = std::env::args().collect();
+    if args.contains(&"-h".to_string()) || args.contains(&"--help".to_string()) {
+        show_help(&catalog);
+        std::process::exit(0);
+    }
+    if args.contains(&"-V".to_string()) || args.contains(&"--version".to_string()) {
+        show_version(&catalog);
+        std::process::exit(0);
+    }
+    if args.contains(&"-v".to_string()) || args.contains(&"--verbose".to_string()) {
+        verbose::set_verbose(true);
+    }
+
+    let now = chrono::Local::now();
     let date = now.format("%Y/%m/%d");
     let prefix: String = format!("orig-posts/{}-", now.format("%Y-%m-%d"));
     let mut filename = String::from(prefix.clone());
     let mut cur_num: i32 = 0;
-    let mut post_tempate = String::from(POST_TEMPLATE);
-    post_tempate = post_tempate.replace("@DATE@", date.to_string().as_str());
     loop {
         filename.push_str(&cur_num.to_string());
         filename.push_str(".md");
@@ -43,26 +96,84 @@ fn main() {
             cur_num += 1;
         }
     }
-    println!("Creating {} ...", filename);
-    let mut file = std::fs::File::create(filename.as_str()).unwrap();
-    file.write_all(post_tempate.as_bytes()).unwrap();
 
-    let res = std::process::Command::new("code").arg(filename).spawn();
-    match res {
+    // Create the post.
+    let mut vars = std::collections::HashMap::new();
+    vars.insert("file".to_string(), filename.to_string());
+    let message = strfmt::strfmt(catalog.gettext("Creating {file} ..."), &vars).unwrap();
+    log::info(&catalog, message.as_str());
+
+    let file = std::fs::File::create(filename.as_str());
+    match file {
         Ok(_) => {}
         Err(e) => {
-            println!("Error: {}", e);
-            exit(1);
+            let mut vars = std::collections::HashMap::new();
+            vars.insert("file".to_string(), filename.to_string());
+            vars.insert("error".to_string(), e.to_string());
+            let message = strfmt::strfmt(
+                catalog.gettext("Failed to create file {file}: {error}"),
+                &vars,
+            )
+            .unwrap();
+            log::error(&catalog, message.as_str());
+            std::process::exit(1);
         }
     }
+    let write_res = file
+        .unwrap()
+        .write_all(post_template::POST_TEMPLATE.as_bytes());
+    match write_res {
+        Ok(_) => {}
+        Err(e) => {
+            let mut vars = std::collections::HashMap::new();
+            vars.insert("file".to_string(), filename.to_string());
+            vars.insert("error".to_string(), e.to_string());
+            let message = strfmt::strfmt(
+                catalog.gettext("Failed to write to file {file}: {error}"),
+                &vars,
+            )
+            .unwrap();
+            log::error(&catalog, message.as_str());
+            std::process::exit(1);
+        }
+    }
+
+    // Configure the post.
+    let mut configure_vars = std::collections::HashMap::new();
+    configure_vars.insert("DATE".to_string(), date.to_string());
+    configure::configure_file(&catalog, filename.as_str(), &configure_vars);
+
+    let res = std::process::Command::new("code")
+        .arg(filename.as_str())
+        .spawn();
     match res {
         Ok(mut child) => {
-            child.wait().unwrap();
+            let res = child.wait();
+            match res {
+                Ok(_) => {}
+                Err(e) => {
+                    let mut vars = std::collections::HashMap::new();
+                    vars.insert("file".to_string(), filename.to_string());
+                    vars.insert("error".to_string(), e.to_string());
+                    let message = strfmt::strfmt(
+                        catalog.gettext("Failed to wait for editor for file {file}: {error}"),
+                        &vars,
+                    );
+                    log::error(&catalog, message.unwrap().as_str());
+                    std::process::exit(1);
+                }
+            }
         }
         Err(e) => {
-            println!("Error: {}", e);
-            exit(1);
+            let mut vars = std::collections::HashMap::new();
+            vars.insert("file".to_string(), filename.to_string());
+            vars.insert("error".to_string(), e.to_string());
+            let message = strfmt::strfmt(
+                catalog.gettext("Failed to open editor for file {file}: {error}"),
+                &vars,
+            );
+            log::error(&catalog, message.unwrap().as_str());
+            std::process::exit(1);
         }
     }
-    exit(0);
 }

@@ -29,10 +29,11 @@ XGETTEXT ?= @XGETTEXT@
 MSGCAT ?= msgcat
 MSGFMT ?= @MSGFMT@
 MSGMERGE ?= @MSGMERGE@
+MSGINIT ?= msginit
 
 FROMCODE = --from-code=UTF-8
 PKG_INFO = --package-name=chenpi11-blog --package-version=0.1.0
-KEYWORDS = --keyword=_ --keyword=_g --keyword=gotext.Get
+KEYWORDS = --keyword=_ --keyword=_g --keyword=gotext.Get --keyword=catalog.gettext
 OUTPUT_FLAGS = --width=100
 COMMENTS = --add-comments --add-location --strict
 COPYRIGHT = --copyright-holder="2025 ChenPi11's Blog"
@@ -63,7 +64,10 @@ gen-post-json.pot : $(wildcard $(top_srcdir)/src/*.ts)
 post-tab-render.pot : $(top_srcdir)/post-tab-render.go $(wildcard $(top_srcdir)/chenpi11_blog/*.go)
 	cd $(top_srcdir) && $(XGETTEXT) $(XGETTEXT_FLAGS) --output=$(srcdir)/$@ --language=C# $^
 
-messages.pot : build-post.pot mkpostlists.pot python-part.pot scripts.pot gen-post-json.pot post-tab-render.pot
+new-post.pot : $(wildcard $(top_srcdir)/src/*.rs)
+	cd $(top_srcdir)/src && $(XGETTEXT) $(XGETTEXT_FLAGS) --output=$(srcdir)/$@ --language=C++ $^
+
+messages.pot : build-post.pot mkpostlists.pot python-part.pot scripts.pot gen-post-json.pot post-tab-render.pot new-post.pot
 	$(MSGCAT) $^ > $@
 
 %.mo : %.po
@@ -75,14 +79,17 @@ install-% : %.mo
 
 install : $(SUPPORT_LANGS:%=install-%)
 
-update-po : $(LOCALE).po messages.pot
+update-po : messages.pot
+	for lang in $(SUPPORT_LANGS); do \
+		$(MSGMERGE) --update $$lang.po messages.pot; \
+	done
+
+new-po : messages.pot
 	if test "x$(LOCALE)" = "x"; then \
 		echo "Please set LOCALE variable to update po files."; \
 		exit 1; \
 	fi
-	for lang in $(SUPPORT_LANGS); do \
-		$(MSGMERGE) --update $$lang.po messages.pot; \
-	done
+	$(MSGINIT) --no-translator --locale=$(LOCALE).UTF-8 --input=messages.pot --output=$(LOCALE).po --width=100
 
 clean :
 

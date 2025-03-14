@@ -73,7 +73,7 @@ def trim_html(file_path: Path) -> None:
 
     """
     cmd = " ".join([*HTML_MINIFIER_CMD, str(file_path)])
-    msg = _("========== Minifying {file_path}... ==========\n").format(
+    msg = _("========== Minifying {file_path} ... ==========\n").format(
         file_path=file_path,
     )
     sys.stdout.write(msg)
@@ -99,7 +99,7 @@ def trim_js(file_path: Path) -> None:
 
     """
     cmd = " ".join([*TERSER_CMD, str(file_path)])
-    msg = _("========== Minifying {file_path}... ==========\n").format(
+    msg = _("========== Minifying {file_path} ... ==========\n").format(
         file_path=file_path,
     )
     sys.stdout.write(msg)
@@ -125,7 +125,7 @@ def trim_css(file_path: Path) -> None:
 
     """
     cmd = " ".join([*CLEANCSS_CMD, str(file_path)])
-    msg = _("========== Minifying {file_path}... ==========\n").format(
+    msg = _("========== Minifying {file_path} ... ==========\n").format(
         file_path=file_path,
     )
     sys.stdout.write(msg)

@@ -2,44 +2,91 @@
 # chenpi11-blog 软件包的简体中文翻译.
 # Copyright (C) 2025 2025 ChenPi11's Blog
 # This file is distributed under the same license as the chenpi11-blog package.
-#  <wushengwuxi-msctinoulk@outlook.com>, 2025.
+# Automatically generated, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: chenpi11-blog 0.1.0\n"
 "Report-Msgid-Bugs-To: wushengwuxi-msctinoulk@outlook.com\n"
-"POT-Creation-Date: 2025-03-13 21:55+0800\n"
-"PO-Revision-Date: 2025-01-29 17:43+0800\n"
-"Last-Translator:  <wushengwuxi-msctinoulk@outlook.com>\n"
-"Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
+"POT-Creation-Date: 2025-03-14 19:39+0800\n"
+"PO-Revision-Date: 2025-03-14 19:39+0800\n"
+"Last-Translator: ChenPi11\n"
+"Language-Team: ChenPi11\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 38
-msgid ""
-"Usage: build-post [-h|--help] [-V|--version] [-v|--verbose] <template file> "
-"<source file>\n"
-msgstr ""
-"用法: build-post [-h|--help] [-V|--version] [-v|--verbose] <模板文件> <源文件"
-">\n"
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 31
+msgid "Usage: build-post [-h|--help] [-V|--version] [-v|--verbose] <template file> <source file>\n"
+msgstr "用法：build-post [-h|--help] [-V|--version] [-v|--verbose] <模板文件> <源文件>\n"
 
+# #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
-# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 42
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 33
+# #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 36
+# #-#-#-#-#  python-part.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 40
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 152
+# #-#-#-#-#  gen-post-json.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 90
+# #-#-#-#-#  post-tab-render.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/post-tab-render.go, line: 46
+# #-#-#-#-#  new-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 33
 msgid "Options:\n"
 msgstr "选项：\n"
 
+# #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
-# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 43
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 34
+# #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 37
+# #-#-#-#-#  python-part.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 41
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 153
+# #-#-#-#-#  gen-post-json.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 91
+# #-#-#-#-#  post-tab-render.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/post-tab-render.go, line: 47
+# #-#-#-#-#  new-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 36
 msgid "  -h, --help     Display this help and exit.\n"
-msgstr "  -h，--help     显示此帮助并退出。\n"
+msgstr "  -h， --help     显示此帮助并退出。\n"
 
+# #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
-# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 44
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 35
+# #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 38
+# #-#-#-#-#  python-part.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 42
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 154
+# #-#-#-#-#  gen-post-json.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 92
+# #-#-#-#-#  post-tab-render.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/post-tab-render.go, line: 48
+# #-#-#-#-#  new-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 40
 msgid "  -V, --version  Output version information and exit.\n"
-msgstr "  -V，--version  输出版本信息并退出。\n"
+msgstr "  -V， --version  输出版本信息并退出。\n"
 
 # #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
@@ -51,8 +98,17 @@ msgstr "  -V，--version  输出版本信息并退出。\n"
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 43
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 155
+# #-#-#-#-#  gen-post-json.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 93
+# #-#-#-#-#  post-tab-render.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/post-tab-render.go, line: 49
+# #-#-#-#-#  new-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 44
 msgid "  -v, --verbose  Verbosely report processing.\n"
-msgstr "  -v，--verbose  详细报告处理过程。\n"
+msgstr "  -v， --verbose  详细报告处理过程。\n"
 
 # #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
@@ -64,8 +120,17 @@ msgstr "  -v，--verbose  详细报告处理过程。\n"
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 47
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 159
+# #-#-#-#-#  gen-post-json.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 98
+# #-#-#-#-#  post-tab-render.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/post-tab-render.go, line: 35
+# #-#-#-#-#  new-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 50
 msgid "Copyright (C) 2025 ChenPi11\n"
-msgstr "版权 (C) 2025 ChenPi11\n"
+msgstr "版权所有 (C) 2025 ChenPi11\n"
 
 # #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
@@ -77,12 +142,17 @@ msgstr "版权 (C) 2025 ChenPi11\n"
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 50
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 162
-msgid ""
-"License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl."
-"html>\n"
-msgstr ""
-"授权协议 GPLv3+: GNU GPL 版本 3 或之后版本 <https://gnu.org/licenses/gpl."
-"html>\n"
+# #-#-#-#-#  gen-post-json.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 99
+# #-#-#-#-#  post-tab-render.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/post-tab-render.go, line: 36
+# #-#-#-#-#  new-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 54
+msgid "License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\n"
+msgstr "许可证 GPLv3+：GNU GPL 许可证第三版或者更新版本 <http://gnu.org/licenses/gpl.html>\n"
 
 # #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
@@ -94,8 +164,17 @@ msgstr ""
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 54
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 166
+# #-#-#-#-#  gen-post-json.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 100
+# #-#-#-#-#  post-tab-render.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/post-tab-render.go, line: 37
+# #-#-#-#-#  new-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 59
 msgid "This is free software: you are free to change and redistribute it.\n"
-msgstr "这是自由软件: 您有修改和再发布的自由。\n"
+msgstr "本软件是自由软件，您可以自由地更改和重新发布。"
 
 # #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
@@ -107,8 +186,17 @@ msgstr "这是自由软件: 您有修改和再发布的自由。\n"
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 56
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 168
+# #-#-#-#-#  gen-post-json.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 101
+# #-#-#-#-#  post-tab-render.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/post-tab-render.go, line: 38
+# #-#-#-#-#  new-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 63
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
-msgstr "本软件在法律允许的范围内不提供任何担保。\n"
+msgstr "在法律许可的情况下特此明示，本软件不提供任何担保。"
 
 # #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
@@ -120,23 +208,36 @@ msgstr "本软件在法律允许的范围内不提供任何担保。\n"
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 57
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 169
-msgid "Written by ChenPi11.\n"
-msgstr "由 ChenPi11 编写。\n"
-
+# #-#-#-#-#  gen-post-json.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
-# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 43
+# File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 102
+# #-#-#-#-#  post-tab-render.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/post-tab-render.go, line: 39
+# #-#-#-#-#  new-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 65
+msgid "Written by ChenPi11.\n"
+msgstr "由 ChenPi11 编写。"
+
+# #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 94
+# #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 83
 #, c-format
 msgid "You must run %s in project's root directory!\n"
-msgstr "你必须在项目的根目录下运行 %s！\n"
+msgstr "您必须在项目的根目录下运行 %s！\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 55
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 103
 #, c-format
 msgid "Cannot load post: %s\n"
 msgstr "无法加载文章：%s\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 60
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 108
 #, c-format
 msgid "Cannot save post: %s\n"
 msgstr "无法保存文章：%s\n"
@@ -145,23 +246,23 @@ msgstr "无法保存文章：%s\n"
 # File: /workspaces/ChenPi11.github.io/src/configure.c, line: 64
 #, c-format
 msgid "Empty find string when replacing string in file: %s\n"
-msgstr "在文件 %s 中替换字符串时，找不到要替换的字符串。\n"
+msgstr "替换文件 %s 中的字符串时，查找字符串为空。\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/configure.c, line: 65
 msgid "Nothing will be replaced.\n"
-msgstr "什么都不会被替换。\n"
+msgstr "没有要替换的内容。\n"
 
 # #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
 # File: /workspaces/ChenPi11.github.io/src/configure.c, line: 72
 # File: /workspaces/ChenPi11.github.io/src/configure.c, line: 123
-# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 118
-# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 206
-# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 218
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 141
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 276
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 307
+# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 125
+# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 213
+# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 225
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 146
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 311
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 342
 # #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
 # File: /workspaces/ChenPi11.github.io/src/file-util.cpp, line: 41
@@ -180,8 +281,8 @@ msgstr "无法分配内存。\n"
 #
 # File: /workspaces/ChenPi11.github.io/src/configure.c, line: 94
 # File: /workspaces/ChenPi11.github.io/src/configure.c, line: 128
-# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 125
-# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 130
+# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 132
+# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 137
 #, c-format
 msgid "I/O Error: %s.\n"
 msgstr "输入/输出错误：%s。\n"
@@ -189,7 +290,7 @@ msgstr "输入/输出错误：%s。\n"
 #
 # File: /workspaces/ChenPi11.github.io/src/configure.c, line: 156
 msgid "NULL filepath.\n"
-msgstr "文件名是空指针。\n"
+msgstr "文件路径为空指针。\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/configure.c, line: 159
@@ -200,12 +301,12 @@ msgstr "正在配置 %s ...\n"
 #
 # File: /workspaces/ChenPi11.github.io/src/configure.c, line: 166
 msgid "NULL key found in configures.\n"
-msgstr "配置中出现空指针键。\n"
+msgstr "configures 中找到空指针键。\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/configure.c, line: 174
 msgid "NULL value found in configures. Replace with empty string.\n"
-msgstr "配置中出现空值。将其替换为空字符串。\n"
+msgstr "configures 中找到空指针值。将其替换为空字符串。\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/configure.c, line: 182
@@ -214,411 +315,433 @@ msgid "Cannot format string: %s\n"
 msgstr "无法格式化字符串：%s\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 154
+# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 161
 msgid "EOF reached.\n"
-msgstr "已到达文件末尾。\n"
+msgstr "到达文件末尾。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 158
+# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 165
 #, c-format
 msgid "Cannot getline: %s\n"
-msgstr "无法 getline：%s\n"
+msgstr "无法读取文件行：%s\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 212
+# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 219
 #, c-format
 msgid "Cannot get file size: %s\n"
 msgstr "无法获取文件大小：%s\n"
 
 # #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
-# File: /workspaces/ChenPi11.github.io/src/log.c, line: 43
+# File: /workspaces/ChenPi11.github.io/src/log.c, line: 59
 # #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
-# File: /workspaces/ChenPi11.github.io/src/log.cpp, line: 52
+# File: /workspaces/ChenPi11.github.io/src/log.cpp, line: 68
+# #-#-#-#-#  new-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/log.rs, line: 70
 #, c-format
 msgid "INFO: "
 msgstr "信息："
 
 # #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
-# File: /workspaces/ChenPi11.github.io/src/log.c, line: 53
+# File: /workspaces/ChenPi11.github.io/src/log.c, line: 74
 # #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
-# File: /workspaces/ChenPi11.github.io/src/log.cpp, line: 62
+# File: /workspaces/ChenPi11.github.io/src/log.cpp, line: 83
 #, c-format
 msgid "WARNING: "
 msgstr "警告："
 
 # #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
-# File: /workspaces/ChenPi11.github.io/src/log.c, line: 62
+# File: /workspaces/ChenPi11.github.io/src/log.c, line: 84
 # #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
-# File: /workspaces/ChenPi11.github.io/src/log.cpp, line: 72
+# File: /workspaces/ChenPi11.github.io/src/log.cpp, line: 93
+# #-#-#-#-#  gen-post-json.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/log.ts, line: 66
+# #-#-#-#-#  new-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/src/log.rs, line: 81
 #, c-format
 msgid "ERROR: "
 msgstr "错误："
 
+# #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
-# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 64
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 63
+# #-#-#-#-#  post-tab-render.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/markdown.go, line: 46
 msgid "Checking for markdown-it ... "
-msgstr "正在查找 markdown-it ... "
+msgstr "正在检查 markdown-it ... "
 
+# #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
-# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 91
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 93
+# #-#-#-#-#  post-tab-render.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/markdown.go, line: 65
 #, c-format
 msgid "not found\n"
 msgstr "未找到\n"
 
+# #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
-# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 92
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 94
+# #-#-#-#-#  post-tab-render.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/markdown.go, line: 66
 msgid ""
 "Can't find markdown-it. Did you forget to run setup?\n"
 "You can also set the MARKDOWN_IT environment variable.\n"
-msgstr ""
-"无法找到 markdown-it。是否忘记运行 setup ？\n"
-"你也可以设置 MARKDOWN_IT 环境变量。\n"
+msgstr "无法找到 markdown-it。您是否忘记运行 setup？\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 108
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 110
 msgid "markdown-it is not initialized.\n"
 msgstr "markdown-it 未初始化。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 113
-# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 117
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 115
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 119
 msgid "snprintf() failed.\n"
 msgstr "snprintf() 失败。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 120
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 122
 #, c-format
 msgid "Executing: %s\n"
 msgstr "正在执行：%s\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 124
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 126
 #, c-format
 msgid "markdown-it failed with exit code %d.\n"
-msgstr "markdown-it 运行失败，退出码为 %d。\n"
+msgstr "markdown-it 失败，退出码为 %d。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 135
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 137
 #, c-format
 msgid "Remove %s failed.\n"
-msgstr "无法删除 %s。\n"
+msgstr "删除 %s 失败。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 62
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 67
 msgid "Cannot reallocate memory.\n"
 msgstr "无法重新分配内存。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 88
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 93
 #, c-format
 msgid "Duplicate tag: \"%s\".\n"
 msgstr "重复的标签：\"%s\"。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 103
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 108
 msgid "Post template file is NULL.\n"
-msgstr "文章模板文件是空指针。\n"
+msgstr "文章模板文件为空指针。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 105
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 110
 #, c-format
 msgid "Using %s as post template.\n"
 msgstr "使用 %s 作为文章模板。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 148
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 153
 #, c-format
 msgid "First line must start with \"%s\".\n"
 msgstr "第一行必须以 \"%s\" 开头。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 149
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 154
 #, c-format
 msgid "First line of %s is not a title.\n"
 msgstr "%s 的第一行不是标题。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 160
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 165
 msgid "Cannot strip title.\n"
-msgstr "无法 strip 标题。\n"
+msgstr "无法裁剪标题。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 168
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 173
 #, c-format
 msgid "Second line must start with \"%s\".\n"
 msgstr "第二行必须以 \"%s\" 开头。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 169
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 174
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 182
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 179
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 187
 #, c-format
 msgid "Second line of %s is not a date.\n"
 msgstr "%s 的第二行不是日期。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 173
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 178
 #, c-format
 msgid "Second line must end with \"%s\".\n"
 msgstr "第二行必须以 \"%s\" 结尾。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 181
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 186
 msgid "Second line must contain a date.\n"
-msgstr "第二行必须包含一个日期。\n"
+msgstr "第二行必须包含日期。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 193
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 198
 msgid "Cannot strip date.\n"
-msgstr "无法 strip 日期。\n"
+msgstr "无法裁剪日期。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 201
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 206
 #, c-format
 msgid "Third line must start with \"%s\".\n"
 msgstr "第三行必须以 \"%s\" 开头。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 202
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 207
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 212
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 217
 #, c-format
 msgid "Third line of %s is not a tag.\n"
 msgstr "%s 的第三行不是标签。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 206
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 211
 #, c-format
 msgid "Third line must end with \"%s\".\n"
 msgstr "第三行必须以 \"%s\" 结尾。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 211
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 216
 msgid "Third line must contain a tag.\n"
-msgstr "第三行必须包含一个标签。\n"
+msgstr "第三行必须包含标签。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 148
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 232
 #, c-format
 msgid "Fourth line must start with \"%s\".\n"
 msgstr "第四行必须以 \"%s\" 开头。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 149
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 233
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 238
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 243
 #, c-format
 msgid "Fourth line of %s is not a description.\n"
-msgstr "%s 的第四行不是标题。\n"
+msgstr "%s 的第四行不是描述。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 206
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 237
 #, c-format
 msgid "Fourth line must end with \"%s\".\n"
 msgstr "第四行必须以 \"%s\" 结尾。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 181
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 242
 msgid "Fourth line must contain a description.\n"
-msgstr "第四行必须包含一个描述。\n"
+msgstr "第四行必须包含描述。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 193
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 254
 msgid "Cannot strip description.\n"
-msgstr "无法 strip 日期。\n"
+msgstr "无法裁剪描述。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 255
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 259
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 263
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 290
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 294
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 298
 msgid "Cannot generate filename.\n"
-msgstr "无法生成文件名。\n"
+msgstr ""
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 266
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 301
 #, c-format
 msgid "Generating %s ...\n"
-msgstr "正在生成 %s...\n"
+msgstr "正在生成 %s ...\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 270
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 305
 #, c-format
 msgid "Cannot copy file: %s\n"
 msgstr "无法复制文件：%s\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 280
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 312
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 316
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 323
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 315
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 347
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 351
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 358
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 364
 #, c-format
 msgid "Cannot write to file: %s\n"
 msgstr "无法写入文件：%s\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 288
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 323
 msgid "Cannot convert markdown to html.\n"
 msgstr "无法将 markdown 转换为 html。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 293
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 328
 #, c-format
 msgid "Cannot remove file: %s\n"
 msgstr "无法删除文件：%s\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 300
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 335
 #, c-format
 msgid "Cannot configure file: %s\n"
 msgstr "无法配置文件：%s\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 27
+# File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 34
 msgid "Usage: mkpostlists [-h|--help] [-V|--version] [-v|--verbose]\n"
 msgstr "用法：mkpostlists [-h|--help] [-V|--version] [-v|--verbose]\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 41
+# File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 90
 msgid "Generate post lists ...\n"
 msgstr "正在生成文章列表 ...\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 56
+# File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 105
 #, c-format
 msgid "Errno %d: %s\n"
-msgstr "错误码 %d：%s\n"
+msgstr "错误码 %d: %s\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/post.cpp, line: 44
 msgid "No such file: "
-msgstr "找不到文件："
+msgstr "没有这样的文件："
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.cpp, line: 54
-# File: /workspaces/ChenPi11.github.io/src/post.cpp, line: 59
-# File: /workspaces/ChenPi11.github.io/src/post.cpp, line: 64
+# File: /workspaces/ChenPi11.github.io/src/post.cpp, line: 51
+# File: /workspaces/ChenPi11.github.io/src/post.cpp, line: 56
+# File: /workspaces/ChenPi11.github.io/src/post.cpp, line: 61
+# File: /workspaces/ChenPi11.github.io/src/post.cpp, line: 66
 msgid "Read file failed: "
-msgstr "无法读取文件："
+msgstr "读取文件失败："
 
 #
-# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 27
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 37
 msgid "Usage: build-blog [-h|--help] [-V|--version] [-v|--verbose]\n"
 msgstr "用法：build-blog [-h|--help] [-V|--version] [-v|--verbose]\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 43
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 70
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/is_blog.py, line: 57
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 182
 #, python-brace-format
 msgid "You must run {prog} in project's root directory!\n"
-msgstr "你必须在项目的根目录下运行 {prog}！\n"
+msgstr "您必须在项目的根目录下运行 {prog}！\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 40
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 76
 msgid "posts/post-template.html.in is not found."
-msgstr "posts/post-template.html.in 未找到。"
+msgstr "未找到 posts/post-template.html.in 文件。"
 
 #
-# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 49
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 85
 msgid "build-post is not found."
-msgstr "build-post 未找到。"
+msgstr "未找到 build-post 可执行文件。"
 
 #
-# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 56
-#, python-brace-format
-msgid "========== Building {postfile}... ==========\n"
-msgstr "========== 正在构建 {postfile}... ==========\n"
+# File: , line: 92
+#, python-brace-format/workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py
+msgid "========== Building {postfile} ... ==========\n"
+msgstr "========== 正在构建 {postfile} ... ==========\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 120
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 99
 #, python-brace-format
 msgid "Executing {cmd} ...\n"
-msgstr "正在执行：{cmd} ...\n"
+msgstr "正在执行 {cmd} ...\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 67
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 105
 #, python-brace-format
 msgid "Failed to build {postfile}."
-msgstr "无法构建 {postfile}。"
+msgstr "构建 {postfile} 失败。"
 
 #
-# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 71
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 109
 #. Copy applets.
 msgid "========== Copying applets ... ==========\n"
-msgstr "========== 正在复制应用程序 ... ==========\n"
+msgstr "========== 正在复制 applets ... ==========\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/lang_stat.py, line: 129
 msgid "Git command failed."
-msgstr "Git 命令失败。"
+msgstr "Git 命令执行失败。"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/lang_stat.py, line: 131
 msgid "Cloc command failed."
-msgstr "Cloc 命令失败。"
+msgstr "Cloc 命令执行失败。"
 
 #
-# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 73
-# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 98
-# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 123
-#, python-brace-format
-msgid "========== Minifying {file_path}... ==========\n"
-msgstr "========== 正在压缩 {file_path}... ==========\n"
-
-#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 76
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 102
-# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 127
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 128
+#, python-brace-format
+msgid "========== Minifying {file_path} ... ==========\n"
+msgstr "========== 正在压缩 {file_path} ... ==========\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 81
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 107
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 133
 #, python-brace-format
 msgid "Running command: {cmd}\n"
-msgstr "正在运行命令：{cmd}\n"
+msgstr "正在执行命令：{cmd}\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 85
-# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 110
-# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 135
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 89
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 115
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 141
 msgid "Minify command run failed."
-msgstr "压缩命令运行失败。"
+msgstr "压缩命令执行失败。"
 
 #
-# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 27
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 149
 msgid "Usage: trim-wwwroot [-h|--help] [-V|--version] [-v|--verbose]\n"
 msgstr "用法：trim-wwwroot [-h|--help] [-V|--version] [-v|--verbose]\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 144
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/trim_wwwroot.py, line: 189
 msgid "'wwwroot' not exists."
-msgstr "'wwwroot' 不存在。"
+msgstr "'wwwroot' 目录不存在。"
 
 #
-# File: /workspaces/ChenPi11.github.io/scripts/gettext.sh, line: 36
+# File: /workspaces/ChenPi11.github.io/scripts/gettext.sh, line: 42
 msgid "Error."
 msgstr "错误。"
 
 #
 # File: /workspaces/ChenPi11.github.io/scripts/gettext.sh, line: 49
 msgid "Copyright (C) 2025 ChenPi11.\\n"
-msgstr "版权所有 (C) 2025 ChenPi11.\\n"
+msgstr "版权所有 (C) 2025 ChenPi11。\\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/scripts/gettext.sh, line: 50
-msgid ""
-"License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl."
-"html>\\n"
-msgstr ""
-"授权协议 GPLv3+: GNU GPL 版本 3 或之后版本 <https://gnu.org/licenses/gpl."
-"html>\\n"
+msgid "License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\\n"
+msgstr "许可证 GPLv3+：GNU GPL 许可证第三版或者更新版本 <http://gnu.org/licenses/gpl.html>\\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/scripts/gettext.sh, line: 51
 msgid "This is free software: you are free to change and redistribute it.\\n"
-msgstr "这是自由软件: 您有修改和再发布的自由。\\n"
+msgstr "本软件是自由软件，您可以自由地更改和重新发布。\\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/scripts/gettext.sh, line: 52
 msgid "There is NO WARRANTY, to the extent permitted by law.\\n"
-msgstr "本软件在法律允许的范围内不提供任何担保。\\n"
+msgstr "在法律许可的情况下特此明示，本软件不提供任何担保。\\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/scripts/gettext.sh, line: 53
@@ -626,7 +749,8 @@ msgid "Written by ChenPi11.\\n"
 msgstr "由 ChenPi11 编写。\\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 27
+# File: /workspaces/ChenPi11.github.io/scripts/real-build.sh, line: 30
+# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 30
 msgid "Usage: %s [-h|--help] [-V|--version] [-v|--verbose]"
 msgstr "用法：%s [-h|--help] [-V|--version] [-v|--verbose]"
 
@@ -637,51 +761,48 @@ msgstr "构建 chenpi11-blog。\\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/scripts/real-build.sh, line: 33
-# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 33
+# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 32
 msgid "Options:\\n"
 msgstr "选项：\\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/scripts/real-build.sh, line: 34
-# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 34
+# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 33
 msgid "  -h, --help      Display this help and exit.\\n"
 msgstr "  -h, --help      显示帮助信息并退出。\\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/scripts/real-build.sh, line: 35
-# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 35
+# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 34
 msgid "  -V, --version   Output version information and exit.\\n"
 msgstr "  -V, --version   输出版本信息并退出。\\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/scripts/real-build.sh, line: 36
-# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 36
+# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 35
 msgid "  -v, --verbose   Verbosely report processing.\\n"
 msgstr "  -v, --verbose   详细报告处理过程。\\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 54
+# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 69
 msgid "%s: done. Now you can run './configure'.\\n"
-msgstr "%s: 完成。现在你可以运行 './configure'。\\n"
+msgstr "%s: 完成。现在您可以运行 './configure'。\\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 38
-msgid ""
-"Usage: gen-post-json [-h|--help] [-V|--version] [-v|--verbose] <posts dir> "
-"<output file>\n"
-msgstr ""
-"用法：gen-post-json [-h|--help] [-V|--version] [-v|--verbose] <帖子文件夹> "
-"<输出文件>\n"
+# File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 88
+# File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 131
+msgid "Usage: gen-post-json [-h|--help] [-V|--version] [-v|--verbose] <posts dir> <output file>\n"
+msgstr "用法: gen-post-json [-h|--help] [-V|--version] [-v|--verbose] <posts dir> <output file>\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 85
+# File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 109
 msgid "Not a chenpi11-blog project."
 msgstr "不是 chenpi11-blog 项目。"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 91
+# File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 143
 msgid "No posts found."
-msgstr "未找到帖子。"
+msgstr "未找到文章。"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/post-meta.ts, line: 140
@@ -714,46 +835,46 @@ msgid "\tTags: %s"
 msgstr "\t标签: %s"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 120
+# File: /workspaces/ChenPi11.github.io/src/post-meta.ts, line: 145
 #, javascript-format
 msgid "\tDescription: %s"
 msgstr "\t描述: %s"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 55
+# File: /workspaces/ChenPi11.github.io/src/post-meta.ts, line: 162
 #, javascript-format
 msgid "Loaded post: %s"
-msgstr "已加载文章：%s"
+msgstr "加载文章: %s"
 
 #
-# File: /workspaces/ChenPi11.github.io/autogen.sh, line: 27
+# File: /workspaces/ChenPi11.github.io/post-tab-render.go, line: 44
 msgid "Usage: post-tab-render [-h|--help] [-V|--version] [-v|--verbose]\n"
 msgstr "用法：post-tab-render [-h|--help] [-V|--version] [-v|--verbose]\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 43
+# File: /workspaces/ChenPi11.github.io/post-tab-render.go, line: 58
 msgid "You must run post-tab-render in project's root directory!\n"
-msgstr "你必须在项目的根目录下运行 post-tab-render！\n"
+msgstr "您必须在项目的根目录下运行 post-tab-render！\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/post-tab-render.go, line: 86
 msgid "Error accessing path %s: %v\n"
-msgstr "无法访问路径 %s：%v\n"
+msgstr "无法访问路径 %s: %v\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/post-tab-render.go, line: 97
 msgid "Error walking the path %q: %v\n"
-msgstr "无法遍历路径 %q：%v\n"
+msgstr "无法遍历路径 %q: %v\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/extract-tab.go, line: 36
 msgid "Rendering tab-div-page '%s' in '%s' ...\n"
-msgstr "正在渲染 tab-div-page '%s' （在 '%s'中）...\n"
+msgstr "正在渲染 “%s” 中的 tab-div-page ...\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/extract-tab.go, line: 39
 msgid "<tab-div-page> '%s' in '%s' has no content.\n"
-msgstr "<tab-div-page> '%s' 在 '%s' 没有内容。\n"
+msgstr "“%s” 中的 tab-div-page “%s” 没有内容。\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/extract-tab.go, line: 63
@@ -766,29 +887,12 @@ msgid "Error rendering HTML: %s\n"
 msgstr "渲染 HTML 时出错：%s\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 280
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 312
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 316
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 323
-#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/extract-tab.go, line: 85
 msgid "Error writing HTML file: %s\n"
 msgstr "无法写入 HTML 文件：%s\n"
 
-# #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
-# File: /workspaces/ChenPi11.github.io/src/configure.c, line: 72
-# File: /workspaces/ChenPi11.github.io/src/configure.c, line: 123
-# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 118
-# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 206
-# File: /workspaces/ChenPi11.github.io/src/file-util.c, line: 218
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 141
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 276
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 307
-# #-#-#-#-#  mkpostlists.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
-#
-# File: /workspaces/ChenPi11.github.io/src/file-util.cpp, line: 41
-# File: /workspaces/ChenPi11.github.io/src/file-util.cpp, line: 59
-#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/extract-tab.go, line: 95
 msgid "Error opening HTML file: %s\n"
 msgstr "无法打开 HTML 文件：%s\n"
 
@@ -808,11 +912,61 @@ msgid "Error writing to temporary file: %v\n"
 msgstr "无法写入临时文件：%v\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 120
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/markdown.go, line: 98
 msgid "Executing command %s %s ...\n"
-msgstr "正在执行：%s %s ...\n"
+msgstr "正在执行命令 %s %s ...\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/markdown.go, line: 104
 msgid "Error while executing command: %v\n"
 msgstr "执行命令时出错：%v\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/configure.rs, line: 63
+msgid "Configuring {file} ..."
+msgstr "正在配置 {file} ..."
+
+#
+# File: /workspaces/ChenPi11.github.io/src/configure.rs, line: 75
+msgid "Failed to read file {file}: {error}"
+msgstr "无法读取文件 {file}：{error}"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/configure.rs, line: 93
+msgid "Failed to write file {file}: {error}"
+msgstr "无法写入文件 {file}：{error}"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 30
+msgid "Usage: new-post [-h|--help] [-V|--version] [-v|--verbose]\n"
+msgstr "用法：new-post [-h|--help] [-V|--version] [-v|--verbose]\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 49
+msgid "new-post 0.1.0\n"
+msgstr "new-post 0.1.0\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 103
+msgid "Creating {file} ..."
+msgstr "正在创建 {file} ..."
+
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 114
+msgid "Failed to create file {file}: {error}"
+msgstr "无法创建文件 {file}：{error}"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 132
+msgid "Failed to write to file {file}: {error}"
+msgstr "无法写入文件 {file}：{error}"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 159
+msgid "Failed to wait for editor for file {file}: {error}"
+msgstr "无法等待编辑器完成文件 {file}：{error}"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 172
+msgid "Failed to open editor for file {file}: {error}"
+msgstr "无法打开编辑器编辑文件 {file}：{error}"

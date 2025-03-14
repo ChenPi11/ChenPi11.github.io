@@ -25,3 +25,8 @@ path = "src/new-post.rs"
 
 [dependencies]
 chrono = "^0.4.17"
+gettext = "0.4.0"
+lazy_static = "1.5.0"
+libc = "0.2.171"
+strfmt = "0.2.4"
+sys-locale = "0.3.2"
