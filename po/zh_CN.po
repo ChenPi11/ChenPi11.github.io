@@ -174,7 +174,7 @@ msgstr "许可证 GPLv3+：GNU GPL 许可证第三版或者更新版本 <http://
 #
 # File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 59
 msgid "This is free software: you are free to change and redistribute it.\n"
-msgstr "本软件是自由软件，您可以自由地更改和重新发布。"
+msgstr "本软件是自由软件，您可以自由地更改和重新发布。\n"
 
 # #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
@@ -196,7 +196,7 @@ msgstr "本软件是自由软件，您可以自由地更改和重新发布。"
 #
 # File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 63
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
-msgstr "在法律许可的情况下特此明示，本软件不提供任何担保。"
+msgstr "在法律许可的情况下特此明示，本软件不提供任何担保。\n"
 
 # #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
@@ -218,7 +218,7 @@ msgstr "在法律许可的情况下特此明示，本软件不提供任何担保
 #
 # File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 65
 msgid "Written by ChenPi11.\n"
-msgstr "由 ChenPi11 编写。"
+msgstr "由 ChenPi11 编写。\n"
 
 # #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
