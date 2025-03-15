@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: chenpi11-blog 0.1.0\n"
 "Report-Msgid-Bugs-To: wushengwuxi-msctinoulk@outlook.com\n"
-"POT-Creation-Date: 2025-03-14 19:39+0800\n"
+"POT-Creation-Date: 2025-03-15 18:00+0800\n"
 "PO-Revision-Date: 2025-03-14 19:39+0800\n"
 "Last-Translator: ChenPi11\n"
 "Language-Team: ChenPi11\n"
@@ -19,8 +19,12 @@ msgstr ""
 
 #
 # File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 31
-msgid "Usage: build-post [-h|--help] [-V|--version] [-v|--verbose] <template file> <source file>\n"
-msgstr "Usage: build-post [-h|--help] [-V|--version] [-v|--verbose] <template file> <source file>\n"
+msgid ""
+"Usage: build-post [-h|--help] [-V|--version] [-v|--verbose] <template file> "
+"<source file>\n"
+msgstr ""
+"Usage: build-post [-h|--help] [-V|--version] [-v|--verbose] <template file> "
+"<source file>\n"
 
 # #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
@@ -151,8 +155,12 @@ msgstr "Copyright (C) 2025 ChenPi11\n"
 # #-#-#-#-#  new-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
 # File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 54
-msgid "License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\n"
-msgstr "License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\n"
+msgid ""
+"License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl."
+"html>\n"
+msgstr ""
+"License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl."
+"html>\n"
 
 # #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
@@ -732,8 +740,12 @@ msgstr "Copyright (C) 2025 ChenPi11.\\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/scripts/gettext.sh, line: 50
-msgid "License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\\n"
-msgstr "License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\\n"
+msgid ""
+"License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl."
+"html>\\n"
+msgstr ""
+"License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl."
+"html>\\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/scripts/gettext.sh, line: 51
@@ -793,8 +805,12 @@ msgstr "%s: done. Now you can run './configure'.\\n"
 #
 # File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 88
 # File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 131
-msgid "Usage: gen-post-json [-h|--help] [-V|--version] [-v|--verbose] <posts dir> <output file>\n"
-msgstr "Usage: gen-post-json [-h|--help] [-V|--version] [-v|--verbose] <posts dir> <output file>\n"
+msgid ""
+"Usage: gen-post-json [-h|--help] [-V|--version] [-v|--verbose] <posts dir> "
+"<output file>\n"
+msgstr ""
+"Usage: gen-post-json [-h|--help] [-V|--version] [-v|--verbose] <posts dir> "
+"<output file>\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 109
@@ -857,12 +873,6 @@ msgstr "Usage: post-tab-render [-h|--help] [-V|--version] [-v|--verbose]\n"
 # File: /workspaces/ChenPi11.github.io/post-tab-render.go, line: 58
 msgid "You must run post-tab-render in project's root directory!\n"
 msgstr "You must run post-tab-render in project's root directory!\n"
-
-#
-# File: /workspaces/ChenPi11.github.io/post-tab-render.go, line: 86
-#. Fucking golang and its stupid warning.
-msgid "Error accessing path %s: %v\n"
-msgstr "Error accessing path %s: %v\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/post-tab-render.go, line: 97

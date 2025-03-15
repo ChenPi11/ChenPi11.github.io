@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: chenpi11-blog 0.1.0\n"
 "Report-Msgid-Bugs-To: wushengwuxi-msctinoulk@outlook.com\n"
-"POT-Creation-Date: 2025-03-14 19:39+0800\n"
+"POT-Creation-Date: 2025-03-15 18:00+0800\n"
 "PO-Revision-Date: 2025-03-14 19:39+0800\n"
 "Last-Translator: ChenPi11\n"
 "Language-Team: ChenPi11\n"
@@ -19,8 +19,12 @@ msgstr ""
 
 #
 # File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 31
-msgid "Usage: build-post [-h|--help] [-V|--version] [-v|--verbose] <template file> <source file>\n"
-msgstr "用法：build-post [-h|--help] [-V|--version] [-v|--verbose] <模板文件> <源文件>\n"
+msgid ""
+"Usage: build-post [-h|--help] [-V|--version] [-v|--verbose] <template file> "
+"<source file>\n"
+msgstr ""
+"用法：build-post [-h|--help] [-V|--version] [-v|--verbose] <模板文件> <源文件"
+">\n"
 
 # #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
@@ -151,8 +155,12 @@ msgstr "版权所有 (C) 2025 ChenPi11\n"
 # #-#-#-#-#  new-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
 # File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 54
-msgid "License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\n"
-msgstr "许可证 GPLv3+：GNU GPL 许可证第三版或者更新版本 <http://gnu.org/licenses/gpl.html>\n"
+msgid ""
+"License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl."
+"html>\n"
+msgstr ""
+"许可证 GPLv3+：GNU GPL 许可证第三版或者更新版本 <http://gnu.org/licenses/gpl."
+"html>\n"
 
 # #-#-#-#-#  build-post.pot (chenpi11-blog 0.1.0)  #-#-#-#-#
 #
@@ -652,8 +660,8 @@ msgid "build-post is not found."
 msgstr "未找到 build-post 可执行文件。"
 
 #
-# File: , line: 92
-#, python-brace-format/workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 92
+#, python-brace-format
 msgid "========== Building {postfile} ... ==========\n"
 msgstr "========== 正在构建 {postfile} ... ==========\n"
 
@@ -730,8 +738,12 @@ msgstr "版权所有 (C) 2025 ChenPi11。\\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/scripts/gettext.sh, line: 50
-msgid "License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\\n"
-msgstr "许可证 GPLv3+：GNU GPL 许可证第三版或者更新版本 <http://gnu.org/licenses/gpl.html>\\n"
+msgid ""
+"License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl."
+"html>\\n"
+msgstr ""
+"许可证 GPLv3+：GNU GPL 许可证第三版或者更新版本 <http://gnu.org/licenses/gpl."
+"html>\\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/scripts/gettext.sh, line: 51
@@ -791,8 +803,12 @@ msgstr "%s: 完成。现在您可以运行 './configure'。\\n"
 #
 # File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 88
 # File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 131
-msgid "Usage: gen-post-json [-h|--help] [-V|--version] [-v|--verbose] <posts dir> <output file>\n"
-msgstr "用法: gen-post-json [-h|--help] [-V|--version] [-v|--verbose] <posts dir> <output file>\n"
+msgid ""
+"Usage: gen-post-json [-h|--help] [-V|--version] [-v|--verbose] <posts dir> "
+"<output file>\n"
+msgstr ""
+"用法: gen-post-json [-h|--help] [-V|--version] [-v|--verbose] <posts dir> "
+"<output file>\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/gen-post-json.ts, line: 109
@@ -857,11 +873,6 @@ msgid "You must run post-tab-render in project's root directory!\n"
 msgstr "您必须在项目的根目录下运行 post-tab-render！\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/post-tab-render.go, line: 86
-msgid "Error accessing path %s: %v\n"
-msgstr "无法访问路径 %s: %v\n"
-
-#
 # File: /workspaces/ChenPi11.github.io/post-tab-render.go, line: 97
 msgid "Error walking the path %q: %v\n"
 msgstr "无法遍历路径 %q: %v\n"
@@ -869,7 +880,7 @@ msgstr "无法遍历路径 %q: %v\n"
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/extract-tab.go, line: 36
 msgid "Rendering tab-div-page '%s' in '%s' ...\n"
-msgstr "正在渲染 “%s” 中的 tab-div-page ...\n"
+msgstr "正在渲染 “%s” 中的 tab-div-page “%s” ...\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/extract-tab.go, line: 39

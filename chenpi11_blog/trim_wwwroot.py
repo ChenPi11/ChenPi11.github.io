@@ -41,7 +41,6 @@ IGNORE_LIST = [
 HTML_MINIFIER_CMD = [
     "npx",
     "html-minifier",
-    "--collapse-boolean-attributes",
     "--collapse-inline-tag-whitespace",
     "--collapse-whitespace",
     "--conservative-collapse",

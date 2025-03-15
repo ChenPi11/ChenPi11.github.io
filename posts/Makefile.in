@@ -26,6 +26,7 @@ RM ?= rm -f
 APPLETS = $(srcdir)/applets
 POSTS = $(wildcard $(srcdir)/*.html)
 WWWROOT_POSTS = $(top_srcdir)/wwwroot/posts
+CB_UTILSVERBOSE ?= @CB_UTILSVERBOSE@
 
 .PHONY : all applets posts clean binclean allclean
 
@@ -39,6 +40,9 @@ applets : $(APPLETS) $(WWWROOT_POSTS)
 
 posts : $(POSTS) $(WWWROOT_POSTS)
 	$(CP) -r $(POSTS) $(WWWROOT_POSTS)
+
+rendering-tabs :
+	$(VEX) post-tab-render $(CB_UTILSVERBOSE)
 
 clean :
 	$(RM) -r $(WWWROOT_POSTS)

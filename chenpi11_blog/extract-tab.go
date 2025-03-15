@@ -32,7 +32,7 @@ var tabMap map[string]string
 func renderingTabDivPageContent(node *html.Node, htmlPath string) {
 	if node.Type == html.ElementNode && node.Data == "tab-div-page" {
 		for _, attr := range node.Attr {
-			if attr.Key == "id" {
+			if attr.Key == "name" {
 				color.Info.Printf(gotext.Get("Rendering tab-div-page '%s' in '%s' ...\n"), attr.Val, htmlPath)
 				tabDivPageContent := node.FirstChild
 				if tabDivPageContent == nil {

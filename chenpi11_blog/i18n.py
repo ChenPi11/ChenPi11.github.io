@@ -65,10 +65,13 @@ def init_i18n() -> None:
     elif is_chenpi11_blog_locale_dir(Path("/usr/local/share/locale")):
         localedir = "/usr/local/share/locale"
 
-    locale.setlocale(locale.LC_ALL, "")
-    gettext.bindtextdomain(PACKAGE_NAME, localedir)
-    gettext.textdomain(PACKAGE_NAME)
-    gettext.install(PACKAGE_NAME, localedir)
+    try:
+        locale.setlocale(locale.LC_ALL, "")
+        gettext.bindtextdomain(PACKAGE_NAME, localedir)
+        gettext.textdomain(PACKAGE_NAME)
+        gettext.install(PACKAGE_NAME, localedir)
+    except:  # noqa: E722 # pylint: disable=W0702
+        locale.setlocale(locale.LC_ALL, "C.UTF-8")
 
 
 init_i18n()

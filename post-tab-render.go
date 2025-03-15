@@ -82,8 +82,6 @@ func main() {
 
 	err := filepath.Walk(POSTS_DIR, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
-			// Fucking golang and its stupid warning.
-			color.Error.Printf(gotext.Get("Error accessing path %s: %v\n"), path, err)
 			return err
 		}
 
@@ -94,6 +92,6 @@ func main() {
 	})
 
 	if err != nil {
-		color.Error.Print(gotext.Get("Error walking the path %q: %v\n"), POSTS_DIR, err)
+		color.Error.Printf(gotext.Get("Error walking the path %q: %v\n"), POSTS_DIR, err)
 	}
 }
