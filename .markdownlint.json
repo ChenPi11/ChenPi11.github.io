@@ -1,4 +1,7 @@
 {
+  "MD013": {
+    "code_blocks": false
+  },
   "MD033": {
     "allowed_elements": ["terminal-applet", "tab-div", "tab-div-page", "img"]
   }

@@ -16,6 +16,11 @@
 - CMake
   - 用于维护 `mkpostlists` 相关代码，而且提供了一个 configure 脚本
 
+![GNU Autoconf](res/gnu.png)
+
+- GNU Autoconf
+  - 用于维护 `build-post` 相关代码
+
 ![GNU Make](res/gnu.png)
 
 - GNU Make
@@ -29,7 +34,7 @@
 ![Python Pip](res/pip.png)
 
 - Python Pip
-  - 维护 `build-blog` 相关代码
+  - 维护 `build-blog`, `lang-stat` , `trim-wwwroot` 相关代码
 
 ![Human](res/human.png)
 
@@ -109,3 +114,156 @@
 
 - Shell Script
   - 用于自动化构建和部署
+
+![Makefile](res/gnu.png)
+
+- Makefile
+  - 管理构建流程
+
+![Python](res/python.png)
+
+- Python
+  - 用于编写脚本和工具
+
+![Rust](res/rust.png)
+
+- Rust
+  - 用于编写脚本和工具
+
+![C](res/c.png)
+
+- C
+  - 用于编写脚本和工具
+
+![C++](res/cpp.png)
+
+- C++
+  - 用于编写脚本和工具
+
+![TypeScript](res/typescript.png)
+
+- TypeScript
+  - 用于编写脚本和工具
+
+![Markdown](res/markdown.png)
+
+- Markdown
+  - 用于编写文档，文章和文章
+
+![M4](res/gnu.png)
+
+- M4
+  - 用于编写 Autoconf 脚本
+
+![YAML](res/yaml.png)
+
+- YAML
+  - 用于配置 Rubisco 工作流，GitHub Actions 等
+
+![TOML](res/toml.png)
+
+- TOML
+  - 用于配置 Rust 项目
+
+![JSON](res/json.png)
+
+- JSON
+  - 用于配置 NPM 项目，TypeScript 项目，Rubisco 项目等
+
+## 依赖项
+
+- 一个 POSIX Shell 和 类 Unix 环境
+  - 必须
+  - 推荐使用 Debian GNU/Linux
+  - 推荐使用 Bash 和 Zsh
+
+- Coreutils
+  - 必须
+  - 需要 `arch`, `uname`, `basename`, `cat`, `chmod`, `cp`, `cut`, `date`,
+    `dirname`, `echo`, `expr`, `free`, `head`, `hostname`, `install`, `ln`,
+    `ls`, `mkdir`, `mktemp`, `mv`, `od`, `rm`, `rmdir`, `sleep`, `sort`, `tail`,
+    `touch`, `tr`, `true`, `uname`, `wc`
+
+- GNU Awk
+  - 必须
+
+- 本地 C 和 C++ 编译器，链接器
+  - 必须
+  - 推荐使用 GCC
+
+- Git
+  - 必须
+
+- Gnulib
+  - 必须
+  - 必须能够提供 gnulib-tool 命令，参见 <http://www.gnu.org/software/gnulib/>
+
+- GNU Autoconf, GNU Automake, GNU M4
+  - 必须
+
+- GNU sed
+  - 必须
+
+- Grep
+  - 必须
+
+- GNU Make
+  - 必须
+
+- Cargo, rustc
+  - 必须
+
+- CMake
+  - 必须
+
+- Go
+  - 必须
+
+- Node.js, npm
+  - 必须
+
+- Python, python3-pip, python3-venv
+  - 必须
+
+- Screenfetch
+  - 必须
+
+- GNU Gettext
+  - 必须
+
+- bsdutils
+  - 必须，需要 `script` 命令
+
+## 部署
+
+### 安装依赖
+
+```shell
+sudo apt update
+sudo apt install -y coreutils gnulib autoconf automake m4 sed grep make cargo cmake golang nodejs python3-pip python3-venv screenfetch gettext bsdutils
+```
+
+### 克隆仓库
+
+```shell
+git clone https://github.com/ChenPi11/ChenPi11.github.io --depth 1
+```
+
+### 安装 Go 依赖
+
+```shell
+go mod tidy
+```
+
+### 构建
+
+```shell
+cd ChenPi11.github.io
+./scripts/build.sh
+```
+
+### 运行
+
+```shell
+make run
+```
