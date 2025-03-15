@@ -47,7 +47,7 @@ case "$1" in
     ;;
 esac
 
-USER=user HOSTNAME=BuildRunner neofetch || die
+USER=user HOSTNAME=BuildRunner LANG=C.UTF-8 screenfetch || die
 
 ./autogen.sh $VERBOSE || die
 ./configure CFLAGS="-Wall -Wextra $CFLAGS" CPPFLAGS="-Wall -Wextra $CPPFLAGS" || die
