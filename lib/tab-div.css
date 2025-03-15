@@ -23,7 +23,7 @@
     --tab-button-active-background: var(--background-color);
     --tab-button-hover-background: #dcdcdc;
     --tab-botton-background: #f0f0f0;
-    --tab-border-color: #f0f0f0;
+    --tab-border-color: #e0e0e0;
 }
 
 [data-theme="dark"] {
