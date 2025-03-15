@@ -24,6 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/lib/style.css">
     <link rel="stylesheet" href="/lib/terminal.css">
+    <link rel="stylesheet" href="/lib/tab-div.css">
     <link rel="stylesheet" href="/lib/index.css">
     <script src="/lib/jquery.js"></script>
     <script src="/lib/addon-fit.js"></script>
@@ -34,6 +35,7 @@
     <script src="/lib/sprintf.js"></script>
     <script src="/lib/xterm.js"></script>
     <script src="/lib/theme-button.js"></script>
+    <script src="/lib/tab-div.js" type="module"></script>
     <script src="/lib/terminal.js" type="module"></script>
 
     <header>
