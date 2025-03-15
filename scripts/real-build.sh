@@ -1,4 +1,5 @@
 #!/bin/sh
+
 # Copyright (C) 2025 ChenPi11.
 # This file is part of chenpi11-blog.
 #
@@ -26,24 +27,24 @@ V=0
 VERBOSE=
 
 case "$1" in
-    -h|--help)
-        printf "$(_g "Usage: %s [-h|--help] [-V|--version] [-v|--verbose]")" "$0"
-        printf "$(_g "Build chenpi11-blog.\n")"
-        printf "\n"
-        printf "$(_g "Options:\n")"
-        printf "$(_g "  -h, --help      Display this help and exit.\n")"
-        printf "$(_g "  -V, --version   Output version information and exit.\n")"
-        printf "$(_g "  -v, --verbose   Verbosely report processing.\n")"
-        exit 0
-        ;;
-    -V|--version)
-        show_version
-        exit 0
-        ;;
-    -v|--verbose)
-        V=1
-        VERBOSE=--verbose
-        ;;
+-h | --help)
+    printf "$(_g "Usage: %s [-h|--help] [-V|--version] [-v|--verbose]")" "$0"
+    printf "$(_g "Build chenpi11-blog.\n")"
+    printf "\n"
+    printf "$(_g "Options:\n")"
+    printf "$(_g "  -h, --help      Display this help and exit.\n")"
+    printf "$(_g "  -V, --version   Output version information and exit.\n")"
+    printf "$(_g "  -v, --verbose   Verbosely report processing.\n")"
+    exit 0
+    ;;
+-V | --version)
+    show_version
+    exit 0
+    ;;
+-v | --verbose)
+    V=1
+    VERBOSE=--verbose
+    ;;
 esac
 
 USER=user HOSTNAME=BuildRunner neofetch || die

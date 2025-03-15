@@ -47,10 +47,11 @@ struct content_t
         .content = (str), .len = (sizeof(str) - 1) / sizeof(char), .is_static = TRUE                                   \
     }
 
-/* Make a static content. Don't write it. */
+/* Make a static content from string. Don't write it. */
 extern struct content_t static_content(const char *source);
 
-/* Allocate a content from string. Must be free using free_content(). Return null content if allocate failed. */
+/* Allocate a content with the given length. Must be free using free_content(). Return null content if allocate
+ * failed. */
 extern struct content_t alloc_content(size_t length);
 
 /* Checking if the content is null content. Return TRUE if it is. FALSE otherwise. */

@@ -16,10 +16,14 @@
  * along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+/**
+ * Program verbose level.
+ */
 var verboseEnabled: boolean = false;
 
 /**
  * Set program verbose level.
+ *
  * @param verbose Set it to true for verbose mode. Normal mode otherwise.
  */
 export function setVerbose(verbose: boolean) {
@@ -29,6 +33,7 @@ export function setVerbose(verbose: boolean) {
 
 /**
  * Get program verbose level.
+ *
  * @returns The program verbose level.
  */
 export function getVerbose(): boolean {

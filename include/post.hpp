@@ -37,6 +37,9 @@
 namespace post
 {
 
+/**
+ * @brief The post metadata.
+ */
 class PostInfo
 {
   private:
@@ -49,33 +52,66 @@ class PostInfo
   public:
     PostInfo() = delete;
 
+    /**
+     * @brief Construct a new PostInfo object.
+     * @param metafile The metadata file.
+     * @throw std::runtime_error If the metadata file is not valid.
+     */
     PostInfo(const std::filesystem::path &metafile);
 
+    /**
+     * @brief Get the title of the post.
+     * @return The title of the post.
+     */
     std::string get_title() const noexcept
     {
         return m_title;
     }
 
+    /**
+     * @brief Get the date of the post.
+     * @return The date of the post.
+     */
     std::string get_date() const noexcept
     {
         return m_date;
     }
 
+    /**
+     * @brief Get the filename of the post.
+     * @return The filename of the post.
+     */
     std::vector<std::string> get_tags() const noexcept
     {
         return m_tags;
     }
 
+    /**
+     * @brief Get the filename of the post.
+     * @return The filename of the post.
+     */
     std::string get_description() const noexcept
     {
         return m_description;
     }
 
+    /**
+     * @brief Get the filename of the post.
+     * @return The filename of the post.
+     */
     std::string generate_tags() const;
 
+    /**
+     * @brief Get the filename of the post.
+     * @return The filename of the post.
+     */
     std::string generate() const;
 };
 
+/**
+ * @brief Load all the posts.
+ * @return The vector of all the posts.
+ */
 extern std::vector<post::PostInfo> load_posts();
 
 } // namespace post

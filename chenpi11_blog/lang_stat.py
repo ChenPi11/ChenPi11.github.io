@@ -19,6 +19,7 @@
 # along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
 
 """Statistics on programming languages in the repository."""
+
 from __future__ import annotations
 
 import copy

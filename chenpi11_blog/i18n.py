@@ -28,6 +28,7 @@ __all__ = ["_"]
 
 PACKAGE_NAME = "chenpi11-blog"
 
+
 def _(msg: str) -> str:
     """Translate a string.
 
@@ -40,6 +41,7 @@ def _(msg: str) -> str:
     """
     return gettext.gettext(msg)
 
+
 def is_chenpi11_blog_locale_dir(path: Path) -> bool:
     """Check if the path is a chenpi11-blog locale directory.
 
@@ -50,7 +52,7 @@ def is_chenpi11_blog_locale_dir(path: Path) -> bool:
         bool: True if the path is a chenpi11-blog locale directory.
 
     """
-    return (path / "zh_CN" / "LC_MESSAGES" / f"{PACKAGE_NAME}.mo").is_file()
+    return (path / "en_US" / "LC_MESSAGES" / f"{PACKAGE_NAME}.mo").is_file()
 
 
 def init_i18n() -> None:

@@ -1,4 +1,5 @@
 #!/bin/sh
+
 # Copyright (C) 2025 ChenPi11.
 # This file is part of chenpi11-blog.
 #

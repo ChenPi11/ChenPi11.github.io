@@ -18,14 +18,13 @@
 
 import { logInfo, logVerbose } from "./log.js";
 import { _ } from "./i18n.js";
-import { getVerbose } from "./verbose.js";
 import { sprintf } from "sprintf-js";
 import { readFileSync, readdirSync } from "fs";
 import upath from "upath";
 
 /**
  * Post meta info.
- * 
+ *
  * @author ChenPi11
  * @export
  * @class Post
@@ -68,7 +67,7 @@ export class Post {
 
     /**
      * Returns the tag list of the post.
-     * 
+     *
      * @returns {string[]} Tag list of the post.
      * @memberof Post
      */
@@ -78,7 +77,7 @@ export class Post {
 
     /**
      * Returns the title of the post.
-     * 
+     *
      * @returns {string} Title of the post.
      * @memberof Post
      */
@@ -98,7 +97,7 @@ export class Post {
 
     /**
      * Returns the description of the post.
-     * 
+     *
      * @returns {string} Description of the post.
      * @memberof Post
      */
@@ -125,7 +124,7 @@ function getHumanReadableSize(size: number): string {
 
 /**
  * Loads a post from a file.
- * 
+ *
  * @param {string} filePath Path of the file.
  * @returns {Post} Post loaded from the file.
  */
@@ -149,7 +148,7 @@ function loadPost(filePath: string): Post {
 
 /**
  * Loads all posts from a directory.
- * 
+ *
  * @param {string} postDir Directory of the posts.
  * @returns {Post[]} Posts loaded from the directory.
  */

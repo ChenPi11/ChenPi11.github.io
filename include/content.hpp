@@ -48,6 +48,6 @@ extern std::vector<std::string> split(const std::string &str, const char delim);
  */
 extern bool endswith(const std::string &str, const std::string &suffix);
 
-}
+} // namespace content
 
 #endif // _CONTENT_HPP_

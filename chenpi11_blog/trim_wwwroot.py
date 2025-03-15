@@ -64,6 +64,7 @@ CLEANCSS_CMD = [
 
 _verbose = False  # pylint: disable=invalid-name
 
+
 def trim_html(file_path: Path) -> None:
     """Minify HTML file.
 

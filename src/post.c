@@ -249,7 +249,7 @@ struct post_t load_post(const char *filepath)
     }
     memcpy(post.description.content, line.content + strlen(DESC_START), post.description.len);
     post.description.content[post.description.len] = '\0';
-    if (strip(&post.description)!= RET_SUCCESS)
+    if (strip(&post.description) != RET_SUCCESS)
     {
         die(_("Cannot strip description.\n"));
     }
@@ -341,7 +341,7 @@ int save_post(struct post_t post)
         free_content(&html_snippet);
         die(_("Cannot open file: %s\n"), postinfo_filename);
     }
-    
+
     if (fprintf(postinfo, "%s\n", post.title.content) < 0)
     {
         die(_("Cannot write to file: %s\n"), postinfo_filename);

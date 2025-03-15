@@ -16,12 +16,6 @@
  * along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-use std::{collections::HashMap, process};
-
-use gettext::Catalog;
-
-use crate::log::{error, verbose};
-
 /// Replace variables in the source string.
 ///
 /// # Arguments
@@ -33,7 +27,7 @@ use crate::log::{error, verbose};
 ///
 /// Returns the string with variables replaced.
 ///
-pub fn configure(source: &str, variables: &HashMap<String, String>) -> String {
+pub fn configure(source: &str, variables: &std::collections::HashMap<String, String>) -> String {
     let mut result = String::from(source);
     for (key, value) in variables {
         let strkey = format!("@{}@", key.to_uppercase());
@@ -57,11 +51,11 @@ pub fn configure(source: &str, variables: &HashMap<String, String>) -> String {
 /// * [FmtError::KeyError] - `vars` contains an invalid key
 /// * [FmtError::TypeError] - the given format code for a section contains an unexpected option
 ///
-pub fn configure_file(catalog: &Catalog, filepath: &str, variables: &HashMap<String, String>) {
+pub fn configure_file(catalog: &gettext::Catalog, filepath: &str, variables: &std::collections::HashMap<String, String>) {
     let mut vars = std::collections::HashMap::new();
     vars.insert("file".to_string(), filepath.to_string());
     let message = strfmt::strfmt(catalog.gettext("Configuring {file} ..."), &vars).unwrap();
-    verbose(message.as_str());
+    crate::log::verbose(message.as_str());
 
     let source = std::fs::read_to_string(filepath);
     match source {
@@ -76,9 +70,9 @@ pub fn configure_file(catalog: &Catalog, filepath: &str, variables: &HashMap<Str
                 &vars,
             )
             .unwrap();
-            error(&catalog, message.as_str());
+            crate::log::error(&catalog, message.as_str());
 
-            process::exit(1);
+            std::process::exit(1);
         }
     }
     let result = configure(&source.unwrap(), variables);
@@ -94,8 +88,8 @@ pub fn configure_file(catalog: &Catalog, filepath: &str, variables: &HashMap<Str
                 &vars,
             )
             .unwrap();
-            error(&catalog, message.as_str());
-            process::exit(1);
+            crate::log::error(&catalog, message.as_str());
+            std::process::exit(1);
         }
     }
 }

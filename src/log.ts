@@ -22,7 +22,7 @@ import { getVerbose } from "./verbose.js";
 
 /**
  * Logs a message to stderr.
- * 
+ *
  * @param msg Message to log.
  * @param control Control code.
  */
@@ -38,7 +38,7 @@ function logMsg(msg: string, control: string) {
 
 /**
  * Logs a verbose message to stderr.
- * 
+ *
  * @param msg Message to log.
  */
 export function logVerbose(msg: string) {
@@ -50,7 +50,7 @@ export function logVerbose(msg: string) {
 
 /**
  * Logs a info message to stderr.
- * 
+ *
  * @param msg Message to log.
  */
 export function logInfo(msg: string) {
@@ -59,7 +59,7 @@ export function logInfo(msg: string) {
 
 /**
  * Logs a error message to stderr.
- * 
+ *
  * @param msg Message to log.
  */
 export function logError(msg: string) {

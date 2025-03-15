@@ -23,7 +23,9 @@
 #include "config.h"
 
 #ifdef __cplusplus
-#define EXTERN_C_BEG extern "C" {
+#define EXTERN_C_BEG                                                                                                   \
+    extern "C"                                                                                                         \
+    {
 #define EXTERN_C_END }
 #else
 #define EXTERN_C_BEG

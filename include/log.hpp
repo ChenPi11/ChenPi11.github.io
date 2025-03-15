@@ -89,6 +89,6 @@ void error(const char *fmt, ...) noexcept;
  * @return The process name.
  */
 const char *get_proc_name() noexcept;
-} // namespace log
+} // namespace logging
 
 #endif // _LOG_HPP_

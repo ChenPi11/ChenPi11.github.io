@@ -78,15 +78,15 @@ void file::writefile(const std::filesystem::path &filepath, const std::string &d
 bool file::is_chenpi11_blog_rootdir()
 {
     CHECK(is_dir(std::filesystem::current_path()));
-    CHECK(is_file("requirements.txt") && is_file("pyproject.toml")); /* It's a Python project. */
-    CHECK(is_file("Cargo.toml") && is_file("Makefile.toml"));        /* It's a Rust project. */
-    CHECK(is_file("configure.ac") && is_file("autogen.sh"));         /* It's an Autotools project. */
-    CHECK(is_file("CMakeLists.txt"));                                /* It's a CMake project. */
-    CHECK(is_file("package.json"));                                  /* It's a Node.js project. */
-    CHECK(is_file("Makefile.in"));                                   /* It's an Autoconf+Makefile project. */
-    CHECK(is_file("repo.json"));                                     /* It's a Rubisco project. */
-    CHECK(is_file("tsconfig.json"));                                 /* It's a TypeScript project. */
-    CHECK(is_file("go.mod"));                                        /* It's a Go project. */
+    CHECK(is_file("requirements.txt") && is_file("pyproject.toml")); // It's a Python project.
+    CHECK(is_file("Cargo.toml") && is_file("Makefile.toml"));        // It's a Rust project.
+    CHECK(is_file("configure.ac") && is_file("autogen.sh"));         // It's an Autotools project.
+    CHECK(is_file("CMakeLists.txt"));                                // It's a CMake project.
+    CHECK(is_file("package.json"));                                  // It's a Node.js project.
+    CHECK(is_file("Makefile.in"));                                   // It's an Autoconf+Makefile project.
+    CHECK(is_file("repo.json"));                                     // It's a Rubisco project.
+    CHECK(is_file("tsconfig.json"));                                 // It's a TypeScript project.
+    CHECK(is_file("go.mod"));                                        // It's a Go project.
 
     errno = 0;
 

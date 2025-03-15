@@ -1,4 +1,5 @@
 #!/bin/sh
+
 # Copyright (C) 2025 ChenPi11.
 # This file is part of chenpi11-blog.
 #
@@ -26,25 +27,24 @@
 VERBOSE=
 
 case "$1" in
-    -h|--help)
-        printf "$(_g "Usage: %s [-h|--help] [-V|--version] [-v|--verbose]")" "$0"
-        printf "\n"
-        printf "$(_g "Options:\n")"
-        printf "$(_g "  -h, --help      Display this help and exit.\n")"
-        printf "$(_g "  -V, --version   Output version information and exit.\n")"
-        printf "$(_g "  -v, --verbose   Verbosely report processing.\n")"
-        exit 0
-        ;;
-    -V|--version)
-        show_version
-        exit 0
-        ;;
-    -v|--verbose)
-        VERBOSE=--verbose
-        shift
-        ;;
-    *)
-        ;;
+-h | --help)
+    printf "$(_g "Usage: %s [-h|--help] [-V|--version] [-v|--verbose]")" "$0"
+    printf "\n"
+    printf "$(_g "Options:\n")"
+    printf "$(_g "  -h, --help      Display this help and exit.\n")"
+    printf "$(_g "  -V, --version   Output version information and exit.\n")"
+    printf "$(_g "  -v, --verbose   Verbosely report processing.\n")"
+    exit 0
+    ;;
+-V | --version)
+    show_version
+    exit 0
+    ;;
+-v | --verbose)
+    VERBOSE=--verbose
+    shift
+    ;;
+*) ;;
 esac
 
 GNULIB_MODULES="gettext gettext-h"
@@ -56,10 +56,9 @@ GNULIB_TOOL_FLAGS="--no-libtool --macro-prefix=gl"
 AUTOTOOLS_INCLUDES="-I m4 -Isrcm4"
 AUTOTOOLS_WARNINGS="--warnings=all"
 
-
 gnulib-tool --import $GNULIB_MODULES \
-  --source-base="$SRCBASE" --m4-base="$M4BASE" --doc-base="$DOCBASE" --aux-dir="$AUXDIR" \
-  $GNULIB_TOOL_FLAGS $VERBOSE || die
+    --source-base="$SRCBASE" --m4-base="$M4BASE" --doc-base="$DOCBASE" --aux-dir="$AUXDIR" \
+    $GNULIB_TOOL_FLAGS $VERBOSE || die
 
 aclocal --output=aclocal.m4 $AUTOTOOLS_INCLUDES $AUTOTOOLS_WARNINGS $VERBOSE || die
 autoheader $AUTOTOOLS_INCLUDES $AUTOTOOLS_WARNINGS $VERBOSE || die

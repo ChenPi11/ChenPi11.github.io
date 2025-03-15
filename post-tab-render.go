@@ -1,18 +1,20 @@
-// Copyright (C) 2025 ChenPi11.
-// This file is part of chenpi11-blog.
-//
-// chenpi11-blog is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation; either version 3 of the License, or
-// (at your option) any later version.
-//
-// chenpi11-blog is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
+/*
+ * Copyright (C) 2025 ChenPi11
+ * This file is part of the chenpi11-blog.
+ *
+ * chenpi11-blog is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published
+ * by the Free Software Foundation, either version 3 of the License,
+ * or (at your option) any later version.
+ *
+ * chenpi11-blog is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
+ */
 
 package main
 
@@ -49,10 +51,12 @@ func showHelp() {
 	print(gotext.Get("  -v, --verbose  Verbosely report processing.\n"))
 }
 
+// Initialize i18n.
 func init() {
 	chenpi11_blog.InitI18n()
 }
 
+// Main function.
 func main() {
 	if !chenpi11_blog.IsChenPi11Blog() {
 		color.Notice.Print(gotext.Get("You must run post-tab-render in project's root directory!\n"))
@@ -92,6 +96,6 @@ func main() {
 	})
 
 	if err != nil {
-		color.Error.Printf(gotext.Get("Error walking the path %q: %v\n"), POSTS_DIR, err)
+		color.Error.Print(gotext.Get("Error walking the path %q: %v\n", POSTS_DIR, err))
 	}
 }

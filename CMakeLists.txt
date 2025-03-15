@@ -26,8 +26,8 @@ project (
 
 # Set options.
 set ( CMAKE_CXX_STANDARD 20 )
-cmake_policy(SET CMP0156 NEW)
-cmake_policy(SET CMP0179 NEW)
+cmake_policy ( SET CMP0156 NEW )
+cmake_policy ( SET CMP0179 NEW )
 
 # Find sources.
 file ( GLOB SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp" )

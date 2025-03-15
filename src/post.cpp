@@ -86,8 +86,8 @@ std::string post::PostInfo::generate() const
 {
     std::string template_data = file::readfile(POST_TEMPLATE);
     configure::configures_t configs = {
-        {"FILENAME", m_filename}, {"TITLE", m_title},        {"DATE", m_date},
-        {"DESCRIPTION", m_description},  {"TAGS", generate_tags()},
+        {"FILENAME", m_filename},       {"TITLE", m_title},        {"DATE", m_date},
+        {"DESCRIPTION", m_description}, {"TAGS", generate_tags()},
     };
     return configure::configure(configs, template_data);
 }

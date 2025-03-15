@@ -18,9 +18,6 @@
 
 use std::io::IsTerminal;
 
-use gettext::Catalog;
-
-use crate::verbose::get_verbose;
 
 /// Output log message.
 ///
@@ -54,7 +51,7 @@ fn output_log(color: &str, level_string: &str, message: &str, to_stderr: bool) {
 /// * `message` - The message to output.
 ///
 pub fn verbose(message: &str) {
-    if get_verbose() {
+    if crate::verbose::get_verbose() {
         output_log("32", "", message, false);
     }
 }
@@ -66,7 +63,7 @@ pub fn verbose(message: &str) {
 /// * `catalog` - The catalog to get the translated message.
 /// * `message` - The message to output.
 ///
-pub fn info(catalog: &Catalog, message: &str) {
+pub fn info(catalog: &gettext::Catalog, message: &str) {
     output_log("34", &catalog.gettext("INFO: "), message, false);
 }
 
@@ -77,6 +74,6 @@ pub fn info(catalog: &Catalog, message: &str) {
 /// * `catalog` - The catalog to get the translated message.
 /// * `message` - The message to output.
 ///
-pub fn error(catalog: &Catalog, message: &str) {
+pub fn error(catalog: &gettext::Catalog, message: &str) {
     output_log("31", &catalog.gettext("ERROR: "), message, true);
 }

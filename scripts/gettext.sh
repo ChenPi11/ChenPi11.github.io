@@ -1,4 +1,5 @@
 #!/bin/sh
+
 # Copyright (C) 2025 ChenPi11.
 # This file is part of chenpi11-blog.
 #
@@ -43,8 +44,7 @@ die() {
     exit 1
 }
 
-show_version()
-{
+show_version() {
     printf "$0 0.1.0\n"
     printf "$(_g "Copyright (C) 2025 ChenPi11.\n")"
     printf "$(_g "License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\n")"

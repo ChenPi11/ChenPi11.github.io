@@ -24,14 +24,42 @@ import { setVerbose } from "./verbose.js";
 import process from "process";
 import * as fs from "fs";
 
+/**
+ * The meta data of a post.
+ */
 interface PostMeta {
+    /**
+     * The link of the post.
+     */
     link: string;
+
+    /**
+     * The title of the post.
+     */
     title: string;
+
+    /**
+     * The date of the post.
+     */
     date: string;
+
+    /**
+     * The tags of the post.
+     */
     tags: string[];
+
+    /**
+     * The description of the post.
+     */
     desc: string;
 }
 
+/**
+ * The meta data of the blog.
+ *
+ * @param {Post[]} posts The posts of the blog.
+ * @returns {PostMeta[]} The meta data of the blog.
+ */
 function toPostMetas(posts: Post[]): PostMeta[] {
     const postsJson: PostMeta[] = [];
     posts.forEach((post) => {
@@ -46,6 +74,12 @@ function toPostMetas(posts: Post[]): PostMeta[] {
     return postsJson;
 }
 
+/**
+ * Get the tags map of the blog.
+ *
+ * @param {Post[]} posts The posts of the blog.
+ * @returns {Map<string, number>} The tags map of the blog.
+ */
 function getTagsMap(posts: Post[]): Map<string, number> {
     const tagMap: Map<string, number> = new Map();
     posts.forEach((post) => {
@@ -60,6 +94,12 @@ function getTagsMap(posts: Post[]): Map<string, number> {
     return tagMap;
 }
 
+/**
+ * Map to object.
+ *
+ * @param {Map<string, any>} map The map.
+ * @returns {Record<string, any>} The object.
+ */
 function mapToObject(map: Map<string, any>): Record<string, any> {
     const obj: Record<string, any> = {};
     map.forEach((value, key) => {
@@ -68,6 +108,13 @@ function mapToObject(map: Map<string, any>): Record<string, any> {
     return obj;
 };
 
+/**
+ * Get the posts json of the blog.
+ *
+ * @param {Post[]} posts The posts of the blog.
+ * @param {Map<string, number>} tagsMap The tags map of the blog.
+ * @returns {string} The posts json of the blog.
+ */
 function getPostsJson(posts: Post[], tagsMap: Map<string, number>): string {
     const postsJson: PostMeta[] = toPostMetas(posts);
     const tags: string[] = Array.from(tagsMap.keys()).sort((a, b) => {
@@ -84,6 +131,9 @@ function getPostsJson(posts: Post[], tagsMap: Map<string, number>): string {
     });
 }
 
+/**
+ * Show the help message.
+ */
 function showHelp() {
     process.stdout.write(_("Usage: gen-post-json [-h|--help] [-V|--version] [-v|--verbose] <posts dir> <output file>\n"));
     process.stdout.write("\n");
@@ -93,6 +143,9 @@ function showHelp() {
     process.stdout.write(_("  -v, --verbose  Verbosely report processing.\n"));
 }
 
+/**
+ * Show the version information.
+ */
 function showVersion() {
     process.stdout.write("gen-post-json 0.1.0\n");
     process.stdout.write(_("Copyright (C) 2025 ChenPi11\n"));
@@ -102,6 +155,9 @@ function showVersion() {
     process.stdout.write(_("Written by ChenPi11.\n"));
 }
 
+/**
+ * The main function.
+ */
 function main() {
     initI18n();
 

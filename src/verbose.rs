@@ -16,11 +16,8 @@
  * along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-use lazy_static::lazy_static;
-use std::sync::Mutex;
-
-lazy_static! {
-    static ref VERBOSE: Mutex<bool> = Mutex::new(false);
+lazy_static::lazy_static! {
+    static ref VERBOSE: std::sync::Mutex<bool> = std::sync::Mutex::new(false);
 }
 
 /// Set verbose mode.

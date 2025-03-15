@@ -92,7 +92,7 @@ void markdown_it_init(void)
 NOTFOUND:
     fprintf(stderr, _("not found\n"));
     error(_("Can't find markdown-it. Did you forget to run setup?\n"
-          "You can also set the MARKDOWN_IT environment variable.\n"));
+            "You can also set the MARKDOWN_IT environment variable.\n"));
 }
 
 struct content_t markdown_it_tohtml(const char *filepath)

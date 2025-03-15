@@ -1,19 +1,20 @@
 /*
-Copyright (C) 2025 ChenPi11.
-This file is part of chenpi11-blog.
-
-chenpi11-blog is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3 of the License, or
-(at your option) any later version.
-
-chenpi11-blog is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>. */
+ * Copyright (C) 2025 ChenPi11
+ * This file is part of the chenpi11-blog.
+ *
+ * chenpi11-blog is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published
+ * by the Free Software Foundation, either version 3 of the License,
+ * or (at your option) any later version.
+ *
+ * chenpi11-blog is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
+ */
 
 package chenpi11_blog
 
@@ -33,10 +34,10 @@ func renderingTabDivPageContent(node *html.Node, htmlPath string) {
 	if node.Type == html.ElementNode && node.Data == "tab-div-page" {
 		for _, attr := range node.Attr {
 			if attr.Key == "name" {
-				color.Info.Printf(gotext.Get("Rendering tab-div-page '%s' in '%s' ...\n"), attr.Val, htmlPath)
+				color.Info.Print(gotext.Get("Rendering tab-div-page '%s' in '%s' ...\n", attr.Val, htmlPath))
 				tabDivPageContent := node.FirstChild
 				if tabDivPageContent == nil {
-					color.Warn.Printf(gotext.Get("<tab-div-page> '%s' in '%s' has no content.\n"), attr.Val, htmlPath)
+					color.Warn.Print(gotext.Get("<tab-div-page> '%s' in '%s' has no content.\n", attr.Val, htmlPath))
 					continue
 				}
 				renderedContent := MarkdownIt(tabDivPageContent.Data)
@@ -60,7 +61,7 @@ func saveHTMLFile(node *html.Node, htmlPath string) {
 	// Open the HTML file for writing.
 	htmlFile, err := os.Create(htmlPath)
 	if err != nil {
-		color.Error.Printf(gotext.Get("Error while creating HTML file: %v\n"), err)
+		color.Error.Print(gotext.Get("Error while creating HTML file: %v\n", err))
 		return
 	}
 	defer htmlFile.Close()
@@ -71,7 +72,7 @@ func saveHTMLFile(node *html.Node, htmlPath string) {
 	err = html.Render(&tempIOWriter, node)
 
 	if err != nil {
-		color.Error.Printf(gotext.Get("Error rendering HTML: %s\n"), err)
+		color.Error.Print(gotext.Get("Error rendering HTML: %v\n", err))
 		return
 	}
 
@@ -82,7 +83,7 @@ func saveHTMLFile(node *html.Node, htmlPath string) {
 	}
 	_, err = htmlFile.WriteString(htmlContent)
 	if err != nil {
-		color.Error.Printf(gotext.Get("Error writing HTML file: %s\n"), err)
+		color.Error.Print(gotext.Get("Error writing HTML file: %v\n", err))
 		return
 	}
 }
@@ -92,7 +93,7 @@ func RenderingTabOfHTMLFile(htmlPath string) {
 	// Open the HTML file.
 	htmlFile, err := os.Open(htmlPath)
 	if err != nil {
-		color.Error.Printf(gotext.Get("Error opening HTML file: %s\n"), err)
+		color.Error.Print(gotext.Get("Error opening HTML file: %v\n", err))
 		return
 	}
 	defer htmlFile.Close()
@@ -102,7 +103,7 @@ func RenderingTabOfHTMLFile(htmlPath string) {
 	// Parse the HTML file.
 	htmlDoc, err := html.Parse(htmlFile)
 	if err != nil {
-		color.Error.Printf(gotext.Get("Error parsing HTML file: %s\n"), err)
+		color.Error.Print(gotext.Get("Error parsing HTML file: %v\n", err))
 		return
 	}
 

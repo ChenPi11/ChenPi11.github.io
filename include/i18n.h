@@ -29,7 +29,7 @@
 EXTERN_C_BEG
 
 /* Initialize the i18n module. */
-extern void i18n_init();
+extern void i18n_init(void);
 
 #if ENABLE_NLS
 /* Get the i18n string. */

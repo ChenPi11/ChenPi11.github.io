@@ -40,7 +40,7 @@ struct configure_t
 #define PAIR(k, v)                                                                                                     \
     (struct configure_t)                                                                                               \
     {                                                                                                                  \
-        .key = static_content(k), .value = static_content(v)                                                                         \
+        .key = static_content(k), .value = static_content(v)                                                           \
     }
 
 /* Configure key-value pairs. Use create_configures() to create. */
@@ -60,7 +60,7 @@ struct configures_t
         .first = array, .num = sizeof(array) / sizeof(struct configure_t)                                              \
     }
 
-/* Configure a file with configures. All @{key}@ will be replaced with {value}.
+/* Configure a file with configures. All "@{key}@" will be replaced with "{value}".
    Return RET_SUCCESS if succeed. RET_ERROR otherwise. */
 extern int configure(struct configures_t configs, const char *filepath);
 

@@ -20,7 +20,7 @@ import { existsSync, statSync } from "fs";
 
 /**
  * Checks if a file exists and is a file.
- * 
+ *
  * @param isFile Path to check.
  * @returns True if the file exists and is a file.
  */
@@ -30,7 +30,7 @@ function isFile(isFile: string): boolean {
 
 /**
  * Checks if a file exists and is a directory.
- * 
+ *
  * @param isFile Path to check.
  * @returns True if the file exists and is a directory.
  */
@@ -40,7 +40,7 @@ function isDir(isFile: string): boolean {
 
 /**
  * Checks if the current directory is a chenpi11-blog project.
- * 
+ *
  * @returns True if the current directory is a chenpi11-blog project.
  */
 export function isChenPi11Blog(): boolean {

@@ -20,6 +20,7 @@
 
 """Language colors."""
 
+# Colors to describe languages.
 COLORS = {
     "awk": "#c30e9b",
     "c": "#555555",

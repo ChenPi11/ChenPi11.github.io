@@ -37,7 +37,7 @@ enum LogLevel
 extern void set_log_level(enum LogLevel level);
 
 /* Get log level. */
-extern enum LogLevel get_log_level();
+extern enum LogLevel get_log_level(void);
 
 /* Show info. */
 extern void info(const char *fmt, ...);
@@ -57,7 +57,7 @@ extern void error(const char *fmt, ...);
     } while (FALSE)
 
 /* Get the process name. */
-extern const char *get_proc_name();
+extern const char *get_proc_name(void);
 
 EXTERN_C_END
 

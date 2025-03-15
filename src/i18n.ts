@@ -21,9 +21,19 @@ import { mo } from "gettext-parser";
 import { osLocaleSync } from "os-locale";
 import { existsSync, readFileSync, statSync } from "fs";
 
+/**
+ * The root directory for executable and libraries.
+ */
 const ROOT_DIR = "./.venv";
+
+/**
+ * The name of the package.
+ */
 const PACKAGE_NAME = "chenpi11-blog";
 
+/**
+ * The map of the translated texts.
+ */
 const i18nMap = new Map<string, string>();
 
 /**
@@ -47,7 +57,7 @@ export function initI18n() {
 
 /**
  * Gets the translated text.
- * 
+ *
  * @param key The key of the text.
  * @returns The translated text. If the key is not found, returns the key.
  */
@@ -60,7 +70,7 @@ export function getText(key: string): string {
 
 /**
  * Gets the translated text.
- * 
+ *
  * @param key The key of the text.
  * @returns The translated text. If the key is not found, returns the key.
  */

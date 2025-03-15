@@ -26,7 +26,7 @@
 
 #include <stdlib.h>
 
-static void show_help()
+static void show_help(void)
 {
     printf("%s", _("Usage: build-post [-h|--help] [-V|--version] [-v|--verbose] <template file> <source file>\n"));
     printf("\n");

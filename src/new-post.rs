@@ -24,6 +24,12 @@ mod verbose;
 
 use std::io::Write;
 
+/// Show the help message.
+///
+/// # Arguments
+///
+/// * `catalog` - The gettext catalog.
+///
 fn show_help(catalog: &gettext::Catalog) {
     print!(
         "{}",
@@ -45,6 +51,12 @@ fn show_help(catalog: &gettext::Catalog) {
     );
 }
 
+/// Show the version information.
+///
+/// # Arguments
+///
+/// * `catalog` - The gettext catalog.
+///
 fn show_version(catalog: &gettext::Catalog) {
     print!("{}", catalog.gettext("new-post 0.1.0\n"));
     print!("{}", catalog.gettext("Copyright (C) 2025 ChenPi11\n"));
@@ -65,6 +77,12 @@ fn show_version(catalog: &gettext::Catalog) {
     print!("{}", catalog.gettext("Written by ChenPi11.\n"));
 }
 
+/// The main function.
+///
+/// # Arguments
+///
+/// * `args` - The command line arguments.
+///
 fn main() {
     let catalog = i18n::init_i18n();
 

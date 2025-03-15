@@ -18,10 +18,8 @@
 
 extern crate libc;
 
-use gettext::Catalog;
-use std::fs::File;
-use sys_locale::get_locale;
-
+/// The name of the package.
+///
 const PACKAGE_NAME: &str = "chenpi11-blog";
 
 /// Check if the given directory is a valid chenpi11-blog locale directory.
@@ -36,22 +34,22 @@ const PACKAGE_NAME: &str = "chenpi11-blog";
 ///
 fn is_chenpi11_blog_locale_dir(dir: &str) -> bool {
     let locale_file = format!("{}/en_US/LC_MESSAGES/{}.mo", dir, PACKAGE_NAME);
-    return File::open(locale_file).is_ok();
+    return std::fs::File::open(locale_file).is_ok();
 }
 
 /// Initialize i18n module.
 ///
 /// # Returns
 ///
-/// Returns [`Catalog`] with the locale catalog.
-/// If the locale couldn't be obtained, [`Catalog::empty()`] is returned instead.
+/// Returns [`gettext::Catalog`] with the locale catalog.
+/// If the locale couldn't be obtained, [`gettext::Catalog::empty()`] is returned instead.
 ///
-pub fn init_i18n() -> Catalog {
+pub fn init_i18n() -> gettext::Catalog {
     unsafe {
         // Why setlocale is unsafe?
         libc::setlocale(libc::LC_ALL, b"\0".as_ptr() as *const libc::c_char)
     };
-    let locale = get_locale()
+    let locale = sys_locale::get_locale()
         .unwrap_or_else(|| String::from("en-US"))
         .replace("-", "_");
 
@@ -66,13 +64,13 @@ pub fn init_i18n() -> Catalog {
 
     let locale_file = format!("{}/{}/LC_MESSAGES/{}.mo", locale_dir, locale, PACKAGE_NAME);
 
-    let locale_fp = File::open(locale_file);
+    let locale_fp = std::fs::File::open(locale_file);
     if locale_fp.is_err() {
-        return Catalog::empty();
+        return gettext::Catalog::empty();
     }
-    let catalog = Catalog::parse(locale_fp.unwrap());
+    let catalog = gettext::Catalog::parse(locale_fp.unwrap());
     if catalog.is_err() {
-        return Catalog::empty();
+        return gettext::Catalog::empty();
     }
     return catalog.unwrap();
 }
