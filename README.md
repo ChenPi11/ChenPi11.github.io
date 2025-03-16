@@ -238,9 +238,100 @@
 
 ### 安装依赖
 
+**注意：Debian 原版的 Node.js 版本过低，需要手动换源安装新版本！**
+
 ```shell
 sudo apt update
-sudo apt install -y coreutils gnulib autoconf automake m4 sed grep make cargo cmake golang nodejs python3-pip python3-venv screenfetch gettext bsdutils
+sudo apt install -y coreutils gnulib autoconf automake m4 sed grep make cmake golang nodejs npm python3-pip python3-venv screenfetch gettext bsdutils
+```
+
+### 安装 Cargo, rustc
+
+尽管 Debian 官方源已经提供了 Cargo，但是版本过低，需要手动安装新版本。
+
+Debian sid 提供了 rustup 用于安装 Rust 工具链，但是有些 Debian 稳定版并未提供 rustup，需要手动安装。
+
+```shell
+sudo apt update
+sudo apt install rustup
+rustup install stable
+rustup default stable
+```
+
+### 安装 cargo-make
+
+**注意：确保你的 `~/.cargo/bin` 在 `PATH` 中！**
+
+不同的发行版安装 `cargo-make` 的方式可能不同，参考 `cargo-make` 仓库中对于安装的描述。
+
+这是我使用的安装方式：
+
+```shell
+cargo install --force cargo-make
+```
+
+### 换源
+
+由于官方源访问速度慢，或者是版本过低，需要换源。
+
+#### Nodesource 源：提供新版本的 Node.js
+
+```shell
+curl -fsSL https://deb.nodesource.com/setup_23.x | sudo bash -
+```
+
+#### Rustup 源：提供 Rustup 工具链
+
+```shell
+export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
+rustup install stable
+rustup default stable
+```
+
+#### Cargo 源：提供 Crate.io 上的 Rust 包
+
+首先创建 `~/.cargo/config.toml` 文件
+
+```shell
+mkdir -p ~/.cargo
+touch ~/.cargo/config.toml
+```
+
+然后编辑 `~/.cargo/config.toml` 文件，添加以下内容
+
+> 注意：这会更改用户全局的 Cargo 源
+
+```toml
+[source.crates-io]
+replace-with = 'tuna'
+
+[source.tuna]
+registry = "https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git"
+```
+
+#### NPM 源：提供 NPM 包
+
+> 注意：这会更改用户全局的 NPM 源
+
+```shell
+sudo npm install -g nrm
+sudo nrm ls # 列出所有可用源
+#  npm ---------- https://registry.npmjs.org/
+#  yarn --------- https://registry.yarnpkg.com/
+#* tencent ------ https://mirrors.cloud.tencent.com/npm/
+#  cnpm --------- https://r.cnpmjs.org/
+#  taobao ------- https://registry.npmmirror.com/
+#  npmMirror ---- https://skimdb.npmjs.com/registry/
+#  huawei ------- https://repo.huaweicloud.com/repository/npm/
+nrm use tencent # 使用腾讯源
+```
+
+#### Pip 源：提供 Python 包
+
+> 注意：这会更改用户全局的 Pip 源
+
+```shell
+pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 ```
 
 ### 克隆仓库
