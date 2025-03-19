@@ -22,8 +22,11 @@
     --post-title-color: #333333;
     --post-description-color: #666666;
     --post-date-color: #999999;
+    --post-info-title-color: #49b1f5;
     --tag-background-color: #007bff;
     --hover-tag-background-color: #0056b3;
+    --border-color: #e0e0e0;
+    --active-box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
 
 [data-theme="dark"] {
@@ -34,6 +37,8 @@
     --post-date-color: #777777;
     --tag-background-color: #007bff;
     --hover-tag-background-color: #0056b3;
+    --border-color: #3f3f3f;
+    --active-box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
 @font-face {
@@ -174,7 +179,7 @@ footer {
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--active-box-shadow);
     transition: background-color 0.5s ease;
     opacity: 100%;
 }
@@ -205,4 +210,32 @@ footer {
 
 .page-msg-text {
     font-family: unset;
+}
+
+.post-info {
+    margin: 40px 0 10px;
+    padding: 10px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.post-info:hover {
+    box-shadow: var(--active-box-shadow);
+}
+
+.post-info-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--post-info-title-color);
+
+}
+
+.post-info-content {
+    margin-bottom: 10px;
+}
+
+.page-container {
+    margin-left: 2rem;
+    margin-right: 2rem;
 }

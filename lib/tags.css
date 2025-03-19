@@ -1,13 +1,13 @@
-@import url("/lib/style.css");
+@import url("./style.css");
 
 :root {
     --tag-background-color: #007bff;
     --tag-text-color: #ffffff;
-    --active-box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+    --tag-active-box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
 }
 
 [data-theme="dark"] {
-    --active-box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    --tag-active-box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
 
 .tags-title {
@@ -37,7 +37,7 @@
 }
 
 .tag.active {
-    box-shadow: var(--active-box-shadow);
+    box-shadow: var(--tag-active-box-shadow);
     filter: blur(0.25px);
     transform: scale(1.1);
 }

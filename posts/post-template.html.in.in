@@ -51,9 +51,30 @@
         @SIDEBAR@
     </nav>
 
-    <div class="container markdown-body">
-        @CONTENT@
+    <div class="container">
+        <div class="page-container">
+            <div class="markdown-body">
+                @CONTENT@
+                <hr>
+                <div class="post-info">
+                    <div>
+                        <span class="post-info-title">&#61463; 发布时间：</span>
+                        <span class="post-info-content">@DATE@</span>
+                    </div>
+                    <div>
+                        <span class="post-info-title">&#61741; 最后修改：</span>
+                        <span class="post-info-content">@LAST_MODIFIED@</span>
+                    </div>
+                    <div>
+                        <span class="post-info-title">&#61945; 版权声明：</span>
+                        <span class="post-info-content">@POST_LICENSE_MSG@</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <br><br>
 
     <script src="/lib/sidebar.js" type="module"></script>
 

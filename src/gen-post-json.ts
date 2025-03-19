@@ -52,6 +52,11 @@ interface PostMeta {
      * The description of the post.
      */
     desc: string;
+
+    /**
+     * The license of the post.
+     */
+    license: string;
 }
 
 /**
@@ -69,6 +74,7 @@ function toPostMetas(posts: Post[]): PostMeta[] {
             date: post.getDate(),
             tags: post.getTagList(),
             desc: post.getDescription(),
+            license: post.getLicense(),
         });
     });
     return postsJson;

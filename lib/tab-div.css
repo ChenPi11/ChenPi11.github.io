@@ -22,16 +22,16 @@
     --tab-button-border-top-color: #49b1f5;
     --tab-button-active-background: var(--background-color);
     --tab-button-hover-background: #dcdcdc;
-    --tab-botton-background: #f0f0f0;
-    --tab-border-color: #e0e0e0;
+    --tab-botton-background: var(--border-color);
+    --tab-border-color: var(--border-color);
 }
 
 [data-theme="dark"] {
     --tab-button-border-top-color: #49b1f5;
     --tab-button-active-background: var(--background-color);
     --tab-button-hover-background: #333333;
-    --tab-botton-background: #3f3f3f;
-    --tab-border-color: #3f3f3f;
+    --tab-botton-background: var(--border-color);
+    --tab-border-color: var(--border-color);
 }
 
 .nav-tab.active {
@@ -56,6 +56,8 @@
     list-style: none;
     display: flex;
     flex-wrap: wrap;
+    border-left: 2px solid var(--tab-border-color);
+    border-right: 2px solid var(--tab-border-color);
 }
 
 .nav-tab {
@@ -80,16 +82,15 @@
 }
 
 .tab-div {
+    margin-bottom: 2rem;
+}
+
+.tab-div-container {
+    padding: 2rem;
     border-bottom: 2px solid var(--tab-border-color);
     border-left: 2px solid var(--tab-border-color);
     border-right: 2px solid var(--tab-border-color);
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-}
-
-.tab-div-container {
-    padding: 1rem;
-
+    box-shadow: 0 0 5px rgba(var(--tab-border-color), 0.8);
 }

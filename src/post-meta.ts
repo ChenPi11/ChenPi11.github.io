@@ -36,6 +36,7 @@ export class Post {
     private date: string;
     private tags: Set<string>;
     private description: string;
+    private license: string;
 
     /**
      * Creates an instance of Post.
@@ -45,14 +46,16 @@ export class Post {
      * @param {string} date Date of the post.
      * @param {string[]} tags Tags of the post.
      * @param {string} description Description of the post.
+     * @param {string} license License of the post.
      * @memberof Post
      */
-    constructor(link:string, title: string, date: string, tags: string[], description: string) {
+    constructor(link: string, title: string, date: string, tags: string[], description: string, license: string) {
         this.link = link;
         this.title = title;
         this.date = date;
         this.tags = new Set(tags);
         this.description = description;
+        this.license = license;
     }
 
     /**
@@ -104,6 +107,16 @@ export class Post {
     getDescription(): string {
         return this.description;
     }
+
+    /**
+     * Returns the license of the post.
+     *
+     * @returns {string} License of the post.
+     * @memberof Post
+     */
+    getLicense(): string {
+        return this.license;
+    }
 }
 
 /**
@@ -136,14 +149,16 @@ function loadPost(filePath: string): Post {
     const date = lines[1];
     const tags = lines[2].split(",");
     const description = lines[3];
+    const license = lines[4];
     logVerbose(sprintf(_("Post \"%s\":"), link));
     logVerbose(sprintf(_("\tTitle: %s"), title));
     logVerbose(sprintf(_("\tContent: %d Bytes (%s)"), content.length, getHumanReadableSize(content.length)));
     logVerbose(sprintf(_("\tDate: %s"), date));
     logVerbose(sprintf(_("\tTags: %s"), tags.join(", ")));
     logVerbose(sprintf(_("\tDescription: %s"), description));
+    logVerbose(sprintf(_("\tLicense: %s"), license));
 
-    return new Post(link, title, date, tags, description);
+    return new Post(link, title, date, tags, description, license);
 }
 
 /**

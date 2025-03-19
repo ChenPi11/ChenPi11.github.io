@@ -24,7 +24,8 @@
 
 #include <stddef.h>
 
-#define TITLE_START "# "
+#define TITLE_START "<!-- title: "
+#define TITLE_END " -->"
 #define DATE_START "<!-- date: "
 #define DATE_END " -->"
 #define TAG_START "<!-- tag: "
@@ -32,6 +33,8 @@
 #define TAGS_SEP ","
 #define DESC_START "<!-- desc: "
 #define DESC_END " -->"
+#define LICENSE_START "<!-- license: "
+#define LICENSE_END " -->"
 #define POST_OUTPUT_DIR "posts/"
 
 /* Tags. */
@@ -67,6 +70,9 @@ struct post_t
 
     /* The post's description */
     struct content_t description;
+
+    /* The posts's license */
+    struct content_t license;
 };
 
 /* Null post. */

@@ -153,12 +153,25 @@ struct post_t load_post(const char *filepath)
         warn(_("First line must start with \"%s\".\n"), TITLE_START);
         die(_("First line of %s is not a title.\n"), filepath);
     }
-    post.title = alloc_content(line.len - 2);
+    if (!endswith(line, CONTENT(TITLE_END)))
+    {
+        warn(_("First line must end with \"%s\".\n"), TITLE_END);
+        die(_("First line of %s is not a title.\n"), filepath);
+    }
+    if (line.len <= strlen(TITLE_START) + strlen(TITLE_END))
+    {
+        fclose(file);
+        free_content(&line);
+        free_post(&post);
+        warn(_("Second line must contain a title.\n"));
+        die(_("Second line of %s is not a title.\n"), filepath);
+    }
+    post.title = alloc_content(line.len - strlen(TITLE_START) - strlen(TITLE_END));
     if (is_null_content(post.title))
     {
         goto ERROR;
     }
-    memcpy(post.title.content, line.content + 2, post.title.len);
+    memcpy(post.title.content, line.content + strlen(TITLE_START), post.title.len);
     post.title.content[post.title.len] = '\0';
     if (strip(&post.title) != RET_SUCCESS)
     {
@@ -255,6 +268,36 @@ struct post_t load_post(const char *filepath)
     }
     free_content(&line);
 
+    /* License. */
+    line = read_line(file, filepath);
+    if (!startswith(line, CONTENT(LICENSE_START)))
+    {
+        warn(_("Fifth line must start with \"%s\".\n"), LICENSE_START);
+        die(_("Fifth line of %s is not a license.\n"), filepath);
+    }
+    if (!endswith(line, CONTENT(LICENSE_END)))
+    {
+        warn(_("Fifth line must end with \"%s\".\n"), LICENSE_END);
+        die(_("Fifth line of %s is not a license.\n"), filepath);
+    }
+    if (line.len <= strlen(LICENSE_END) + strlen(LICENSE_START))
+    {
+        warn(_("Fifth line must contain a license.\n"));
+        die(_("Fifth line of %s is not a license.\n"), filepath);
+    }
+    post.license = alloc_content(line.len - strlen(LICENSE_END) - strlen(LICENSE_START));
+    if (is_null_content(post.license))
+    {
+        goto ERROR;
+    }
+    memcpy(post.license.content, line.content + strlen(LICENSE_START), post.license.len);
+    post.license.content[post.license.len] = '\0';
+    if (strip(&post.license) != RET_SUCCESS)
+    {
+        die(_("Cannot strip license.\n"));
+    }
+
+    /* Content. */
     post.content = read_file(filepath);
     if (is_null_content(post.content))
     {
@@ -360,6 +403,11 @@ int save_post(struct post_t post)
     }
 
     if (fprintf(postinfo, "%s\n", post.description.content) < 0)
+    {
+        die(_("Cannot write to file: %s\n"), postinfo_filename);
+    }
+
+    if (fprintf(postinfo, "%s\n", post.license.content) < 0)
     {
         die(_("Cannot write to file: %s\n"), postinfo_filename);
     }
