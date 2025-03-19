@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: chenpi11-blog 0.1.0\n"
 "Report-Msgid-Bugs-To: wushengwuxi-msctinoulk@outlook.com\n"
-"POT-Creation-Date: 2025-03-15 18:00+0800\n"
+"POT-Creation-Date: 2025-03-19 18:33+0800\n"
 "PO-Revision-Date: 2025-03-14 19:39+0800\n"
 "Last-Translator: ChenPi11\n"
 "Language-Team: ChenPi11\n"
@@ -474,6 +474,17 @@ msgid "First line of %s is not a title.\n"
 msgstr "First line of %s is not a title.\n"
 
 #
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 237
+#, c-format
+msgid "First line must end with \"%s\".\n"
+msgstr "First line must end with \"%s\".\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 186
+msgid "First line must contain a title.\n"
+msgstr "First line must contain a title.\n"
+
+#
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 165
 msgid "Cannot strip title.\n"
 msgstr "Cannot strip title.\n"
@@ -562,6 +573,34 @@ msgstr "Fourth line must contain a description.\n"
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 254
 msgid "Cannot strip description.\n"
 msgstr "Cannot strip description.\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 153
+#, c-format
+msgid "Fifth line must start with \"%s\".\n"
+msgstr "Fifth line must start with \"%s\".\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 154
+#, c-format
+msgid "Fifth line of %s is not a license.\n"
+msgstr "Fifth line of %s is not a license.\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 237
+#, c-format
+msgid "Fifth line must end with \"%s\".\n"
+msgstr "Fifth line must end with \"%s\".\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 242
+msgid "Fifth line must contain a license.\n"
+msgstr "Fifth line must contain a license.\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 165
+msgid "Cannot strip license.\n"
+msgstr "Cannot strip license.\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 290
@@ -859,6 +898,12 @@ msgid "\tDescription: %s"
 msgstr "\tDescription: %s"
 
 #
+# File: /workspaces/ChenPi11.github.io/src/post-meta.ts, line: 141
+#, javascript-format
+msgid "\tLicense: %s"
+msgstr "\tLicense: %s"
+
+#
 # File: /workspaces/ChenPi11.github.io/src/post-meta.ts, line: 162
 #, javascript-format
 msgid "Loaded post: %s"
@@ -896,23 +941,23 @@ msgstr "Error while creating HTML file: %v\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/extract-tab.go, line: 74
-msgid "Error rendering HTML: %s\n"
-msgstr "Error rendering HTML: %s\n"
+msgid "Error rendering HTML: %v\n"
+msgstr "Error rendering HTML: %v\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/extract-tab.go, line: 85
-msgid "Error writing HTML file: %s\n"
-msgstr "Error writing HTML file: %s\n"
+msgid "Error writing HTML file: %v\n"
+msgstr "Error writing HTML file: %v\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/extract-tab.go, line: 95
-msgid "Error opening HTML file: %s\n"
-msgstr "Error opening HTML file: %s\n"
+msgid "Error opening HTML file: %v\n"
+msgstr "Error opening HTML file: %v\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/extract-tab.go, line: 105
-msgid "Error parsing HTML file: %s\n"
-msgstr "Error parsing HTML file: %s\n"
+msgid "Error parsing HTML file: %v\n"
+msgstr "Error parsing HTML file: %v\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/markdown.go, line: 84

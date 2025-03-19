@@ -163,8 +163,8 @@ struct post_t load_post(const char *filepath)
         fclose(file);
         free_content(&line);
         free_post(&post);
-        warn(_("Second line must contain a title.\n"));
-        die(_("Second line of %s is not a title.\n"), filepath);
+        warn(_("First line must contain a title.\n"));
+        die(_("First line of %s is not a title.\n"), filepath);
     }
     post.title = alloc_content(line.len - strlen(TITLE_START) - strlen(TITLE_END));
     if (is_null_content(post.title))

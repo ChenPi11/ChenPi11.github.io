@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: chenpi11-blog 0.1.0\n"
 "Report-Msgid-Bugs-To: wushengwuxi-msctinoulk@outlook.com\n"
-"POT-Creation-Date: 2025-03-15 18:00+0800\n"
+"POT-Creation-Date: 2025-03-19 18:33+0800\n"
 "PO-Revision-Date: 2025-03-14 19:39+0800\n"
 "Last-Translator: ChenPi11\n"
 "Language-Team: ChenPi11\n"
@@ -472,6 +472,17 @@ msgid "First line of %s is not a title.\n"
 msgstr "%s 的第一行不是标题。\n"
 
 #
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 237
+#, c-format
+msgid "First line must end with \"%s\".\n"
+msgstr "第一行必须以 \"%s\" 结尾。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 186
+msgid "First line must contain a title.\n"
+msgstr "第一行必须包含标题。\n"
+
+#
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 165
 msgid "Cannot strip title.\n"
 msgstr "无法裁剪标题。\n"
@@ -560,6 +571,34 @@ msgstr "第四行必须包含描述。\n"
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 254
 msgid "Cannot strip description.\n"
 msgstr "无法裁剪描述。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 153
+#, c-format
+msgid "Fifth line must start with \"%s\".\n"
+msgstr "第五行必须以 \"%s\" 开头。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 154
+#, c-format
+msgid "Fifth line of %s is not a license.\n"
+msgstr "%s 的第五行不是标题。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 237
+#, c-format
+msgid "Fifth line must end with \"%s\".\n"
+msgstr "第五行必须以 \"%s\" 结尾。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 242
+msgid "Fifth line must contain a license.\n"
+msgstr "第五行必须包含许可证。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 165
+msgid "Cannot strip license.\n"
+msgstr "无法裁剪许可证。\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 290
@@ -857,6 +896,12 @@ msgid "\tDescription: %s"
 msgstr "\t描述: %s"
 
 #
+# File: /workspaces/ChenPi11.github.io/src/post-meta.ts, line: 141
+#, javascript-format
+msgid "\tLicense: %s"
+msgstr "\t许可证: %s"
+
+#
 # File: /workspaces/ChenPi11.github.io/src/post-meta.ts, line: 162
 #, javascript-format
 msgid "Loaded post: %s"
@@ -894,23 +939,23 @@ msgstr "无法创建 HTML 文件：%v\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/extract-tab.go, line: 74
-msgid "Error rendering HTML: %s\n"
-msgstr "渲染 HTML 时出错：%s\n"
+msgid "Error rendering HTML: %v\n"
+msgstr "渲染 HTML 时出错：%v\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/extract-tab.go, line: 85
-msgid "Error writing HTML file: %s\n"
-msgstr "无法写入 HTML 文件：%s\n"
+msgid "Error writing HTML file: %v\n"
+msgstr "无法写入 HTML 文件：%v\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/extract-tab.go, line: 95
-msgid "Error opening HTML file: %s\n"
-msgstr "无法打开 HTML 文件：%s\n"
+msgid "Error opening HTML file: %v\n"
+msgstr "无法打开 HTML 文件：%v\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/extract-tab.go, line: 105
-msgid "Error parsing HTML file: %s\n"
-msgstr "无法解析 HTML 文件：%s\n"
+msgid "Error parsing HTML file: %v\n"
+msgstr "无法解析 HTML 文件：%v\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/markdown.go, line: 84
