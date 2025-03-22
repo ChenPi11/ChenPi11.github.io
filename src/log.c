@@ -24,6 +24,21 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+
+void print_if_tty(FILE* stream, const char *fmt, ...)
+{
+    va_list ap;
+
+    if (!isatty(fileno(stream)))
+    {
+        return;
+    }
+
+    va_start(ap, fmt);
+    vfprintf(stream, fmt, ap);
+    va_end(ap);
+}
 
 static const char *proc_name = "";
 static enum LogLevel log_level = LOG_INFO;
@@ -71,8 +86,10 @@ void warn(const char *fmt, ...)
     }
 
     va_start(ap, fmt);
+    print_if_tty(stderr, "\033[33m");
     fprintf(stderr, _("WARNING: "));
     vfprintf(stderr, fmt, ap);
+    print_if_tty(stderr, "\033[0m");
     va_end(ap);
 }
 
@@ -81,8 +98,10 @@ void error(const char *fmt, ...)
     va_list ap;
 
     va_start(ap, fmt);
+    print_if_tty(stderr, "\033[31m");
     fprintf(stderr, _("ERROR: "));
     vfprintf(stderr, fmt, ap);
+    print_if_tty(stderr, "\033[0m");
     va_end(ap);
 
     if (errno)

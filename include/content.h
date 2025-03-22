@@ -54,6 +54,22 @@ extern struct content_t static_content(const char *source);
  * failed. */
 extern struct content_t alloc_content(size_t length);
 
+#define alloca_content(length)                                                                                         \
+    (struct content_t)                                                                                                 \
+    {                                                                                                                  \
+        .content = (char *)alloca(length), .len = length, .is_static = TRUE                                            \
+    }
+
+/* Copy the content. Return null content if allocate failed. */
+extern struct content_t copy_content(const struct content_t content);
+
+#define stack_copy_content(dst, src)                                                                                   \
+    do                                                                                                                 \
+    {                                                                                                                  \
+        dst = alloca_content(src.len);                                                                                 \
+        memcpy(dst.content, src.content, src.len);                                                                     \
+    } while (0)
+
 /* Checking if the content is null content. Return TRUE if it is. FALSE otherwise. */
 #define is_null_content(x) ((x).content == NULL)
 

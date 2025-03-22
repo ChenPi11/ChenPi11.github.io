@@ -73,6 +73,9 @@ struct post_t
 
     /* The posts's license */
     struct content_t license;
+
+    /* The post's last modified time. */
+    struct content_t last_modified;
 };
 
 /* Null post. */
@@ -80,7 +83,7 @@ struct post_t
     (struct post_t)                                                                                                    \
     {                                                                                                                  \
         .filename = null_content, .title = null_content, .date = null_content, .content = null_content,                \
-        .tags = null_tags                                                                                              \
+        .tags = null_tags, .description = null_content, .license = null_content, .last_modified = null_content         \
     }
 
 /* Checking if the post is null post. Return TRUE if it is. FALSE otherwise. */
@@ -91,6 +94,12 @@ extern void post_init(const char *template_file);
 
 /* Load the post from file. */
 extern struct post_t load_post(const char *filepath);
+
+/* Save the post's meta to file. */
+extern int save_post_meta(struct post_t post, const char *postinfo_filename);
+
+/* Get the post's info HTML from file. */
+extern struct content_t get_post_info(const char *filepath, const char *tmp_filename);
 
 /* Save the post to file. */
 extern int save_post(struct post_t post);

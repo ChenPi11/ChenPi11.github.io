@@ -23,32 +23,17 @@
 #include "file-util.h"
 #include "i18n.h"
 #include "log.h"
+#include "process.h"
 
 #include <malloc.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
-#include <sys/wait.h>
+
 #include <unistd.h>
 
 const char *markdown_it_command;
-
-int command_exec(const char *cmd)
-{
-    int status = system(cmd);
-
-    if (status == -1)
-    {
-        perror("system");
-    }
-    else if (WIFEXITED(status))
-    {
-        return WEXITSTATUS(status);
-    }
-
-    return RET_ERROR;
-}
 
 #define CHECKCMD(exec) exec " --version > /dev/null 2>&1"
 

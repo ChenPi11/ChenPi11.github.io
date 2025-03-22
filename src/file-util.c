@@ -137,6 +137,7 @@ struct content_t read_file(const char *path)
         die(_("I/O Error: %s.\n"), path);
     }
 
+    close_file(file);
     return content;
 
 ERROR:

@@ -37,11 +37,13 @@ struct content_t alloc_content(size_t length)
 
     init_struct(res);
 
-    res.content = malloc(length + 1);
+    res.content = (char*)malloc(length + 1);
     if (res.content == NULL)
     {
         die(_("Cannot allocate memory.\n"));
     }
+
+    memset(res.content, 0, length + 1);
 
     res.len = length;
     res.is_static = FALSE;
@@ -50,6 +52,21 @@ struct content_t alloc_content(size_t length)
 
 ERROR:
     return null_content;
+}
+
+struct content_t copy_content(const struct content_t content)
+{
+    struct content_t res = null_content;
+
+    res = alloc_content(content.len);
+    if (is_null_content(res))
+    {
+        return res;
+    }
+
+    memcpy(res.content, content.content, content.len);
+
+    return res;
 }
 
 void free_content(struct content_t *content)

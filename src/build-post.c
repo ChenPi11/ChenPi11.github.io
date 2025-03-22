@@ -18,10 +18,13 @@
 
 #include "config.h"
 
+#include "content.h"
+#include "defines.h"
 #include "file-util.h"
 #include "i18n.h"
 #include "log.h"
 #include "markdown-it.h"
+#include "post-hash.h"
 #include "post.h"
 
 #include <stdlib.h>
@@ -101,6 +104,11 @@ int main(int argc, char *argv[])
     if (is_null_post(post))
     {
         die(_("Cannot load post: %s\n"), source_file);
+    }
+
+    if (update_hash(&post) != RET_SUCCESS)
+    {
+        die(_("Cannot update hash file for post: \"%s\"(%s)\n"), post.title, post.filename);
     }
 
     if (save_post(post) != RET_SUCCESS)

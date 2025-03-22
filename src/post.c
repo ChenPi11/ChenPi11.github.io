@@ -25,6 +25,7 @@
 #include "i18n.h"
 #include "log.h"
 #include "markdown-it.h"
+#include "process.h"
 
 #include <malloc.h>
 #include <stdlib.h>
@@ -33,53 +34,77 @@
 
 static const char *post_template_file = NULL;
 
-static struct tags_t parse_tags(struct content_t line)
+struct tags_node_t
 {
-    struct tags_t tags = null_tags;
-    struct content_t *ptags = NULL;
-    size_t num = 0;
+    struct content_t tag;
+    struct tags_node_t *next;
+};
+
+static struct tags_t parse_tags(const struct content_t line)
+{
+    struct tags_t result = null_tags;
     char *token = NULL;
+    struct tags_node_t *pnode_start = NULL;
+    struct tags_node_t *pnode = NULL;
+    struct content_t tmp_line = null_content;
+    size_t num = 0;
 
-    token = strtok(line.content, TAGS_SEP);
-    while (token != NULL)
+    pnode_start = pnode = (struct tags_node_t *)alloca(sizeof(struct tags_node_t));
+    if (pnode == NULL)
     {
-        struct content_t tag = null_content;
-        struct content_t *tmp = NULL;
+        die(_("Cannot allocate memory.\n"));
+    }
+    pnode->next = NULL;
 
-        tag = alloc_content(strlen(token));
-        if (is_null_content(tag))
-        {
-            goto ERROR;
-        }
-        memcpy(tag.content, token, tag.len);
-        if (strip(&tag) != RET_SUCCESS)
-        {
-            free_content(&tag);
-            goto ERROR;
-        }
-        tag.content[tag.len] = '\0';
-        num++;
-
-        tmp = realloc(ptags, num * sizeof(struct content_t));
-        if (tmp == NULL)
-        {
-            free_content(&tag);
-            die(_("Cannot reallocate memory.\n"));
-        }
-        ptags = tmp;
-        memcpy(ptags + num - 1, &tag, sizeof(struct content_t));
-        token = strtok(NULL, TAGS_SEP);
+    tmp_line = copy_content(line);
+    if (is_null_content(tmp_line))
+    {
+        return null_tags;
     }
 
-    tags.num = num;
-    tags.first = ptags;
+    token = strtok(tmp_line.content, TAGS_SEP);
+    while (token != NULL)
+    {
+        pnode->tag = alloca_content(strlen(token) + 1);
+        if (is_null_content(pnode->tag))
+        {
+            return null_tags;
+        }
+        memcpy(pnode->tag.content, token, pnode->tag.len);
+        pnode->tag.content[strlen(token)] = '\0';
+        pnode->next = (struct tags_node_t *)alloca(sizeof(struct tags_node_t));
+        if (pnode->next == NULL)
+        {
+            die(_("Cannot allocate memory.\n"));
+        }
+        pnode->next->next = NULL;
 
-    return tags;
+        pnode = pnode->next;
+        token = strtok(NULL, TAGS_SEP);
+        num++;
+    }
+
+    struct content_t *resbuf = (struct content_t *)malloc(sizeof(struct content_t) * num);
+    if (resbuf == NULL)
+    {
+        die(_("Cannot allocate memory.\n"));
+    }
+
+    memset(resbuf, 0, sizeof(struct content_t) * num);
+
+    size_t i = 0;
+    for (pnode = pnode_start; pnode->next != NULL; pnode = pnode->next, i++)
+    {
+        resbuf[i] = copy_content(pnode->tag);
+    }
+
+    result.first = resbuf;
+    result.num = num;
 
 ERROR:
-    tags.first = ptags; // So free_tags() can free tags.
-    free_tags(&tags);
-    return null_tags;
+    free_content(&tmp_line);
+
+    return result;
 }
 
 static int check_duplicate_tags(struct tags_t tags)
@@ -233,10 +258,12 @@ struct post_t load_post(const char *filepath)
     line.content[line.len - strlen(TAG_END)] = '\0';
     line.content += strlen(TAG_START);
     post.tags = parse_tags(line);
+    line.content -= strlen(TAG_START); /* Restore the content so that free_content() can free it. */
     if (check_duplicate_tags(post.tags))
     {
         goto ERROR;
     }
+    free_content(&line); // TODO: Invalid free() / delete / delete[] / realloc()
 
     /* Description. */
     line = read_line(file, filepath);
@@ -296,6 +323,7 @@ struct post_t load_post(const char *filepath)
     {
         die(_("Cannot strip license.\n"));
     }
+    free_content(&line);
 
     /* Content. */
     post.content = read_file(filepath);
@@ -304,84 +332,28 @@ struct post_t load_post(const char *filepath)
         goto ERROR;
     }
 
+    free_content(&line);
     close_file(file);
 
     return post;
 
 ERROR:
+    free_content(&line);
     free_post(&post);
     close_file(file);
 
     return null_post;
 }
 
-int save_post(struct post_t post)
+int save_post_meta(struct post_t post, const char *postinfo_filename)
 {
-    char out_filename[BUFSIZ];
-    char postinfo_filename[BUFSIZ];
-    char tmp_filename[BUFSIZ];
-    FILE *tmpfile = NULL;
-    struct content_t html_snippet = null_content;
     FILE *postinfo = NULL;
 
-    init_struct(out_filename);
-    init_struct(postinfo_filename);
-    init_struct(tmp_filename);
-
-    if (snprintf(out_filename, BUFSIZ, POST_OUTPUT_DIR "%s.html", post.filename.content) < 0)
-    {
-        die(_("Cannot generate filename.\n"));
-    }
-    if (snprintf(postinfo_filename, BUFSIZ, POST_OUTPUT_DIR "%s.info", post.filename.content) < 0)
-    {
-        die(_("Cannot generate filename.\n"));
-    }
-    if (snprintf(tmp_filename, BUFSIZ, POST_OUTPUT_DIR "%s.html.tmp", post.filename.content) < 0)
-    {
-        die(_("Cannot generate filename.\n"));
-    }
-
-    info(_("Generating %s ...\n"), out_filename);
-
-    if (copy_file(post_template_file, out_filename) != RET_SUCCESS)
-    {
-        die(_("Cannot copy file: %s\n"), post_template_file);
-    }
-
-    tmpfile = fopen(tmp_filename, "wb");
-    if (tmpfile == NULL)
-    {
-        die(_("Cannot open file: %s\n"), tmp_filename);
-    }
-    if (fwrite(post.content.content, sizeof(char), post.content.len, tmpfile) != post.content.len)
-    {
-        die(_("Cannot write to file: %s\n"), tmp_filename);
-    }
-
-    close_file(tmpfile);
-
-    html_snippet = markdown_it_tohtml(tmp_filename);
-    if (is_null_content(html_snippet))
-    {
-        die(_("Cannot convert markdown to html.\n"));
-    }
-
-    if (remove_file(tmp_filename) != RET_SUCCESS)
-    {
-        die(_("Cannot remove file: %s\n"), tmp_filename);
-    }
-
-    struct configure_t configures_[] = {PAIR("CONTENT", html_snippet.content), PAIR("SUBTITLE", post.title.content)};
-
-    if (configure(create_configures(configures_), out_filename) != RET_SUCCESS)
-    {
-        die(_("Cannot configure file: %s\n"), out_filename);
-    }
+    info(_("Generating %s ...\n"), postinfo_filename);
 
     postinfo = fopen(postinfo_filename, "w");
     if (postinfo == NULL)
     {
-        free_content(&html_snippet);
         die(_("Cannot open file: %s\n"), postinfo_filename);
     }
 
@@ -412,14 +384,135 @@ int save_post(struct post_t post)
         die(_("Cannot write to file: %s\n"), postinfo_filename);
     }
 
+    if (fprintf(postinfo, "%s\n", post.last_modified.content) < 0)
+    {
+        die(_("Cannot write to file: %s\n"), postinfo_filename);
+    }
+
+    fclose(postinfo);
+
+    return RET_SUCCESS;
+ERROR:
+    fclose(postinfo);
+
+    return RET_ERROR;
+}
+
+struct content_t get_post_info(const char *filepath, const char *tmp_filename)
+{
+    struct content_t postinfo = null_content;
+    char cmd[BUFSIZ];
+
+    init_struct(cmd);
+
+    if (snprintf(cmd, BUFSIZ, "./scripts/mkpostinfo.awk \"%s\" > \"%s\"", filepath, tmp_filename) < 0)
+    {
+        die(_("Cannot generate command.\n"));
+    }
+
+    info(_("Executing: %s\n"), cmd);
+
+    if (command_exec(cmd))
+    {
+        die(_("Cannot execute command: %s\n"), cmd);
+    }
+
+    postinfo = read_file(tmp_filename);
+    if (is_null_content(postinfo))
+    {
+        die(_("Cannot read file: %s\n"), tmp_filename);
+    }
+
+ERROR:
+    return postinfo;
+}
+
+int save_post(struct post_t post)
+{
+    char out_filename[BUFSIZ];
+    char tmp_filename[BUFSIZ];
+    char postinfo_filename[BUFSIZ];
+    FILE *tmpfile = NULL;
+    struct content_t html_postinfo = null_content;
+    struct content_t html_snippet = null_content;
+
+    init_struct(out_filename);
+    init_struct(tmp_filename);
+
+    if (snprintf(out_filename, BUFSIZ, POST_OUTPUT_DIR "%s.html", post.filename.content) < 0)
+    {
+        die(_("Cannot generate filename.\n"));
+    }
+    if (snprintf(postinfo_filename, BUFSIZ, POST_OUTPUT_DIR "%s.info", post.filename.content) < 0)
+    {
+        die(_("Cannot generate filename.\n"));
+    }
+    if (snprintf(tmp_filename, BUFSIZ, POST_OUTPUT_DIR "%s.html.tmp", post.filename.content) < 0)
+    {
+        die(_("Cannot generate filename.\n"));
+    }
+
+    info(_("Generating %s ...\n"), out_filename);
+
+    if (copy_file(post_template_file, out_filename) != RET_SUCCESS)
+    {
+        die(_("Cannot copy file: %s\n"), post_template_file);
+    }
+
+    /* Create tmpfile to save HTML. */
+    tmpfile = fopen(tmp_filename, "wb");
+    if (tmpfile == NULL)
+    {
+        die(_("Cannot open file: %s\n"), tmp_filename);
+    }
+    if (fwrite(post.content.content, sizeof(char), post.content.len, tmpfile) != post.content.len)
+    {
+        die(_("Cannot write to file: %s\n"), tmp_filename);
+    }
+    close_file(tmpfile);
+
+    /* Save post meta. */
+    if (save_post_meta(post, postinfo_filename) != RET_SUCCESS)
+    {
+        die(_("Cannot save post meta.\n"));
+    }
+
+    /* Generate HTML. */
+    html_snippet = markdown_it_tohtml(tmp_filename);
+    if (is_null_content(html_snippet))
+    {
+        die(_("Cannot convert markdown to html.\n"));
+    }
+
+    /* Generate post info. */
+    html_postinfo = get_post_info(postinfo_filename, tmp_filename);
+    if (is_null_content(html_postinfo))
+    {
+        goto ERROR;
+    }
+
+    /* Configure. */
+    struct configure_t configures_[] = {PAIR("CONTENT", html_snippet.content), PAIR("SUBTITLE", post.title.content),
+                                        PAIR("POSTINFO", html_postinfo.content)};
+
+    if (configure(create_configures(configures_), out_filename) != RET_SUCCESS)
+    {
+        die(_("Cannot configure file: %s\n"), out_filename);
+    }
+
+    if (remove_file(tmp_filename) != RET_SUCCESS)
+    {
+        die(_("Cannot remove file: %s\n"), tmp_filename);
+    }
+
+    free_content(&html_postinfo);
     free_content(&html_snippet);
-    close_file(postinfo);
 
     return RET_SUCCESS;
 ERROR:
 
+    free_content(&html_postinfo);
     free_content(&html_snippet);
-    close_file(postinfo);
     close_file(tmpfile);
 
     return RET_ERROR;
@@ -436,6 +529,8 @@ void free_tags(struct tags_t *tags)
     {
         free_content(&tags->first[i]);
     }
+
+    free(tags->first);
 }
 
 void free_post(struct post_t *post)
@@ -448,5 +543,9 @@ void free_post(struct post_t *post)
     free_content(&post->filename);
     free_content(&post->title);
     free_content(&post->date);
+    free_content(&post->description);
+    free_content(&post->license);
+    free_content(&post->content);
+    free_content(&post->last_modified);
     free_tags(&post->tags);
 }
