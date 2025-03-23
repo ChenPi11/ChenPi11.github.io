@@ -1,1 +1,1 @@
-{"posts":[{"link":"/posts/2025-01-20-0.html","title":"初步测试","date":"2025/01/20","tags":["标签1","标签2"],"desc":"test2"},{"link":"/posts/2025-01-25-0.html","title":"Terminal Applet 测试","date":"2025/01/25","tags":["terminal-applet","test"],"desc":"test1"}],"tags":{"标签1":1,"标签2":1,"terminal-applet":1,"test":1}}
+{"posts":[{"link":"/posts/2025-03-23-0.html","title":"测试文章","date":"2025/03/23","tags":["测试"],"desc":"此文章用于测试博客的功能是否能正常工作","license":"CC-BY-4.0"}],"tags":{"测试":1}}
