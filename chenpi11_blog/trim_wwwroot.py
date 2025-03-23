@@ -36,6 +36,7 @@ IGNORE_LIST = [
     "prism-dark.css",
     "prism-light.css",
     "jquery.js",
+    "tex-mml-chtml.js",
 ]
 
 HTML_MINIFIER_CMD = [

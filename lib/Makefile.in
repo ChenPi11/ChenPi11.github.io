@@ -26,9 +26,11 @@ RM ?= rm -f
 NODE_MODULES = $(top_srcdir)/node_modules
 WWWROOT = $(top_srcdir)/wwwroot
 
-.PHONY: all node_modules xterm sprintf-js jquery clean binclean allclean
+IMPORTED_LIBS = xterm sprintf-js jquery mathjax
 
-all : lib xterm sprintf-js jquery
+.PHONY: all node_modules $(IMPORTED_LIBS) clean binclean allclean
+
+all : lib $(IMPORTED_LIBS)
 	$(CP) *.css $(WWWROOT)/lib/
 	$(CP) *.js $(WWWROOT)/lib/
 
@@ -45,6 +47,9 @@ sprintf-js : lib node_modules
 
 jquery : lib node_modules
 	$(CP) $(NODE_MODULES)/jquery/dist/jquery.min.js $(WWWROOT)/lib/jquery.js
+
+mathjax : lib node_modules
+	$(CP) $(NODE_MODULES)/mathjax/tex-mml-chtml.js $(WWWROOT)/lib/tex-mml-chtml.js
 
 node_modules :
 	cd $(top_srcdir)/bin && $(MAKE) $@

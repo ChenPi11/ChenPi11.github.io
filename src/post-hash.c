@@ -134,7 +134,7 @@ int update_hash(struct post_t *post)
         }
     }
 
-    info("Update hash for post: \"%s\" (%s)\n", post->title.content, post->filename.content);
+    info(_("Update hash for post: \"%s\" (%s)\n"), post->title.content, post->filename.content);
 
     /* Update the hash file. */
     if (time(&cur_time) == ((time_t)-1))

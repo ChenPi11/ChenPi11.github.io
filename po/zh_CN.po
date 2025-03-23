@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: chenpi11-blog 0.1.0\n"
 "Report-Msgid-Bugs-To: wushengwuxi-msctinoulk@outlook.com\n"
-"POT-Creation-Date: 2025-03-19 18:33+0800\n"
+"POT-Creation-Date: 2025-03-23 19:59+0800\n"
 "PO-Revision-Date: 2025-03-14 19:39+0800\n"
 "Last-Translator: ChenPi11\n"
 "Language-Team: ChenPi11\n"
@@ -245,6 +245,12 @@ msgid "Cannot load post: %s\n"
 msgstr "无法加载文章：%s\n"
 
 #
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 111
+#, c-format
+msgid "Cannot update hash file for post: \"%s\"(%s)\n"
+msgstr "无法更新文章 %s 的哈希文件：%s\n"
+
+#
 # File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 108
 #, c-format
 msgid "Cannot save post: %s\n"
@@ -438,11 +444,6 @@ msgid "Remove %s failed.\n"
 msgstr "删除 %s 失败。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 67
-msgid "Cannot reallocate memory.\n"
-msgstr "无法重新分配内存。\n"
-
-#
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 93
 #, c-format
 msgid "Duplicate tag: \"%s\".\n"
@@ -601,23 +602,10 @@ msgid "Cannot strip license.\n"
 msgstr "无法裁剪许可证。\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 290
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 294
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 298
-msgid "Cannot generate filename.\n"
-msgstr ""
-
-#
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 301
 #, c-format
 msgid "Generating %s ...\n"
 msgstr "正在生成 %s ...\n"
-
-#
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 305
-#, c-format
-msgid "Cannot copy file: %s\n"
-msgstr "无法复制文件：%s\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 315
@@ -630,9 +618,50 @@ msgid "Cannot write to file: %s\n"
 msgstr "无法写入文件：%s\n"
 
 #
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 67
+msgid "Cannot generate command.\n"
+msgstr "无法生成命令行。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/markdown.go, line: 104
+#, c-format
+msgid "Cannot execute command: %s\n"
+msgstr "无法执行命令：%s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 328
+#, c-format
+msgid "Cannot read file: %s\n"
+msgstr "无法读取文件：%s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 290
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 294
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 298
+msgid "Cannot generate filename.\n"
+msgstr "无法生成文件名。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 305
+#, c-format
+msgid "Cannot copy file: %s\n"
+msgstr "无法复制文件：%s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 108
+msgid "Cannot save post meta.\n"
+msgstr "无法保存文章元数据。\n"
+
+#
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 323
 msgid "Cannot convert markdown to html.\n"
 msgstr "无法将 markdown 转换为 html。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 335
+#, c-format
+msgid "Cannot configure file: %s\n"
+msgstr "无法配置文件：%s\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 328
@@ -641,10 +670,45 @@ msgid "Cannot remove file: %s\n"
 msgstr "无法删除文件：%s\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 335
+# File: /workspaces/ChenPi11.github.io/src/post-hash.c, line: 124
 #, c-format
-msgid "Cannot configure file: %s\n"
-msgstr "无法配置文件：%s\n"
+msgid "The post %s is the latest, skip update.\n"
+msgstr "文章 %s 是最新的，跳过更新。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 328
+#, c-format
+msgid "Cannot create directory: %s\n"
+msgstr "无法创建目录：%s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 111
+#, c-format
+msgid "Update hash for post: \"%s\" (%s)\n"
+msgstr "正在更新文章 %s 的哈希值：%s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 115
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 119
+msgid "time() failed.\n"
+msgstr "time() 失败。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 115
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 119
+msgid "localtime() failed.\n"
+msgstr "localtime() 失败。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 115
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 119
+msgid "strftime() failed.\n"
+msgstr "strftime() 失败。\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 305
+msgid "Cannot compute MD5 hash.\n"
+msgstr "无法计算 MD5 哈希。\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 34
@@ -718,9 +782,8 @@ msgstr "构建 {postfile} 失败。"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 109
-#. Copy applets.
-msgid "========== Copying applets ... ==========\n"
-msgstr "========== 正在复制 applets ... ==========\n"
+msgid "========== Copying resources ... ==========\n"
+msgstr "========== 正在复制资源文件 ... ==========\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/lang_stat.py, line: 129
@@ -1016,6 +1079,26 @@ msgstr "无法创建文件 {file}：{error}"
 # File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 132
 msgid "Failed to write to file {file}: {error}"
 msgstr "无法写入文件 {file}：{error}"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 173
+msgid "Creating resource directory {dir} ..."
+msgstr "正在创建资源目录 {dir}..."
+
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 114
+msgid "Failed to create directory {dir}: {error}"
+msgstr "无法创建目录 {dir}：{error}"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 103
+msgid "Creating default background image {file} ..."
+msgstr "正在创建默认背景图像 {file} ..."
+
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 114
+msgid "Failed to copy file {file}: {error}"
+msgstr "无法复制文件 {file}：{error}"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 159

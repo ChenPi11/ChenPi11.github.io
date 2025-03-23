@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: chenpi11-blog 0.1.0\n"
 "Report-Msgid-Bugs-To: wushengwuxi-msctinoulk@outlook.com\n"
-"POT-Creation-Date: 2025-03-19 18:33+0800\n"
+"POT-Creation-Date: 2025-03-23 19:59+0800\n"
 "PO-Revision-Date: 2025-03-14 19:39+0800\n"
 "Last-Translator: ChenPi11\n"
 "Language-Team: ChenPi11\n"
@@ -245,6 +245,12 @@ msgid "Cannot load post: %s\n"
 msgstr "Cannot load post: %s\n"
 
 #
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 111
+#, c-format
+msgid "Cannot update hash file for post: \"%s\"(%s)\n"
+msgstr "Cannot update hash file for post: \"%s\"(%s)\n"
+
+#
 # File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 108
 #, c-format
 msgid "Cannot save post: %s\n"
@@ -440,11 +446,6 @@ msgid "Remove %s failed.\n"
 msgstr "Remove %s failed.\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 67
-msgid "Cannot reallocate memory.\n"
-msgstr "Cannot reallocate memory.\n"
-
-#
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 93
 #, c-format
 msgid "Duplicate tag: \"%s\".\n"
@@ -603,23 +604,10 @@ msgid "Cannot strip license.\n"
 msgstr "Cannot strip license.\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 290
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 294
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 298
-msgid "Cannot generate filename.\n"
-msgstr "Cannot generate filename.\n"
-
-#
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 301
 #, c-format
 msgid "Generating %s ...\n"
 msgstr "Generating %s ...\n"
-
-#
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 305
-#, c-format
-msgid "Cannot copy file: %s\n"
-msgstr "Cannot copy file: %s\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 315
@@ -632,9 +620,52 @@ msgid "Cannot write to file: %s\n"
 msgstr "Cannot write to file: %s\n"
 
 #
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 290
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 294
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 298
+msgid "Cannot generate command.\n"
+msgstr "Cannot generate command.\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/chenpi11_blog/markdown.go, line: 104
+#, c-format
+msgid "Cannot execute command: %s\n"
+msgstr "Cannot execute command: %s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 328
+#, c-format
+msgid "Cannot read file: %s\n"
+msgstr "Cannot read file: %s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 290
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 294
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 298
+msgid "Cannot generate filename.\n"
+msgstr "Cannot generate filename.\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 305
+#, c-format
+msgid "Cannot copy file: %s\n"
+msgstr "Cannot copy file: %s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 108
+msgid "Cannot save post meta.\n"
+msgstr "Cannot save post meta.\n"
+
+#
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 323
 msgid "Cannot convert markdown to html.\n"
 msgstr "Cannot convert markdown to html.\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 335
+#, c-format
+msgid "Cannot configure file: %s\n"
+msgstr "Cannot configure file: %s\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/post.c, line: 328
@@ -643,10 +674,45 @@ msgid "Cannot remove file: %s\n"
 msgstr "Cannot remove file: %s\n"
 
 #
-# File: /workspaces/ChenPi11.github.io/src/post.c, line: 335
+# File: /workspaces/ChenPi11.github.io/src/post-hash.c, line: 124
 #, c-format
-msgid "Cannot configure file: %s\n"
-msgstr "Cannot configure file: %s\n"
+msgid "The post %s is the latest, skip update.\n"
+msgstr "The post %s is the latest, skip update.\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 328
+#, c-format
+msgid "Cannot create directory: %s\n"
+msgstr "Cannot create directory: %s\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/build-post.c, line: 111
+#, c-format
+msgid "Update hash for post: \"%s\" (%s)\n"
+msgstr "Update hash for post: \"%s\" (%s)\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 115
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 119
+msgid "time() failed.\n"
+msgstr "time() failed.\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 115
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 119
+msgid "localtime() failed.\n"
+msgstr "localtime() failed.\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 115
+# File: /workspaces/ChenPi11.github.io/src/markdown-it.c, line: 119
+msgid "strftime() failed.\n"
+msgstr "strftime() failed.\n"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/post.c, line: 305
+msgid "Cannot compute MD5 hash.\n"
+msgstr "Cannot compute MD5 hash.\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/mkpostlists.cpp, line: 34
@@ -720,9 +786,8 @@ msgstr "Failed to build {postfile}."
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/build_blog.py, line: 109
-#. Copy applets.
-msgid "========== Copying applets ... ==========\n"
-msgstr "========== Copying applets ... ==========\n"
+msgid "========== Copying resources ... ==========\n"
+msgstr "========== Copying resources ... ==========\n"
 
 #
 # File: /workspaces/ChenPi11.github.io/chenpi11_blog/lang_stat.py, line: 129
@@ -1018,6 +1083,26 @@ msgstr "Failed to create file {file}: {error}"
 # File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 132
 msgid "Failed to write to file {file}: {error}"
 msgstr "Failed to write to file {file}: {error}"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 173
+msgid "Creating resource directory {dir} ..."
+msgstr "Creating resource directory {dir} ..."
+
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 114
+msgid "Failed to create directory {dir}: {error}"
+msgstr "Failed to create directory {dir}: {error}"
+
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 103
+msgid "Creating default background image {file} ..."
+msgstr "Creating default background image {file} ..."
+
+#
+# File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 114
+msgid "Failed to copy file {file}: {error}"
+msgstr "Failed to copy file {file}: {error}"
 
 #
 # File: /workspaces/ChenPi11.github.io/src/new-post.rs, line: 159
