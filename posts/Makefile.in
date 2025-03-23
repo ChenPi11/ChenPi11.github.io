@@ -23,19 +23,19 @@ CP ?= @CP@
 MKDIR ?= mkdir -p
 RM ?= rm -f
 
-APPLETS = $(srcdir)/applets
+RESOURCES = $(srcdir)/res
 POSTS = $(wildcard $(srcdir)/*.html)
 WWWROOT_POSTS = $(top_srcdir)/wwwroot/posts
 CB_UTILSVERBOSE ?= @CB_UTILSVERBOSE@
 
-.PHONY : all applets posts clean binclean allclean
+.PHONY : all resources posts clean binclean allclean
 
-all : applets posts
+all : resources posts
 
 $(WWWROOT_POSTS) :
 	$(MKDIR) $@
 
-applets : $(APPLETS) $(WWWROOT_POSTS)
+resources : $(RESOURCES) $(WWWROOT_POSTS)
 	$(CP) -r $< $(WWWROOT_POSTS)
 
 posts : $(POSTS) $(WWWROOT_POSTS)

@@ -43,7 +43,7 @@ post::PostInfo::PostInfo(const std::filesystem::path &metafile)
     {
         throw std::runtime_error(_("No such file: ") + metafile.string());
     }
-    m_filename = metafile.stem().string() + ".html";
+    m_filename = metafile.stem().string();
     std::ifstream infile(metafile);
     std::string line;
     if (std::getline(infile, line).fail())

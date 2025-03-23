@@ -493,7 +493,8 @@ int save_post(struct post_t post)
 
     /* Configure. */
     struct configure_t configures_[] = {PAIR("CONTENT", html_snippet.content), PAIR("SUBTITLE", post.title.content),
-                                        PAIR("POSTINFO", html_postinfo.content)};
+                                        PAIR("POSTINFO", html_postinfo.content),
+                                        PAIR("FILENAME", post.filename.content)};
 
     if (configure(create_configures(configures_), out_filename) != RET_SUCCESS)
     {

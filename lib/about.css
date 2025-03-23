@@ -2,25 +2,10 @@
 
 :root {
     --langs-item-background-color: #f4f4f4;
-    --dark-invert: invert(0%);
-}
-
-.invert-in-dark {
-    transition: filter 0.5s ease;
 }
 
 [data-theme="dark"] {
     --langs-item-background-color: #333333;
-    --dark-invert: invert(100%);
-}
-
-.invert-in-dark {
-    filter: var(--dark-invert);
-    transition: filter 0.5s ease;
-}
-
-* {
-    font-family: "Meslo", "HanSans", sans-serif;
 }
 
 .profile-header {

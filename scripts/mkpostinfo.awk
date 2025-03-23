@@ -34,7 +34,13 @@ function get_license_element(license) {
         exit 1
     }
 
-    return "<a class=\"post-license-link\" href=\"" url "\" target=\"_blank\">" license "</a>"
+    element = "<a class=\"post-license-link\" href=\"" url "\" target=\"_blank\">" license "</a>"
+    res = "本文章采用 " element " 许可协议。"
+    if (license != "The Unlicense") {
+        element = "<a class=\"post-license-link\" href=\"https://chenpi11.github.io\">ChenPi11's Blog</a>"
+        res = res "转载请注明来源 " element " ！"
+    }
+    return res
 }
 
 {

@@ -22,7 +22,7 @@ mod log;
 mod post_template;
 mod verbose;
 
-use std::io::Write;
+use std::{io::Write, path::Path};
 
 /// Show the help message.
 ///
@@ -101,19 +101,23 @@ fn main() {
 
     let now = chrono::Local::now();
     let date = now.format("%Y/%m/%d");
-    let prefix: String = format!("orig-posts/{}-", now.format("%Y-%m-%d"));
+    let filename = now.format("%Y-%m-%d");
+    let prefix: String = format!("orig-posts/{}-", filename);
     let mut filename = String::from(prefix.clone());
     let mut cur_num: i32 = 0;
     loop {
         filename.push_str(&cur_num.to_string());
-        filename.push_str(".md");
-        if !std::path::Path::new(&filename).exists() {
+        if !std::path::Path::new(&(filename.clone() + ".md")).exists() {
             break;
         } else {
             filename = String::from(prefix.clone());
             cur_num += 1;
         }
     }
+
+    let tmp = filename.clone();
+    let filename_stem = Path::new(&tmp).file_stem().unwrap().to_str().unwrap();
+    filename.push_str(".md");
 
     // Create the post.
     let mut vars = std::collections::HashMap::new();
@@ -160,6 +164,57 @@ fn main() {
     let mut configure_vars = std::collections::HashMap::new();
     configure_vars.insert("DATE".to_string(), date.to_string());
     configure::configure_file(&catalog, filename.as_str(), &configure_vars);
+
+    // Create resource directory.
+    let resource_dir = format!("orig-posts/res/{}", filename_stem);
+    let mut vars = std::collections::HashMap::new();
+    vars.insert("dir".to_string(), resource_dir.to_string());
+    let message = strfmt::strfmt(
+        catalog.gettext("Creating resource directory {dir} ..."),
+        &vars,
+    );
+    log::info(&catalog, message.unwrap().as_str());
+    let res = std::fs::create_dir_all(resource_dir.clone());
+    match res {
+        Ok(_) => {}
+        Err(e) => {
+            let mut vars = std::collections::HashMap::new();
+            vars.insert("dir".to_string(), resource_dir.to_string());
+            vars.insert("error".to_string(), e.to_string());
+            let message = strfmt::strfmt(
+                catalog.gettext("Failed to create directory {dir}: {error}"),
+                &vars,
+            );
+            log::error(&catalog, message.unwrap().as_str());
+            std::process::exit(1);
+        }
+    }
+
+    // Create default background image.
+    let default_bg = "res/default-post-image.png";
+    let target_bg = format!("{}/background.png", resource_dir);
+    let mut vars = std::collections::HashMap::new();
+    vars.insert("file".to_string(), target_bg.to_string());
+    let message = strfmt::strfmt(
+        catalog.gettext("Creating default background image {file} ..."),
+        &vars,
+    );
+    log::info(&catalog, message.unwrap().as_str());
+    let res = std::fs::copy(default_bg, target_bg);
+    match res {
+        Ok(_) => {}
+        Err(e) => {
+            let mut vars = std::collections::HashMap::new();
+            vars.insert("file".to_string(), default_bg.to_string());
+            vars.insert("error".to_string(), e.to_string());
+            let message = strfmt::strfmt(
+                catalog.gettext("Failed to copy file {file}: {error}"),
+                &vars,
+            );
+            log::error(&catalog, message.unwrap().as_str());
+            std::process::exit(1);
+        }
+    }
 
     let res = std::process::Command::new("code")
         .arg(filename.as_str())

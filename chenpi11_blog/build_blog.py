@@ -106,10 +106,10 @@ def build_blog_main() -> None:
                 raise SystemExit(msg)
 
     # Copy applets.
-    sys.stdout.write(_("========== Copying applets ... ==========\n"))
-    if Path("posts/applets").exists():
-        shutil.rmtree("posts/applets")
-    shutil.copytree("orig-posts/applets", "posts/applets")
+    sys.stdout.write(_("========== Copying resources ... ==========\n"))
+    if Path("posts/res").exists():
+        shutil.rmtree("posts/res")
+    shutil.copytree("orig-posts/res", "posts/res")
 
 
 if __name__ == "__main__":

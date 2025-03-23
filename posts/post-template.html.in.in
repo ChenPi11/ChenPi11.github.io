@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="/lib/index.css">
     <script src="/lib/jquery.js"></script>
     <script src="/lib/addon-fit.js"></script>
-    <title>@TITLE@</title>
+    <title>@SUBTITLE@ - @TITLE@</title>
 </head>
 
 <body>
@@ -53,6 +53,11 @@
 
     <div class="container">
         <div class="page-container">
+            <div class="post-header" style="background-image: url('/posts/res/@FILENAME@/background.png');">
+                <div class="post-title acrylic">
+                    <h1>@SUBTITLE@</h1>
+                </div>
+            </div>
             <div class="markdown-body">
                 @CONTENT@
                 <hr>

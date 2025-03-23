@@ -27,6 +27,8 @@
     --hover-tag-background-color: #0056b3;
     --border-color: #e0e0e0;
     --active-box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+    --post-title-background: rgba(221, 221, 221, 0.7);
+    --dark-invert: invert(0%);
 }
 
 [data-theme="dark"] {
@@ -39,6 +41,8 @@
     --hover-tag-background-color: #0056b3;
     --border-color: #3f3f3f;
     --active-box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    --post-title-background: rgba(25, 25, 25, 0.7);
+    --dark-invert: invert(100%);
 }
 
 @font-face {
@@ -61,6 +65,11 @@
 * {
     font-family: "Nerd", "Meslo", "HanSans", sans-serif;
     font-display: swap;
+}
+
+.invert-in-dark {
+    filter: var(--dark-invert);
+    transition: filter 0.5s ease;
 }
 
 body {
@@ -174,9 +183,31 @@ footer {
     flex-grow: 1;
 }
 
-.post {
-    background: var(--post-color);
+.post-left {
+    flex: 1 !important;
+    background: var(--background-color);
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    display: grid;
+    place-items: center;
+}
+
+.post-right {
+    flex: 1 !important;
     padding: 20px;
+    background: var(--background-color);
+}
+
+.post-image {
+    width: 15rem;
+    height: auto;
+}
+
+.post {
+    display: flex !important;
+    justify-content: space-between;
+    background: var(--post-color);
     margin-bottom: 20px;
     border-radius: 5px;
     box-shadow: var(--active-box-shadow);
@@ -185,6 +216,7 @@ footer {
 }
 
 .postlink {
+    background: var(--post-color);
     text-decoration: none;
 }
 
@@ -238,4 +270,36 @@ footer {
 .page-container {
     margin-left: 2rem;
     margin-right: 2rem;
+}
+
+.post-header {
+    display: grid;
+    place-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    width: 100%;
+}
+
+.post-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333333;
+    background: rgba(221, 221, 221, 0.7);
+    border-radius: 15px;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
+    margin-left: 5px;
+    margin-right: 5px;
+    transition: filter 0.5s ease;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.post-title:hover {
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.005));
+}
+
+.acrylic {
+    backdrop-filter: blur(1px);
 }

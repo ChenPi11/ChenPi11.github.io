@@ -16,13 +16,18 @@
   -- along with chenpi11-blog.  If not, see <https://www.gnu.org/licenses/>.
   -->
 
-<a href="posts/@FILENAME@" class="postlink" target="_blank">
+<a href="posts/@FILENAME@.html" class="postlink" target="_blank">
     <div class="post">
-        <h2>@TITLE@</h2>
-        <p>Posted on <em>@DATE@</em></p>
-        <p>@DESCRIPTION@</p>
-        <div class="tags">
-            @TAGS@
+        <div class="post-left">
+            <img class="post-image" src="/posts/res/@FILENAME@/background.png" alt="@TITLE@">
+        </div>
+        <div class="post-right">
+            <h2>@TITLE@</h2>
+            <p>Posted on <em>@DATE@</em></p>
+            <p>@DESCRIPTION@</p>
+            <div class="tags">
+                @TAGS@
+            </div>
         </div>
     </div>
 </a>

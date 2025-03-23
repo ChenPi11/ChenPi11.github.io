@@ -146,7 +146,7 @@ clean :
 	$(RM) -r dist
 	$(RM) -r posts/*.html
 	$(RM) -r posts/*.info
-	$(RM) -r posts/applets
+	$(RM) -r posts/res
 	$(RM) index.html
 	$(RM) index.html.in
 	$(RM) log.html

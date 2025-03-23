@@ -26,6 +26,7 @@
 #include "post.h"
 
 #include <stdio.h>
+#include <sys/stat.h>
 #include <time.h>
 
 int post_is_latest(struct post_t *post)
@@ -122,6 +123,15 @@ int update_hash(struct post_t *post)
     {
         info(_("The post %s is the latest, skip update.\n"), post->filename.content);
         goto UPDATE_SUCCESS;
+    }
+
+    if (!is_dir("posts/hash"))
+    {
+        if (mkdir("posts/hash", 0755) != 0)
+        {
+            die(_("Cannot create directory: %s\n"), "posts/hash");
+            goto ERROR;
+        }
     }
 
     info("Update hash for post: \"%s\" (%s)\n", post->title.content, post->filename.content);
