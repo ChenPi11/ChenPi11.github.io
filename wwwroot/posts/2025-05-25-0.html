@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang=zh><head> <meta charset=UTF-8> <meta content="width=device-width,initial-scale=1" name=viewport> <link href=/lib/style.css rel=stylesheet> <link href=/lib/terminal.css rel=stylesheet> <link href=/lib/tab-div.css rel=stylesheet> <link href=/lib/notice.css rel=stylesheet> <link href=/lib/index.css rel=stylesheet> <script src=/lib/jquery.js></script> <script src=/lib/addon-fit.js></script> <title>一次灵异的 BUG 的解决 - ChenPi11&#39;s Blog</title> </head> <body> <script src=/lib/sprintf.js></script> <script src=/lib/xterm.js></script> <script src=/lib/theme-button.js></script> <script src=/lib/tab-div.js type=module></script> <script src=/lib/notice.js type=module></script> <script src=/lib/terminal.js type=module></script> <script src=/lib/mathjax.js></script> <script src=/lib/tex-mml-chtml.js></script> <header> <button class=nav-toggle id=nav-toggle type=button>☰</button> <h1>ChenPi11&#39;s Blog</h1> <button class=settings-toggle id=settings-toggle type=button></button> </header> <nav class=sidebar id=sidebar> <button class=nav-close id=nav-close type=button>×</button> <ul> <li><a href=/index.html> 主页</a></li> <li><a href=/about.html> 关于</a></li> <li><a href=/tags.html>󰓼 标签</a></li> <li><a href=/log.html> 网站编译日志</a></li> <li><a href=/tools.html> 作品</a></li> <li><a href=/settings.html> 设置</a></li> </ul> <div id=theme-button></div> </nav> <div class=container> <div class=page-container> <div class=post-header style="background-image: url(&#39;/posts/res/2025-05-25-0/background.png&#39;);"> <div class="acrylic post-title"> <h1>一次灵异的 BUG 的解决</h1> </div> </div> <div class=markdown-body> <h1>起因</h1> <p>昨天晚上在 Debian 上随便写了一个简单的网络服务，客户端连接了服务端以后，服务端便会从终端读取用户的命令，并且发送给客户端，然后等待客户端的回应。</p> <p>一口气写完所有代码以后，我就开始测试。不出意外，果然出 bug 了，在客户端连接上以后，服务端这边的 <code>std::getline</code> 就开始一直失败并且返回空字符 串，<code>std::cin.good()</code> 也一直是 <code>false</code>。</p> <p><img alt=实际上从这张图片已经能看出问题所在了，猜猜是哪里出了问题 src=res/2025-05-25-0/img0.png></p> <blockquote> <p>实际上从这张图片已经能看出问题所在了，猜猜是哪里出了问题</p> </blockquote> <h1>调试</h1> <p>首先想到的 STL 出问题，于是用 <code>getchar()</code> 来代替 <code>std::getline</code>，结果发现 <code>getchar()</code> 也会一直返回 <code>EOF</code>。 然后我就开始怀疑是不是 <code>stdin</code> 出了问题，怀疑 <code>stdin</code> 已经被关闭了。于是我就开始用 <code>getchar()</code> 来找到 <code>stdin</code> 被关闭的地方，</p> <p><img alt=img1 src=res/2025-05-25-0/img1.png></p> <p>从这里发现 return 以后 stdin 就被关闭了，怀疑是移动构造函数的问题。</p> <p><img alt=img2 src=res/2025-05-25-0/img2.png></p> <p>我在这里加了 <code>getchar()</code> 以后，发现这里 <code>getchar</code> 可以正常的返回。</p> <p><img alt=img3 src=res/2025-05-25-0/img3.png></p> <p>从这里开始， <code>getchar()</code> 就一直返回 <code>EOF</code>了。<code>socket.accapt()</code> 前面也没有问题。（那里的测试代码截图时删掉了） 之后继续进入到了 <code>socket.accept()</code> 函数进行调试，系统函数 <code>::accept()</code> 前后也是没有问题的，但是 <code>socket.accept()</code> 这个我自己实现的函数在 return 以后，stdin 就开始出问题了。</p> <p>有人认为可能是编译器的问题，我换 clang 以后，结果还是一样的。</p> <p>不过从这里开始，问题已经很明确了，一定是某个移动构造函数或者是移动赋值函数出了问题。</p> <p>我在移动赋值函数和移动构造函数中都加了 <code>getchar()</code>，发现移动赋值函数返回的是 <code>-1</code>。</p> <pre><code class=language-cpp>TcpExClient &amp;operator=(const TcpExClient &amp;) = delete;
+TcpExClient &amp;operator=(TcpExClient &amp;&amp;other)
+{
+    sock = std::move(other.sock);
+    _closed = other._closed;
+    _file_callback = other._file_callback;
+    other._closed = true;
+    other._file_callback = _null_file_callback;
+    printf(&#34;移动赋值 %d\n&#34;, getchar());
+    return *this;
+}
+
+TcpExClient(const std::string &amp;host, const int port);
+TcpExClient(socketpp::Socket &amp;&amp;sock) : sock(std::move(sock)), _closed(false), _file_callback(_null_file_callback)
+{
+    printf(&#34;移动构造\n&#34;);
+    printf(&#34;XXXXXXXX%d\n&#34;, getchar());
+}
+</code></pre> <p>我在这里加了 <code>strerror(errno)</code> 来打印错误信息，发现错误信息是 <code>Bad file descriptor</code>。<s>我怎么现在才想起来这件事啊</s></p> <h1>解决</h1> <p>过了一会，有人告诉我</p> <blockquote> <p><img alt=img4 src=res/2025-05-25-0/img4.png> 这个移动构造，在没有优化的情况下。默认先构造了一个空的socket，sockfd为0，后来析构掉了。</p> </blockquote> <p><strong>这下看懂了</strong></p> <p>让我们看看析构函数是怎么写的：</p> <pre><code class=language-cpp>void TcpExClient::close()
+{
+    if (_closed)
+    {
+        return;
+    }
+
+    try
+    {
+        _send_datapack(TCPEX_TYPE_EXIT, &#34;&#34;);
+    }
+    catch (...)
+    {
+    }
+    sock.close();
+}
+
+
+TcpExClient::~TcpExClient()
+{
+    close();
+}
+
+</code></pre> <p>现在还不清楚？那就让我们继续看看 <code>sock.close()</code> 的实现：</p> <pre><code class=language-cpp>void Socket::close() noexcept
+{
+    if ((int)sockfd == -1)
+    {
+        return;
+    }
+    if (::close(sockfd) == -1)
+    {
+        std::cerr &lt;&lt; &#34;WARNING: close failed: &#34; &lt;&lt; std::strerror(errno) &lt;&lt; std::endl;
+    }
+    sockfd = -1;
+}
+
+Socket::~Socket()
+{
+    std::cerr &lt;&lt; &#34;Destroying &#34; &lt;&lt; sockfd &lt;&lt; std::endl;
+    Socket::close();
+}
+</code></pre> <p>让我们回顾一下最开始的输出</p> <p><img alt=让我们回顾一下最开始的输出 src=res/2025-05-25-0/img0.png></p> <p><code>4294967295</code> 是被转换为无符号整数的 <code>-1</code>，所以说这里的 <code>Destroying -1</code> 被忽略掉了。</p> <p>但是底下的 <code>Destroying 0</code> 就不一样了，这个等于 0 的 sockfd 是被正确的关闭的。 <strong>而这个值为 0 的文件描述符，正是 stdin</strong>。</p> <p>相当于我们执行了 <code>::close(0)</code> ，即 <code>::close(::fileno(stdin))</code>！</p> <p>而这个等于 0 的 sockfd 是哪里出现的呢？</p> <pre><code class=language-cpp>Socket::Socket(Socket &amp;&amp;other)
+{
+    if (this == &amp;other)
+    {
+        return;
+    }
+
+    sockfd = other.sockfd;
+    addr = other.addr;
+    other.sockfd = 0;
+}
+</code></pre> <p><code>Socket::Socket(Socket &amp;&amp;other)</code> 是一个移动构造函数，它将 <code>other</code> 资源转移给 <code>this</code>，然后将 <code>other</code> 清空。这段代码是 AI 补全的，它把 <code>other</code> 的 <code>sockfd</code> 设置为 0。于是，这个临时对象 <code>other</code> 在析构的时候， 调用了 <code>::close(0)</code>。</p> <p>我把这里改成了 <code>other.sockfd = -1;</code> 问题就解决了。</p> <p>不过，前面的一些调试结果和实际的问题所在不符，这是因为前面使用 <code>getchar()</code> 作为调试工具是不好的。 stdin 需要你键入回车才能 flush，但是 <code>getchar()</code> 并不会消耗掉 <code>\n</code>，所以所有的第偶数个 <code>getchar()</code> 都会返回 <code>\n</code>，也就是 <code>10</code>，无论 stdin 目前是否关闭。（尽管 stdin 关闭了，其实用户缓冲区内还会剩一个 <code>\n</code>） 这导致了前面的调试结果存在一定的误导性。</p> <h1>总结</h1> <p>Linux 下 IO 的设计是万物皆文件，无论是 regular file, pipe 还是 socket 都可以用 File Descriptor 来表示。 都可以用 <code>::close()</code> 来关闭。我这里把 <code>other.sockfd</code> 设置为 0，本质上并非清空了 <code>other</code> 的 IO 资源占用，而是 将 stdin 的所有权给予了 <code>other</code>。</p> <p>在平时写代码的时候，一定要注意辨析 0 和 -1 的区别，0 是一个有效的文件描述符，而 -1 是无效的。 但是其它的资源就不一定了，比如 <code>malloc</code> 返回的错误值是 <code>0</code>，而 <code>iconv_open</code> 返回的错误值则是 <code>-1</code>。</p> <p>在调用某个 API 之前，一定先要明确它的正常返回值，错误返回值和空值的区别。搞清楚哪个是 0，哪个是 -1。</p> <p><terminal-applet columns=80 id=example read-only=false rows=15 src=res/2025-05-25-0/example.js title=模拟> </terminal-applet></p> <hr> <div class=post-info> <div> <span class=post-info-title> 发布时间：</span><span class=post-info-content>2025/05/25</span> </div> <div> <span class=post-info-title> 最后修改：</span><span class=post-info-content>2025/05/25</span> </div> <div> <span class=post-info-title> 版权声明：</span><span class=post-info-content>本文章采用 <a href=https://creativecommons.org/licenses/by-nc-sa/4.0 class=post-license-link target=_blank>CC-BY-4.0</a> 许可协议。转载请注明来源 <a href=https://chenpi11.github.io class=post-license-link>ChenPi11&#39;s Blog</a> ！</span> </div> </div> </div> </div> </div> <br><br> <script src=/lib/sidebar.js type=module></script> <footer> <p>Copyright © 2025 ChenPi11, All Rights Reserved.</p> </footer> </body></html>

@@ -1,1 +1,1 @@
-{"posts":[{"link":"/posts/2025-03-23-0.html","title":"测试文章","date":"2025/03/23","tags":["测试"],"desc":"此文章用于测试博客的功能是否能正常工作","license":"CC-BY-4.0"}],"tags":{"测试":1}}
+{"posts":[{"link":"/posts/2025-03-23-0.html","title":"测试文章","date":"2025/03/23","tags":["测试"],"desc":"此文章用于测试博客的功能是否能正常工作","license":"CC-BY-4.0"},{"link":"/posts/2025-05-25-0.html","title":"一次灵异的 BUG 的解决","date":"2025/05/25","tags":["debug","C++","Linux","IO"],"desc":"我 accept 了一个连接以后，stdin 居然就 EOF 了？","license":"CC-BY-4.0"}],"tags":{"测试":1,"debug":1,"C++":1,"Linux":1,"IO":1}}
